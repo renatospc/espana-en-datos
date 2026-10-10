@@ -12,7 +12,7 @@ Ejemplo real (Euribor a un año, mensual → media anual)::
     df, fuentes = bde.get({"D_1NBAF472": "espana"}, agregacion="media")
 
 `series` mapea el código de serie del BdE al id de serie de la gráfica. Si la serie no es
-anual hay que indicar `agregacion` (`media`, `suma` o `ultimo`); solo se agregan años
+anual hay que indicar `agregacion` (`media`, `suma`, `ultimo` o `ultimo_disponible`); salvo con `ultimo_disponible`, solo se agregan años
 completos. El servicio devuelve la serie entera (`rango=MAX`) sin paginación; el filtro por
 `desde` se aplica en el cliente.
 """

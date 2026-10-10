@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import json
-import re
 from datetime import datetime, timezone
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 from typing import Sequence
 
 import jsonschema
-import numpy as np
 import pandas as pd
 
 from .tipos import FuenteMeta, validar_df
@@ -134,32 +133,40 @@ def construir_grafica_data(
     return datos
 
 
-def _numero(v: float) -> str:
-    """Igual que `String(v)` en JavaScript para los valores de una gráfica (100 → "100", 1.5 → "1.5")."""
+# Formatos de CSV: separador y marca decimal (como `FormatoCsv` de src/lib/descargas.ts).
+FORMATOS_CSV = {"es": (";", ","), "int": (",", ".")}
+
+
+def _numero(v: float, decimales: int, coma: str) -> str:
+    """Igual que `v.toFixed(decimales)` en JavaScript (mitad hacia arriba sobre el valor binario exacto)."""
     v = float(v)
-    if v.is_integer() and abs(v) < 1e21:
-        return str(int(v))
-    texto = repr(v)
-    if "e" in texto and 1e-7 <= abs(v) < 1e21:  # JavaScript no usa exponente en este rango
-        texto = np.format_float_positional(v, trim="-")
-    return re.sub(r"e([+-])0(\d)$", r"e\1\2", texto)  # 1e-08 → 1e-8, como JavaScript
+    if v == 0:
+        v = 0.0  # toFixed no escribe el signo de -0
+    texto = f"{Decimal(v).quantize(Decimal(1).scaleb(-decimales), rounding=ROUND_HALF_UP):f}"
+    return texto.replace(".", coma)
 
 
-def _campo(texto: str) -> str:
-    return '"' + texto.replace('"', '""') + '"' if any(c in texto for c in '",\r\n') else texto
-
-
-def csv_grafica(datos: dict) -> str:
+def csv_grafica(datos: dict, *, formato: str = "es", decimales: int = 2) -> str:
     """CSV de la gráfica, idéntico a `csvDescarga` de src/lib/descargas.ts (lo comprueba `pnpm validate`).
 
-    UTF-8 con BOM, separador coma, punto decimal y saltos CRLF. Columnas: `periodo` + ids de series;
-    un hueco (`null`) es una celda vacía.
+    UTF-8 con BOM y saltos CRLF. `formato` = `es` (separador `;` y coma decimal, para Excel en español)
+    o `int` (separador `,` y punto decimal); `decimales` redondea los valores (el JSON conserva el valor
+    completo). Columnas: `periodo` + ids de series; un hueco (`null`) es una celda vacía.
     """
+    if formato not in FORMATOS_CSV:
+        raise ValueError(f"formato de CSV desconocido: {formato!r}; válidos: {', '.join(FORMATOS_CSV)}")
+    if not isinstance(decimales, int) or not 0 <= decimales <= 10:
+        raise ValueError(f"decimales del CSV debe ser un entero entre 0 y 10, no {decimales!r}")
+    sep, coma = FORMATOS_CSV[formato]
+
+    def campo(texto: str) -> str:
+        return '"' + texto.replace('"', '""') + '"' if any(c in texto for c in f'"{sep}\r\n') else texto
+
     claves = list(datos["series"])
-    filas = [",".join(_campo(c) for c in ["periodo", *claves])]
+    filas = [sep.join(campo(c) for c in ["periodo", *claves])]
     for i, label in enumerate(datos["labels"]):
-        valores = ["" if (v := datos["series"][k][i]) is None else _numero(v) for k in claves]
-        filas.append(",".join(_campo(c) for c in [label, *valores]))
+        valores = ["" if (v := datos["series"][k][i]) is None else _numero(v, decimales, coma) for k in claves]
+        filas.append(sep.join(campo(c) for c in [label, *valores]))
     return "\ufeff" + "\r\n".join(filas) + "\r\n"
 
 
@@ -175,8 +182,10 @@ def write_grafica_data(
     desde: int = 1976,
     path: str | Path,
     generado_en: str | None = None,
+    csv_formato: str = "es",
+    csv_decimales: int = 2,
 ) -> Path:
-    """Escribe `data/<id>.json` validado y, al lado, `data/<id>.csv`. El JSON debe llamarse `<id>.json`."""
+    """Escribe `data/<id>.json` validado y, al lado, `data/<id>.csv` (ver `csv_grafica`). El JSON debe llamarse `<id>.json`."""
     path = Path(path)
     if path.name != f"{id}.json":
         raise ValueError(f"el fichero debe llamarse {id}.json, no {path.name}")
@@ -195,5 +204,6 @@ def write_grafica_data(
     path.write_text(
         json.dumps(datos, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
-    path.with_suffix(".csv").write_text(csv_grafica(datos), encoding="utf-8", newline="")
+    csv = csv_grafica(datos, formato=csv_formato, decimales=csv_decimales)
+    path.with_suffix(".csv").write_text(csv, encoding="utf-8", newline="")
     return path

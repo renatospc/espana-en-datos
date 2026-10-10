@@ -6,7 +6,7 @@ import pandas as pd
 
 from .tipos import COLUMNAS, validar_df
 
-AGREGACIONES = ("media", "suma", "ultimo")
+AGREGACIONES = ("media", "suma", "ultimo", "ultimo_disponible")
 
 
 def agregar_anual(obs: pd.DataFrame, agregacion: str | None, etiqueta: str = "") -> pd.DataFrame:
@@ -16,6 +16,9 @@ def agregar_anual(obs: pd.DataFrame, agregacion: str | None, etiqueta: str = "")
     - `media`/`suma`/`ultimo`: agrega los años **completos**. Un año con menos observaciones
       que el máximo de la serie (p. ej. el año en curso) se descarta, para no publicar medias
       o sumas parciales. `orden` fija la última observación del año.
+    - `ultimo_disponible`: la última observación de cada año, **también** de los años incompletos.
+      Para indicadores de stock publicados con un calendario irregular (el dato del año en curso
+      es provisional y el notebook debe decirlo en `notas`).
     - Las observaciones sin valor (`NaN`) se ignoran.
     """
     if agregacion is not None and agregacion not in AGREGACIONES:
@@ -31,12 +34,14 @@ def agregar_anual(obs: pd.DataFrame, agregacion: str | None, etiqueta: str = "")
                     f"indica agregacion ({', '.join(AGREGACIONES)})"
                 )
             completos = cuentas.index
+        elif agregacion == "ultimo_disponible":
+            completos = cuentas.index
         else:
             completos = cuentas[cuentas == cuentas.max()].index
         for anio, ga in g[g["anio"].isin(completos)].groupby("anio"):
             ga = ga.sort_values("orden")
             v = {"media": ga["valor"].mean, "suma": ga["valor"].sum}.get(
-                agregacion or "ultimo", lambda: ga["valor"].iloc[-1]
+                agregacion or "ultimo", lambda: ga["valor"].iloc[-1]  # ultimo y ultimo_disponible
             )()
             filas.append((serie, int(anio), float(v)))
     return validar_df(pd.DataFrame(filas, columns=COLUMNAS))

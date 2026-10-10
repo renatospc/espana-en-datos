@@ -10,7 +10,7 @@ Ejemplo real (IPC general, índice, base 2021; mensual → media anual)::
 
 `series` mapea el código de serie del INE (se obtiene en la ficha de la serie en INEbase,
 campo «Código de serie») al id de serie de la gráfica. Si la serie no es anual hay que
-indicar `agregacion` (`media`, `suma` o `ultimo`); solo se agregan años completos. La API
+indicar `agregacion` (`media`, `suma`, `ultimo` o `ultimo_disponible`); solo se agregan años completos, salvo con `ultimo_disponible`. La API
 devuelve la serie entera en una respuesta (sin paginación). Los valores `Secreto` o nulos se omiten.
 """
 

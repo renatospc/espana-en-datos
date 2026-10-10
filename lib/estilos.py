@@ -10,7 +10,7 @@ import math
 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.ticker import FuncFormatter
+from matplotlib.ticker import FuncFormatter, MaxNLocator
 
 GLOBAL = Path(__file__).resolve().parent.parent / "global.json"
 
@@ -33,6 +33,15 @@ PALETA = {
 # La web usa la tipografía del sistema; en los notebooks, la primera sans disponible.
 TIPOGRAFIAS = ["Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
 ATRIBUCION = "{{NOMBRE_PLATAFORMA}}"
+
+# Nombres cortos de las comunidades para rotular las gráficas `por_ccaa` (claves ISO 3166-2:ES).
+NOMBRES_CCAA = {
+    "ES-AN": "Andalucía", "ES-AR": "Aragón", "ES-AS": "Asturias", "ES-CB": "Cantabria", "ES-CE": "Ceuta",
+    "ES-CL": "Castilla y León", "ES-CM": "Castilla-La Mancha", "ES-CN": "Canarias", "ES-CT": "Cataluña",
+    "ES-EX": "Extremadura", "ES-GA": "Galicia", "ES-IB": "Baleares", "ES-MC": "Murcia", "ES-MD": "Madrid",
+    "ES-ML": "Melilla", "ES-NC": "Navarra", "ES-PV": "País Vasco", "ES-RI": "La Rioja", "ES-VC": "C. Valenciana",
+}
+ROTULOS_CCAA = 3  # en `por_ccaa`, se rotulan las comunidades con el último valor más alto
 
 
 def _benchmarks() -> list[dict]:
@@ -121,7 +130,8 @@ def dibujar_series(ax, datos: dict, modo: str = "claro", referencia: float | Non
     """Dibuja `series` de un `GraficaData` ya construido.
 
     `serie_temporal` y `solo_espana` usan los estilos de los benchmarks; en `por_ccaa` las
-    comunidades van en gris fino con `espana` destacada. Cada serie acaba en un punto y solo
+    comunidades van en gris fino con `espana` destacada. Cada serie acaba en un punto (también se
+    marcan los datos aislados, sin vecinos con los que formar línea) y solo
     `espana` lleva el último valor como etiqueta. `referencia` dibuja una línea horizontal
     (p. ej. 100 en un índice). La unidad no va en el eje: la pone `componer` como subtítulo.
     """
@@ -131,39 +141,79 @@ def dibujar_series(ax, datos: dict, modo: str = "claro", referencia: float | Non
     if referencia is not None:
         ax.axhline(referencia, color=p["texto_sec"], linewidth=1, zorder=1)
     for clave, valores in datos["series"].items():
+        if all(v is None for v in valores):
+            continue  # sin ningún dato: ni línea ni entrada en la leyenda (lo explican las notas)
         if por_benchmark:
             kw = estilo_benchmark(clave, modo)
         else:
             kw = {"label": clave, "linewidth": 3 if clave == "espana" else 1}
-            if clave != "espana":
-                kw["color"] = "#9CA3AF"
+            kw["color"] = estilo_benchmark("espana", modo)["color"] if clave == "espana" else "#9CA3AF"
         destacada = clave == "espana"
         (linea,) = ax.plot(
             años, [math.nan if v is None else v for v in valores], zorder=3 if destacada else 2, **kw
         )
+        # Un dato sin vecinos no forma línea: se marca con un punto para que se vea
+        aislados = [
+            j for j, v in enumerate(valores)
+            if v is not None
+            and (j == 0 or valores[j - 1] is None)
+            and (j == len(valores) - 1 or valores[j + 1] is None)
+        ]
+        if aislados:
+            ax.plot(
+                [años[j] for j in aislados], [valores[j] for j in aislados], "o",
+                markersize=9 if destacada else 8, color=linea.get_color(),
+                markeredgecolor=p["fondo"], markeredgewidth=1.5, zorder=4, label="_nolegend_",
+            )
         i = _ultimo(valores)
         if i is None:
             continue
-        ax.plot(
-            años[i], valores[i], "o", markersize=7 if destacada else 5, color=linea.get_color(),
-            markeredgecolor=p["fondo"], markeredgewidth=1.5, zorder=5 if destacada else 4, label="_nolegend_",
-        )
+        if i not in aislados:  # un dato aislado ya lleva su punto, más grande
+            ax.plot(
+                años[i], valores[i], "o", markersize=7 if destacada else 5, color=linea.get_color(),
+                markeredgecolor=p["fondo"], markeredgewidth=1.5, zorder=5 if destacada else 4, label="_nolegend_",
+            )
         if destacada:
             ax.annotate(
-                formato_es(valores[i], 1), xy=(años[i], valores[i]), xytext=(8, 0),
+                formato_es(valores[i]), xy=(años[i], valores[i]), xytext=(8, 0),
                 textcoords="offset points", va="center", fontsize=11, fontweight="bold",
                 color=p["texto"], annotation_clip=False,
             )
-    ax.set_xlim(años[0], años[-1])
+    # El eje empieza en el primer año con algún dato (el JSON sigue empezando en `desde`)
+    primero = min(
+        (años[j] for v in datos["series"].values() for j, x in enumerate(v) if x is not None), default=años[0]
+    )
+    margen = max(0.3, (años[-1] - primero) * 0.015)  # que los puntos de los extremos no queden cortados
+    ax.set_xlim(primero - margen, años[-1] + margen)
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    if not por_benchmark:
+        _rotular_ccaa(ax, datos, años, p)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda x, _: formato_es(x)))
+    con_datos = [k for k, v in datos["series"].items() if any(x is not None for x in v)]
+    if len(con_datos) <= 1:
+        return  # una sola serie: el título ya dice qué se ve, sin leyenda
     if por_benchmark:
-        ax.legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=len(datos["series"]), handlelength=2.6)
+        ax.legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=len(con_datos), handlelength=2.6)
     else:
         claves = [
             Line2D([], [], color=estilo_benchmark("espana", modo)["color"], linewidth=3, label="España"),
             Line2D([], [], color="#9CA3AF", linewidth=1, label="Comunidades autónomas"),
         ]
         ax.legend(handles=claves, loc="lower left", bbox_to_anchor=(0, 1.02), ncol=2, handlelength=2.6)
+
+
+def _rotular_ccaa(ax, datos: dict, años: list[int], p: dict[str, str]) -> None:
+    """Nombre al final de las comunidades con el último valor más alto (las demás, en la tabla)."""
+    finales = []
+    for clave, valores in datos["series"].items():
+        i = _ultimo(valores)
+        if clave != "espana" and i is not None:
+            finales.append((valores[i], años[i], clave))
+    for v, a, clave in sorted(finales, reverse=True)[:ROTULOS_CCAA]:
+        ax.annotate(
+            NOMBRES_CCAA.get(clave, clave), xy=(a, v), xytext=(8, 0), textcoords="offset points",
+            va="center", fontsize=9, color=p["texto_sec"], annotation_clip=False,
+        )
 
 
 def componer(fig, ax, *, titulo: str, datos: dict, modo: str = "claro") -> None:
@@ -182,7 +232,11 @@ def componer(fig, ax, *, titulo: str, datos: dict, modo: str = "claro") -> None:
             claves, etiquetas, loc="upper left", bbox_to_anchor=(x - 0.005, 0.875), ncol=len(claves),
             handlelength=2.6, columnspacing=1.6, labelcolor=p["texto"],
         )
-    organismos = list(dict.fromkeys(f["organismo"] for f in datos["fuentes"]))
+    # Solo las fuentes de las series con datos (las consultadas sin dato se explican en las notas)
+    con_datos = {k for k, v in datos["series"].items() if any(x is not None for x in v)}
+    organismos = list(dict.fromkeys(
+        f["organismo"] for f in datos["fuentes"] if "serie" not in f or f["serie"] in con_datos
+    ))
     fig.text(
         x, 0.025, f"Fuente: {', '.join(organismos)} · Licencia CC BY 4.0 · {ATRIBUCION}",
         ha="left", va="bottom", fontsize=9, color=p["texto_sec"],
