@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.ticker import FuncFormatter, MaxNLocator
 
+from .ccaa import NOMBRES_CCAA
+
 GLOBAL = Path(__file__).resolve().parent.parent / "global.json"
 
 # Debe cubrir el enum `trazo` de src/lib/schema.ts (lo comprueba tests/test_estilos.py).
@@ -34,13 +36,6 @@ PALETA = {
 TIPOGRAFIAS = ["Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
 ATRIBUCION = "España en Datos"
 
-# Nombres cortos de las comunidades para rotular las gráficas `por_ccaa` (claves ISO 3166-2:ES).
-NOMBRES_CCAA = {
-    "ES-AN": "Andalucía", "ES-AR": "Aragón", "ES-AS": "Asturias", "ES-CB": "Cantabria", "ES-CE": "Ceuta",
-    "ES-CL": "Castilla y León", "ES-CM": "Castilla-La Mancha", "ES-CN": "Canarias", "ES-CT": "Cataluña",
-    "ES-EX": "Extremadura", "ES-GA": "Galicia", "ES-IB": "Baleares", "ES-MC": "Murcia", "ES-MD": "Madrid",
-    "ES-ML": "Melilla", "ES-NC": "Navarra", "ES-PV": "País Vasco", "ES-RI": "La Rioja", "ES-VC": "C. Valenciana",
-}
 ROTULOS_CCAA = 3  # en `por_ccaa`, se rotulan las comunidades con el último valor más alto
 
 

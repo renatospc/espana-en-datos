@@ -11,6 +11,7 @@ from typing import Sequence
 import jsonschema
 import pandas as pd
 
+from .ccaa import CODIGOS_CCAA, NOMBRES_CCAA
 from .tipos import FuenteMeta, validar_df
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -19,15 +20,12 @@ ESQUEMA = RAIZ / "schemas" / "grafica-data.schema.json"
 
 TIPOS = ("serie_temporal", "por_ccaa", "solo_espana")
 
-# Debe coincidir con CODIGOS_CCAA de src/lib/schema.ts (lo comprueba tests/test_writer.py).
-CODIGOS_CCAA = (
-    "ES-AN ES-AR ES-AS ES-CB ES-CE ES-CL ES-CM ES-CN ES-CT ES-EX "
-    "ES-GA ES-IB ES-MC ES-MD ES-ML ES-NC ES-PV ES-RI ES-VC"
-).split()
+# En las notas, un grupo con al menos tantas comunidades (la mayoría de las 19) se llama «comunidades autónomas».
+MIN_CCAA_AGRUPADAS = 10
 
 
-def _benchmarks() -> list[str]:
-    return [b["id"] for b in json.loads(GLOBAL.read_text(encoding="utf-8"))["benchmarks"]]
+def _benchmarks() -> list[dict]:
+    return json.loads(GLOBAL.read_text(encoding="utf-8"))["benchmarks"]
 
 
 def _orden_series(tipo: str, claves: set[str], benchmarks: list[str]) -> list[str]:
@@ -58,6 +56,44 @@ def _orden_series(tipo: str, claves: set[str], benchmarks: list[str]) -> list[st
     return [b for b in benchmarks if b in esperadas] if tipo == "serie_temporal" else ["espana"]
 
 
+def _unir(nombres: Sequence[str]) -> str:
+    """«A», «A y B», «A, B y C»."""
+    return nombres[0] if len(nombres) == 1 else f"{', '.join(nombres[:-1])} y {nombres[-1]}"
+
+
+def _notas_automaticas(
+    series: dict[str, list[float | None]], nombres: dict[str, str], tipo: str, años: list[int]
+) -> list[str]:
+    """Primer año con dato de cada serie (METODOLOGIA §2.3), con los nombres que ve el lector.
+
+    Una nota por año (o por «sin datos»), con las series que comparten ese año. En `por_ccaa`, las
+    comunidades van por orden alfabético; si son al menos `MIN_CCAA_AGRUPADAS`, se escribe
+    «comunidades autónomas», con «salvo …» para las de la gráfica que tienen otra nota.
+    """
+    grupos: dict[str, list[str]] = {}
+    for s, valores in series.items():
+        primero = next((a for a, v in zip(años, valores) if v is not None), None)
+        estado = (
+            f"primer dato disponible en {primero}"
+            if primero is not None
+            else f"sin datos en la ventana {años[0]}-{años[-1]}"
+        )
+        grupos.setdefault(estado, []).append(s)
+    ccaa = [s for s in series if s != "espana"] if tipo == "por_ccaa" else []
+    notas = []
+    for estado, claves in grupos.items():
+        dentro = [k for k in claves if k in ccaa]
+        fuera = [k for k in ccaa if k not in claves]
+        if len(dentro) >= MIN_CCAA_AGRUPADAS:
+            salvo = f" salvo {_unir(sorted(nombres[k] for k in fuera))}" if fuera else ""
+            comunidades = [f"comunidades autónomas{salvo}"]
+        else:
+            comunidades = sorted(nombres[k] for k in dentro)
+        texto = _unir([nombres[k] for k in claves if k not in ccaa] + comunidades)
+        notas.append(f"{texto[0].upper()}{texto[1:]}: {estado}.")
+    return notas
+
+
 def construir_grafica_data(
     df: pd.DataFrame,
     fuentes: Sequence[FuenteMeta],
@@ -79,21 +115,17 @@ def construir_grafica_data(
     años = list(range(desde, hasta + 1))
     labels = [str(a) for a in años]
 
-    series_orden = _orden_series(tipo, set(df["serie"]), _benchmarks())
+    benchmarks = _benchmarks()
+    series_orden = _orden_series(tipo, set(df["serie"]), [b["id"] for b in benchmarks])
     series: dict[str, list[float | None]] = {}
-    notas_auto: list[str] = []
     for s in series_orden:
         por_año = df[df["serie"] == s].set_index("periodo")["valor"]
         series[s] = [
             None if a not in por_año.index or pd.isna(por_año[a]) else float(por_año[a])
             for a in años
         ]
-        primero = next((a for a, v in zip(años, series[s]) if v is not None), None)
-        notas_auto.append(
-            f"{s}: primer dato disponible en {primero}."
-            if primero is not None
-            else f"{s}: sin datos en la ventana {desde}-{hasta}."
-        )
+    nombres = {**NOMBRES_CCAA, **{b["id"]: b["nombre"] for b in benchmarks}}
+    notas_auto = _notas_automaticas(series, nombres, tipo, años)
 
     por_serie = {f.serie: f for f in fuentes}
     if len(por_serie) != len(fuentes):
