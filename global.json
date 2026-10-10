@@ -1,0 +1,76 @@
+{
+  "$schema": "./schemas/global.schema.json",
+  "proyecto": {
+    "nombre": "{{NOMBRE_PLATAFORMA}}",
+    "dominio": "{{DOMINIO}}",
+    "descripcion": "Configuración global compartida para partidos, referencias internacionales y clasificaciones de gobernabilidad."
+  },
+  "benchmarks": [
+    {
+      "id": "espana",
+      "nombre": "España",
+      "codigo_iso": "ESP",
+      "fuente_prioritaria": "INE / Banco de España",
+      "estilo": { "color_claro": "#111827", "color_oscuro": "#F9FAFB", "trazo": "solido", "grosor": 3 }
+    },
+    {
+      "id": "ue27",
+      "nombre": "Media UE-27",
+      "codigo_iso": "EU27_2020",
+      "fuente_prioritaria": "Eurostat",
+      "estilo": { "color_claro": "#4B5563", "color_oscuro": "#D1D5DB", "trazo": "discontinuo", "grosor": 2 }
+    },
+    {
+      "id": "ocde",
+      "nombre": "Media OCDE",
+      "codigo_iso": "OECD",
+      "fuente_prioritaria": "OECD Data Explorer",
+      "estilo": { "color_claro": "#6B7280", "color_oscuro": "#9CA3AF", "trazo": "punteado", "grosor": 2 }
+    },
+    {
+      "id": "eeuu",
+      "nombre": "Estados Unidos",
+      "codigo_iso": "USA",
+      "fuente_prioritaria": "OECD / World Bank",
+      "estilo": { "color_claro": "#9CA3AF", "color_oscuro": "#6B7280", "trazo": "raya_punto", "grosor": 2 }
+    },
+    {
+      "id": "canada",
+      "nombre": "Canadá",
+      "codigo_iso": "CAN",
+      "fuente_prioritaria": "OECD / World Bank",
+      "estilo": { "color_claro": "#374151", "color_oscuro": "#E5E7EB", "trazo": "raya_larga", "grosor": 2 }
+    }
+  ],
+  "notas_estilo": "Las series de benchmarks usan una escala de grises neutra diferenciada por tipo de trazo y nunca colores de partidos. Los colores de partido solo se usan en contextos de partidos (matriz de medidas) y deben verificarse contra el manual de marca de cada formación (color_verificado).",
+  "seleccion_partidos": {
+    "regla": "Partidos con escaño en el Congreso de los Diputados en la legislatura en curso. Un partido cuenta por separado si tiene grupo parlamentario propio o si ha abandonado el grupo de la candidatura por la que fue elegido. Los partidos que permanecen en el grupo de su candidatura quedan cubiertos por la posición del partido titular del grupo. Ver METODOLOGIA.md §3.2.",
+    "legislatura": "XV",
+    "fuente": "https://www.congreso.es/es/grupos/composicion-en-la-legislatura",
+    "revisado_en": "2026-10-08"
+  },
+  "partidos": [
+    { "id": "psoe", "nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "grupo_parlamentario": "Socialista", "color_hex": "#E30613", "color_verificado": false, "nota": "Incluye al PSC, integrado en el mismo grupo." },
+    { "id": "pp", "nombre": "Partido Popular", "siglas": "PP", "grupo_parlamentario": "Popular", "color_hex": "#0056A3", "color_verificado": false },
+    { "id": "vox", "nombre": "VOX", "siglas": "VOX", "grupo_parlamentario": "VOX", "color_hex": "#63BE21", "color_verificado": false },
+    { "id": "sumar", "nombre": "Movimiento Sumar", "siglas": "SUMAR", "grupo_parlamentario": "Plurinacional SUMAR", "color_hex": "#E51C55", "color_verificado": false, "nota": "Partido fundado en 2023. Cubre a las formaciones que permanecen en el grupo Plurinacional SUMAR." },
+    { "id": "erc", "nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "grupo_parlamentario": "Republicano", "color_hex": "#FFB232", "color_verificado": false },
+    { "id": "junts", "nombre": "Junts per Catalunya", "siglas": "JUNTS", "grupo_parlamentario": "Junts per Catalunya", "color_hex": "#00C3B2", "color_verificado": false },
+    { "id": "bildu", "nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "grupo_parlamentario": "Euskal Herria Bildu", "color_hex": "#B5CF18", "color_verificado": false },
+    { "id": "pnv", "nombre": "Partido Nacionalista Vasco / Euzko Alderdi Jeltzalea", "siglas": "EAJ-PNV", "grupo_parlamentario": "Vasco (EAJ-PNV)", "color_hex": "#008000", "color_verificado": false },
+    { "id": "podemos", "nombre": "Podemos", "siglas": "PODEMOS", "grupo_parlamentario": "Mixto", "color_hex": "#6B1F5F", "color_verificado": false, "nota": "Elegido en la candidatura de Sumar; en el Grupo Mixto desde diciembre de 2023." },
+    { "id": "bng", "nombre": "Bloque Nacionalista Galego", "siglas": "BNG", "grupo_parlamentario": "Mixto", "color_hex": "#76B3DD", "color_verificado": false },
+    { "id": "cc", "nombre": "Coalición Canaria", "siglas": "CC", "grupo_parlamentario": "Mixto", "color_hex": "#FFD700", "color_verificado": false },
+    { "id": "upn", "nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "grupo_parlamentario": "Mixto", "color_hex": "#2A52BE", "color_verificado": false },
+    { "id": "compromis", "nombre": "Més Compromís", "siglas": "COMPROMÍS", "grupo_parlamentario": "Mixto", "color_hex": "#DA5C28", "color_verificado": false, "nota": "PENDIENTE DE DECISIÓN: su diputada pasó del grupo Sumar al Mixto en 2024; el resto de Compromís sigue en Sumar. Confirmar si se incluye." }
+  ],
+  "tipos_alianza_ccaa": [
+    { "id": "solitario", "etiqueta": "Gobierno en solitario" },
+    { "id": "coalicion", "etiqueta": "Gobierno en coalición" },
+    { "id": "apoyo_externo", "etiqueta": "Apoyo de investidura / presupuestos" },
+    { "id": "oposicion", "etiqueta": "Oposición" }
+  ],
+  "notas_pendientes": [
+    "tipos_alianza_ccaa no se usa todavía en ningún esquema ni vista. Documentar su propósito en el PRD o eliminarlo."
+  ]
+}
