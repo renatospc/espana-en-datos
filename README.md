@@ -1,6 +1,6 @@
-# {{NOMBRE_PLATAFORMA}}: notebooks y datos
+# España en Datos: notebooks y datos
 
-Notebooks de Jupyter que generan los datos de las gráficas de **{{NOMBRE_PLATAFORMA}}** ([https://{{DOMINIO}}](https://{{DOMINIO}})), una plataforma cívica de datos socioeconómicos sobre España comparados con referencias internacionales. Cada notebook descarga las series de fuentes oficiales, las transforma con código visible y escribe el fichero de datos que usa la web.
+Notebooks de Jupyter que generan los datos de las gráficas de **España en Datos** ([https://espanaendatos.org](https://espanaendatos.org)), una plataforma cívica de datos socioeconómicos sobre España comparados con referencias internacionales. Cada notebook descarga las series de fuentes oficiales, las transforma con código visible y escribe el fichero de datos que usa la web.
 
 Este repositorio se sincroniza automáticamente desde el proyecto y solo contiene los temas publicados en la web, que han pasado revisión humana. Cualquier cambio hecho aquí directamente se sobrescribe en la siguiente sincronización.
 
@@ -49,10 +49,10 @@ Al ejecutarse, cada notebook descarga los datos de las fuentes oficiales (necesi
 
 Con CC BY 4.0 puedes copiar, adaptar y publicar el material, también con fines comerciales, siempre que cites la autoría, enlaces a la licencia e indiques si has hecho cambios. Por ejemplo:
 
-> Fuente: {{NOMBRE_PLATAFORMA}} (https://{{DOMINIO}}), a partir de datos de Eurostat. Licencia CC BY 4.0.
+> Fuente: España en Datos (https://espanaendatos.org), a partir de datos de Eurostat. Licencia CC BY 4.0.
 
-Las series proceden de organismos oficiales con sus propias condiciones de reutilización: cita también el organismo original, que figura en `fuentes` de cada `data/<id>.json`. Guía de atribución completa para medios: [https://{{DOMINIO}}/prensa](https://{{DOMINIO}}/prensa).
+Las series proceden de organismos oficiales con sus propias condiciones de reutilización: cita también el organismo original, que figura en `fuentes` de cada `data/<id>.json`. Guía de atribución completa para medios: [https://espanaendatos.org/prensa](https://espanaendatos.org/prensa).
 
 ## Metodología
 
-Fuentes autorizadas, comparación internacional, revisión y correcciones: [https://{{DOMINIO}}/metodologia](https://{{DOMINIO}}/metodologia).
+Fuentes autorizadas, comparación internacional, revisión y correcciones: [https://espanaendatos.org/metodologia](https://espanaendatos.org/metodologia).

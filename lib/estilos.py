@@ -32,7 +32,7 @@ PALETA = {
 }
 # La web usa la tipografía del sistema; en los notebooks, la primera sans disponible.
 TIPOGRAFIAS = ["Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
-ATRIBUCION = "{{NOMBRE_PLATAFORMA}}"
+ATRIBUCION = "España en Datos"
 
 # Nombres cortos de las comunidades para rotular las gráficas `por_ccaa` (claves ISO 3166-2:ES).
 NOMBRES_CCAA = {

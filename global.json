@@ -1,8 +1,8 @@
 {
   "$schema": "./schemas/global.schema.json",
   "proyecto": {
-    "nombre": "{{NOMBRE_PLATAFORMA}}",
-    "dominio": "{{DOMINIO}}",
+    "nombre": "España en Datos",
+    "dominio": "espanaendatos.org",
     "descripcion": "Configuración global compartida para partidos, referencias internacionales y clasificaciones de gobernabilidad."
   },
   "benchmarks": [
