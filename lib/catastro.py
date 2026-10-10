@@ -46,7 +46,7 @@ ORGANISMO = "Dirección General del Catastro"
 # Columna del año: `AREF` en general, `EJERCICIO` en el total de 2024.
 COLUMNAS_ANIO = ("AREF", "EJERCICIO")
 
-# Nombre en el CSV (`CCAANOM`) → código ISO 3166-2:ES (los de CODIGOS_CCAA de src/lib/schema.ts).
+# Nombre en el CSV (`CCAANOM`) → código ISO 3166-2:ES (los de `comunidades` en global.json).
 CCAA = {
     "Andalucía": "ES-AN",
     "Aragón": "ES-AR",

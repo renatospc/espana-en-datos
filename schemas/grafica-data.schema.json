@@ -20,6 +20,9 @@
     "unidad": {
       "type": "string"
     },
+    "referencia": {
+      "type": "number"
+    },
     "labels": {
       "type": "array",
       "items": {

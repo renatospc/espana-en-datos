@@ -66,11 +66,15 @@ def _paleta(modo: str) -> dict[str, str]:
 
 
 def formato_es(x: float, decimales: int | None = None) -> str:
-    """Número con coma decimal y punto de miles (1.234,5). Sin `decimales`, 0 si es entero y 1 si no."""
+    """Número con coma decimal y punto de miles solo a partir de cinco cifras enteras (1234,5; 12.345), como
+    pide la RAE y como `formatoNumero` de src/lib/grafica.ts. Sin `decimales`, 0 si es entero y 1 si no."""
     if decimales is None:
         decimales = 0 if float(x).is_integer() else 1
-    texto = f"{x:,.{decimales}f}"
-    return texto.replace(",", "\x00").replace(".", ",").replace("\x00", ".")
+    entero, _, fraccion = f"{x:.{decimales}f}".partition(".")
+    signo, entero = ("-", entero[1:]) if entero.startswith("-") else ("", entero)
+    if len(entero) >= 5:
+        entero = f"{int(entero):,}".replace(",", ".")
+    return signo + entero + (f",{fraccion}" if fraccion else "")
 
 
 def aplicar_estilos(modo: str = "claro") -> None:
@@ -121,20 +125,21 @@ def _ultimo(valores: list) -> int | None:
     return next((i for i in range(len(valores) - 1, -1, -1) if valores[i] is not None), None)
 
 
-def dibujar_series(ax, datos: dict, modo: str = "claro", referencia: float | None = None) -> None:
+def dibujar_series(ax, datos: dict, modo: str = "claro") -> None:
     """Dibuja `series` de un `GraficaData` ya construido.
 
     `serie_temporal` y `solo_espana` usan los estilos de los benchmarks; en `por_ccaa` las
     comunidades van en gris fino con `espana` destacada. Cada serie acaba en un punto (también se
     marcan los datos aislados, sin vecinos con los que formar línea) y solo
-    `espana` lleva el último valor como etiqueta. `referencia` dibuja una línea horizontal
-    (p. ej. 100 en un índice). La unidad no va en el eje: la pone `componer` como subtítulo.
+    `espana` lleva el último valor como etiqueta. Si `datos` trae `referencia`, dibuja una línea
+    horizontal en ese valor (p. ej. 100 en un índice), como la web. La unidad no va en el eje: la
+    pone `componer` como subtítulo.
     """
     p = _paleta(modo)
     años = [int(x) for x in datos["labels"]]
     por_benchmark = datos["tipo"] in ("serie_temporal", "solo_espana")
-    if referencia is not None:
-        ax.axhline(referencia, color=p["texto_sec"], linewidth=1, zorder=1)
+    if datos.get("referencia") is not None:
+        ax.axhline(datos["referencia"], color=p["texto_sec"], linewidth=1, zorder=1)
     for clave, valores in datos["series"].items():
         if all(v is None for v in valores):
             continue  # sin ningún dato: ni línea ni entrada en la leyenda (lo explican las notas)

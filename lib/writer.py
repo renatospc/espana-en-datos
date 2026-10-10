@@ -105,8 +105,13 @@ def construir_grafica_data(
     generado_por: str,
     desde: int = 1976,
     generado_en: str | None = None,
+    referencia: float | None = None,
 ) -> dict:
-    """Construye y valida el diccionario de `data/<id>.json` (sin escribirlo)."""
+    """Construye y valida el diccionario de `data/<id>.json` (sin escribirlo).
+
+    `referencia` es el valor de una línea horizontal de referencia (p. ej. 100 en un índice), que
+    dibujan los notebooks, la web y la imagen descargable; sin ella, el JSON no lleva el campo.
+    """
     df = validar_df(df)
     df = df[df["periodo"] >= desde]  # la ventana empieza en `desde` (METODOLOGIA §2.3)
     if df["valor"].notna().sum() == 0:
@@ -141,6 +146,7 @@ def construir_grafica_data(
         "id": id,
         "tipo": tipo,
         "unidad": unidad,
+        **({} if referencia is None else {"referencia": referencia}),
         "labels": labels,
         "series": series,
         "fuentes": [por_serie[s].to_dict() for s in series],
@@ -214,6 +220,7 @@ def write_grafica_data(
     desde: int = 1976,
     path: str | Path,
     generado_en: str | None = None,
+    referencia: float | None = None,
     csv_formato: str = "es",
     csv_decimales: int = 2,
 ) -> Path:
@@ -231,6 +238,7 @@ def write_grafica_data(
         generado_por=generado_por,
         desde=desde,
         generado_en=generado_en,
+        referencia=referencia,
     )
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
