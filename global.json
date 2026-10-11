@@ -47,7 +47,7 @@
     "regla": "Partidos con escaño en el Congreso de los Diputados en la legislatura en curso. Un partido cuenta por separado si tiene grupo parlamentario propio o si ha abandonado el grupo de la candidatura por la que fue elegido; no cuenta si solo lo ha abandonado parte de sus diputados. Los partidos que permanecen en el grupo de su candidatura quedan cubiertos por la posición del partido titular del grupo. Ver METODOLOGIA.md §3.2.",
     "legislatura": "XV",
     "fuente": "https://www.congreso.es/es/grupos/composicion-en-la-legislatura",
-    "revisado_en": "2026-10-08"
+    "revisado_en": "2026-10-10"
   },
   "partidos": [
     { "id": "psoe", "nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "grupo_parlamentario": "Socialista", "color_hex": "#E30613", "color_verificado": false, "nota": "Incluye al PSC, integrado en el mismo grupo." },
