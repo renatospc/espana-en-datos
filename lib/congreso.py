@@ -56,6 +56,7 @@ DIPUTADOS = {
     "Sánchez Serna, Javier": "podemos",
     "Santana Perera, Noemí": "podemos",
     "Velarde Gómez, Martina": "podemos",
+    "Verstrynge Revuelta, Lilith": "podemos",  # figura en el Grupo Mixto en las votaciones de enero de 2024
     "Rego Candamil, Néstor": "bng",
     "Valido García, Cristina": "cc",
     "Catalán Higueras, Alberto": "upn",
