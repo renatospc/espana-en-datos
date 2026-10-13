@@ -29,8 +29,8 @@ MODOS = ("claro", "oscuro")
 
 # Superficie, texto principal y secundario, y rejilla por modo (la rejilla, un paso por encima de la superficie).
 PALETA = {
-    "claro": {"fondo": "#FFFFFF", "texto": "#111827", "texto_sec": "#6B7280", "rejilla": "#E5E7EB"},
-    "oscuro": {"fondo": "#111827", "texto": "#F9FAFB", "texto_sec": "#9CA3AF", "rejilla": "#374151"},
+    "claro": {"fondo": "#FFFFFF", "texto": "#183653", "texto_sec": "#527093", "rejilla": "#E8EFF3"},
+    "oscuro": {"fondo": "#0D1B2A", "texto": "#DBE6F0", "texto_sec": "#A3B7CB", "rejilla": "#24405B"},
 }
 # La web usa la tipografía del sistema; en los notebooks, la primera sans disponible.
 TIPOGRAFIAS = ["Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
