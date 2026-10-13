@@ -317,6 +317,8 @@ def ensamblar(
     textos: dict = {}
     medidas = []
     for m in config["medidas"]:
+        if "ref" in m:  # medida de otro tema: sus posiciones están en su posiciones.json
+            continue
         mid = m["id"]
         posiciones = []
         for p in partidos:

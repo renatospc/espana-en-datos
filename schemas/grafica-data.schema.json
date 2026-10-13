@@ -2,108 +2,257 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "grafica-data.schema.json",
   "title": "GraficaData",
-  "description": "temas/<slug>/data/<id>.json. Refinamientos no expresables en JSON Schema (se comprueban con Zod / pnpm validate): cada serie tiene tantos valores como labels; claves de series según tipo: serie_temporal = todos los ids de benchmarks; solo_espana = solo espana; por_ccaa = espana + códigos ISO 3166-2:ES; cada serie tiene al menos una fuente y cada fuente.serie es una serie existente; el nombre del fichero coincide con id.",
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "string",
-      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
-    },
-    "tipo": {
-      "type": "string",
-      "enum": [
-        "serie_temporal",
-        "por_ccaa",
-        "solo_espana"
-      ]
-    },
-    "unidad": {
-      "type": "string"
-    },
-    "referencia": {
-      "type": "number"
-    },
-    "labels": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "series": {
+  "description": "temas/<slug>/data/<id>.json. Refinamientos no expresables en JSON Schema (se comprueban con Zod / pnpm validate): cada serie tiene tantos valores como labels; claves de series según tipo: serie_temporal = todos los ids de benchmarks; solo_espana = solo espana; por_ccaa = espana + códigos ISO 3166-2:ES; cada serie tiene al menos una fuente y cada fuente.serie es una serie existente; dispersion: códigos de punto únicos, cada uno un país de paises cuyo grupos incluye universo o el codigo_iso de un agregado de benchmarks; está ESP; fuentes con serie eje_x y eje_y; el nombre del fichero coincide con id.",
+  "oneOf": [
+    {
       "type": "object",
-      "propertyNames": {
-        "type": "string"
-      },
-      "additionalProperties": {
-        "type": "array",
-        "items": {
-          "type": [
-            "number",
-            "null"
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "serie_temporal",
+            "por_ccaa",
+            "solo_espana"
           ]
-        }
-      }
-    },
-    "fuentes": {
-      "minItems": 1,
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "serie": {
+        },
+        "unidad": {
+          "type": "string"
+        },
+        "referencia": {
+          "type": "number"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
             "type": "string"
-          },
-          "organismo": {
-            "type": "string"
-          },
-          "dataset_codigo": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri"
-          },
-          "fecha_consulta": {
-            "type": "string",
-            "format": "date",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
           }
         },
-        "required": [
-          "serie",
-          "organismo",
-          "dataset_codigo",
-          "url",
-          "fecha_consulta"
-        ],
-        "additionalProperties": false
-      }
+        "series": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "fuentes": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "serie": {
+                "type": "string"
+              },
+              "organismo": {
+                "type": "string"
+              },
+              "dataset_codigo": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "fecha_consulta": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+              }
+            },
+            "required": [
+              "serie",
+              "organismo",
+              "dataset_codigo",
+              "url",
+              "fecha_consulta"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "notas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "generado_por": {
+          "type": "string"
+        },
+        "generado_en": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+        }
+      },
+      "required": [
+        "id",
+        "tipo",
+        "unidad",
+        "labels",
+        "series",
+        "fuentes",
+        "notas",
+        "generado_por",
+        "generado_en"
+      ],
+      "additionalProperties": false
     },
-    "notas": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "generado_por": {
-      "type": "string"
-    },
-    "generado_en": {
-      "type": "string",
-      "format": "date-time",
-      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "tipo": {
+          "type": "string",
+          "const": "dispersion"
+        },
+        "universo": {
+          "type": "string",
+          "enum": [
+            "ocde",
+            "ue27"
+          ]
+        },
+        "eje_x": {
+          "type": "object",
+          "properties": {
+            "titulo": {
+              "type": "string"
+            },
+            "unidad": {
+              "type": "string"
+            },
+            "periodo": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "titulo",
+            "unidad",
+            "periodo"
+          ],
+          "additionalProperties": false
+        },
+        "eje_y": {
+          "type": "object",
+          "properties": {
+            "titulo": {
+              "type": "string"
+            },
+            "unidad": {
+              "type": "string"
+            },
+            "periodo": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "titulo",
+            "unidad",
+            "periodo"
+          ],
+          "additionalProperties": false
+        },
+        "puntos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "codigo": {
+                "type": "string"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "codigo",
+              "x",
+              "y"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "fuentes": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "serie": {
+                "type": "string"
+              },
+              "organismo": {
+                "type": "string"
+              },
+              "dataset_codigo": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "fecha_consulta": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+              }
+            },
+            "required": [
+              "serie",
+              "organismo",
+              "dataset_codigo",
+              "url",
+              "fecha_consulta"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "notas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "generado_por": {
+          "type": "string"
+        },
+        "generado_en": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+        }
+      },
+      "required": [
+        "id",
+        "tipo",
+        "universo",
+        "eje_x",
+        "eje_y",
+        "puntos",
+        "fuentes",
+        "notas",
+        "generado_por",
+        "generado_en"
+      ],
+      "additionalProperties": false
     }
-  },
-  "required": [
-    "id",
-    "tipo",
-    "unidad",
-    "labels",
-    "series",
-    "fuentes",
-    "notas",
-    "generado_por",
-    "generado_en"
-  ],
-  "additionalProperties": false
+  ]
 }

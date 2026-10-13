@@ -3,7 +3,7 @@
   "proyecto": {
     "nombre": "España en Datos",
     "dominio": "espanaendatos.org",
-    "descripcion": "Configuración global compartida para partidos, referencias internacionales y comunidades autónomas."
+    "descripcion": "Configuración global compartida para partidos, referencias internacionales, comunidades autónomas y países de la OCDE y la UE-27."
   },
   "benchmarks": [
     {
@@ -83,5 +83,50 @@
     { "codigo": "ES-PV", "nombre": "País Vasco" },
     { "codigo": "ES-RI", "nombre": "La Rioja" },
     { "codigo": "ES-VC", "nombre": "C. Valenciana" }
+  ],
+  "paises": [
+    { "codigo": "AUS", "nombre": "Australia", "grupos": ["ocde"] },
+    { "codigo": "AUT", "nombre": "Austria", "grupos": ["ocde", "ue27"] },
+    { "codigo": "BEL", "nombre": "Bélgica", "grupos": ["ocde", "ue27"] },
+    { "codigo": "BGR", "nombre": "Bulgaria", "grupos": ["ue27"] },
+    { "codigo": "CAN", "nombre": "Canadá", "grupos": ["ocde"] },
+    { "codigo": "CHE", "nombre": "Suiza", "grupos": ["ocde"] },
+    { "codigo": "CHL", "nombre": "Chile", "grupos": ["ocde"] },
+    { "codigo": "COL", "nombre": "Colombia", "grupos": ["ocde"] },
+    { "codigo": "CRI", "nombre": "Costa Rica", "grupos": ["ocde"] },
+    { "codigo": "CYP", "nombre": "Chipre", "grupos": ["ue27"] },
+    { "codigo": "CZE", "nombre": "Chequia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "DEU", "nombre": "Alemania", "grupos": ["ocde", "ue27"] },
+    { "codigo": "DNK", "nombre": "Dinamarca", "grupos": ["ocde", "ue27"] },
+    { "codigo": "ESP", "nombre": "España", "grupos": ["ocde", "ue27"] },
+    { "codigo": "EST", "nombre": "Estonia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "FIN", "nombre": "Finlandia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "FRA", "nombre": "Francia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "GBR", "nombre": "Reino Unido", "grupos": ["ocde"] },
+    { "codigo": "GRC", "nombre": "Grecia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "HRV", "nombre": "Croacia", "grupos": ["ue27"] },
+    { "codigo": "HUN", "nombre": "Hungría", "grupos": ["ocde", "ue27"] },
+    { "codigo": "IRL", "nombre": "Irlanda", "grupos": ["ocde", "ue27"] },
+    { "codigo": "ISL", "nombre": "Islandia", "grupos": ["ocde"] },
+    { "codigo": "ISR", "nombre": "Israel", "grupos": ["ocde"] },
+    { "codigo": "ITA", "nombre": "Italia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "JPN", "nombre": "Japón", "grupos": ["ocde"] },
+    { "codigo": "KOR", "nombre": "Corea del Sur", "grupos": ["ocde"] },
+    { "codigo": "LTU", "nombre": "Lituania", "grupos": ["ocde", "ue27"] },
+    { "codigo": "LUX", "nombre": "Luxemburgo", "grupos": ["ocde", "ue27"] },
+    { "codigo": "LVA", "nombre": "Letonia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "MEX", "nombre": "México", "grupos": ["ocde"] },
+    { "codigo": "MLT", "nombre": "Malta", "grupos": ["ue27"] },
+    { "codigo": "NLD", "nombre": "Países Bajos", "grupos": ["ocde", "ue27"] },
+    { "codigo": "NOR", "nombre": "Noruega", "grupos": ["ocde"] },
+    { "codigo": "NZL", "nombre": "Nueva Zelanda", "grupos": ["ocde"] },
+    { "codigo": "POL", "nombre": "Polonia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "PRT", "nombre": "Portugal", "grupos": ["ocde", "ue27"] },
+    { "codigo": "ROU", "nombre": "Rumanía", "grupos": ["ue27"] },
+    { "codigo": "SVK", "nombre": "Eslovaquia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "SVN", "nombre": "Eslovenia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "SWE", "nombre": "Suecia", "grupos": ["ocde", "ue27"] },
+    { "codigo": "TUR", "nombre": "Turquía", "grupos": ["ocde"] },
+    { "codigo": "USA", "nombre": "Estados Unidos", "grupos": ["ocde"] }
   ]
 }
