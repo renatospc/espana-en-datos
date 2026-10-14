@@ -59,6 +59,23 @@ def estilo_benchmark(id: str, modo: str = "claro") -> dict[str, Any]:
     raise KeyError(f"benchmark desconocido: {id!r}")
 
 
+# Gris de las partes de un desglose, como GRIS_NEUTRO de src/lib/estilos-series.ts.
+GRIS_NEUTRO = {"claro": "#7890A8", "oscuro": "#8197AE"}
+# Trazos de las partes de un desglose (en gris, para que España siga destacada), como DASH_DESGLOSE de la web.
+TRAZOS_DESGLOSE = [(0, (7, 4)), (0, (2, 4)), (0, (8, 3, 2, 3))]
+
+
+def estilo_desglose(clave: str, datos: dict, modo: str = "claro") -> dict[str, Any]:
+    """Estilo de una parte del desglose de `espana` (`desglose`): gris, con un trazo por parte."""
+    claves = list(datos["desglose"])
+    return {
+        "label": datos["desglose"][clave],
+        "color": GRIS_NEUTRO[modo],
+        "linestyle": TRAZOS_DESGLOSE[claves.index(clave) % len(TRAZOS_DESGLOSE)],
+        "linewidth": 2,
+    }
+
+
 def _paleta(modo: str) -> dict[str, str]:
     if modo not in MODOS:
         raise ValueError(f"modo desconocido: {modo!r}; válidos: {', '.join(MODOS)}")
@@ -143,7 +160,9 @@ def dibujar_series(ax, datos: dict, modo: str = "claro") -> None:
     for clave, valores in datos["series"].items():
         if all(v is None for v in valores):
             continue  # sin ningún dato: ni línea ni entrada en la leyenda (lo explican las notas)
-        if por_benchmark:
+        if clave in datos.get("desglose", {}):
+            kw = estilo_desglose(clave, datos, modo)
+        elif por_benchmark:
             kw = estilo_benchmark(clave, modo)
         else:
             kw = {"label": clave, "linewidth": 3 if clave == "espana" else 1}

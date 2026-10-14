@@ -18,7 +18,7 @@
       "nombre": "Media UE-27",
       "codigo_iso": "EU27_2020",
       "fuente_prioritaria": "Eurostat",
-      "estilo": { "color_claro": "#0072B2", "color_oscuro": "#56A8E0", "trazo": "discontinuo", "grosor": 2 }
+      "estilo": { "color_claro": "#003399", "color_oscuro": "#6F8FEA", "trazo": "discontinuo", "grosor": 2 }
     },
     {
       "id": "ocde",
@@ -53,7 +53,7 @@
     { "id": "psoe", "nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "grupo_parlamentario": "Socialista", "color_hex": "#E30613", "color_verificado": false, "nota": "Incluye al PSC, integrado en el mismo grupo." },
     { "id": "pp", "nombre": "Partido Popular", "siglas": "PP", "grupo_parlamentario": "Popular", "color_hex": "#0056A6", "color_verificado": false },
     { "id": "vox", "nombre": "VOX", "siglas": "VOX", "grupo_parlamentario": "VOX", "color_hex": "#6BAF24", "color_verificado": false },
-    { "id": "sumar", "nombre": "Movimiento Sumar", "siglas": "SUMAR", "grupo_parlamentario": "Plurinacional SUMAR", "color_hex": "#D5007F", "color_verificado": false, "nota": "Partido fundado en 2023. Cubre a las formaciones que permanecen en el grupo Plurinacional SUMAR, incluido Compromís (una de sus diputadas pasó al Grupo Mixto en 2024, pero el partido sigue en el grupo)." },
+    { "id": "sumar", "nombre": "Movimiento Sumar", "siglas": "SUMAR", "grupo_parlamentario": "Plurinacional SUMAR", "color_hex": "#E51C55", "color_verificado": false, "nota": "Partido fundado en 2023. Cubre a las formaciones que permanecen en el grupo Plurinacional SUMAR, incluido Compromís (una de sus diputadas pasó al Grupo Mixto en 2024, pero el partido sigue en el grupo)." },
     { "id": "erc", "nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "grupo_parlamentario": "Republicano", "color_hex": "#FFB232", "color_verificado": false },
     { "id": "junts", "nombre": "Junts per Catalunya", "siglas": "JUNTS", "grupo_parlamentario": "Junts per Catalunya", "color_hex": "#00C3B2", "color_verificado": false },
     { "id": "bildu", "nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "grupo_parlamentario": "Euskal Herria Bildu", "color_hex": "#B5CF18", "color_verificado": false },

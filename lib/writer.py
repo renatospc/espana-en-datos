@@ -28,13 +28,17 @@ def _benchmarks() -> list[dict]:
     return json.loads(GLOBAL.read_text(encoding="utf-8"))["benchmarks"]
 
 
-def _orden_series(tipo: str, claves: set[str], benchmarks: list[str]) -> list[str]:
+def _orden_series(
+    tipo: str, claves: set[str], benchmarks: list[str], desglose: Sequence[str] = ()
+) -> list[str]:
     """Comprueba las claves según `tipo` y devuelve el orden estable de salida."""
+    if desglose and tipo != "solo_espana":
+        raise ValueError("el desglose solo vale en solo_espana")
     if tipo == "serie_temporal":
         esperadas = set(benchmarks)
         etiqueta = "serie_temporal (cesta de benchmarks)"
     elif tipo == "solo_espana":
-        esperadas = {"espana"}
+        esperadas = {"espana", *desglose}
         etiqueta = "solo_espana"
     elif tipo == "por_ccaa":
         sobran = claves - {"espana", *CODIGOS_CCAA}
@@ -53,7 +57,7 @@ def _orden_series(tipo: str, claves: set[str], benchmarks: list[str]) -> list[st
             + (f"; faltan: {', '.join(sorted(faltan))}" if faltan else "")
             + (f"; sobran: {', '.join(sorted(sobran))}" if sobran else "")
         )
-    return [b for b in benchmarks if b in esperadas] if tipo == "serie_temporal" else ["espana"]
+    return [b for b in benchmarks if b in esperadas] if tipo == "serie_temporal" else ["espana", *desglose]
 
 
 def _unir(nombres: Sequence[str]) -> str:
@@ -106,12 +110,16 @@ def construir_grafica_data(
     desde: int = 1976,
     generado_en: str | None = None,
     referencia: float | None = None,
+    desglose: dict[str, str] | None = None,
 ) -> dict:
     """Construye y valida el diccionario de `data/<id>.json` (sin escribirlo).
 
     `referencia` es el valor de una línea horizontal de referencia (p. ej. 100 en un índice), que
     dibujan los notebooks, la web y la imagen descargable; sin ella, el JSON no lleva el campo.
+    `desglose` (solo en `solo_espana`) nombra las partes de la serie `espana`, como
+    {clave: nombre}: cada clave es una serie más del DataFrame, con su fuente.
     """
+    desglose = desglose or {}
     df = validar_df(df)
     df = df[df["periodo"] >= desde]  # la ventana empieza en `desde` (METODOLOGIA §2.3)
     if df["valor"].notna().sum() == 0:
@@ -121,7 +129,9 @@ def construir_grafica_data(
     labels = [str(a) for a in años]
 
     benchmarks = _benchmarks()
-    series_orden = _orden_series(tipo, set(df["serie"]), [b["id"] for b in benchmarks])
+    series_orden = _orden_series(
+        tipo, set(df["serie"]), [b["id"] for b in benchmarks], list(desglose)
+    )
     series: dict[str, list[float | None]] = {}
     for s in series_orden:
         por_año = df[df["serie"] == s].set_index("periodo")["valor"]
@@ -129,7 +139,7 @@ def construir_grafica_data(
             None if a not in por_año.index or pd.isna(por_año[a]) else float(por_año[a])
             for a in años
         ]
-    nombres = {**NOMBRES_CCAA, **{b["id"]: b["nombre"] for b in benchmarks}}
+    nombres = {**NOMBRES_CCAA, **{b["id"]: b["nombre"] for b in benchmarks}, **desglose}
     notas_auto = _notas_automaticas(series, nombres, tipo, años)
 
     por_serie = {f.serie: f for f in fuentes}
@@ -147,6 +157,7 @@ def construir_grafica_data(
         "tipo": tipo,
         "unidad": unidad,
         **({} if referencia is None else {"referencia": referencia}),
+        **({"desglose": dict(desglose)} if desglose else {}),
         "labels": labels,
         "series": series,
         "fuentes": [por_serie[s].to_dict() for s in series],
@@ -221,6 +232,7 @@ def write_grafica_data(
     path: str | Path,
     generado_en: str | None = None,
     referencia: float | None = None,
+    desglose: dict[str, str] | None = None,
     csv_formato: str = "es",
     csv_decimales: int = 2,
 ) -> Path:
@@ -239,6 +251,7 @@ def write_grafica_data(
         desde=desde,
         generado_en=generado_en,
         referencia=referencia,
+        desglose=desglose,
     )
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
