@@ -9,13 +9,16 @@ Entradas, en `temas/<slug>/posiciones/`:
   `cita_textual` (frase literal), `fichero_txt` y `pagina` (página del PDF del programa), `busquedas`,
   `nota` y, si el grupo del partido tiene una iniciativa sobre la medida en el Congreso, `iniciativa` (la
   más reciente: `sentido`, `alcance`, `argumento`, `cita_textual`, `fuentes` de tipo `iniciativa` o
-  `diario_sesiones`, `fecha` y `legislatura`), que va aparte de la posición según el programa.
+  `diario_sesiones`, `fecha` y `legislatura`), que va aparte de la posición según el programa. Una medida
+  `sin_posicion` con `argumento` propio (p. ej. vivienda) usa ese argumento, su `fecha` y sus `fuentes` en
+  lugar de la frase fija y los documentos.
 - `votaciones/<medida_id>.json`: votaciones del Pleno sobre la medida, de la más reciente a la más antigua
   (§4.2), hasta cuatro con `alcance` `especifica` (su objeto principal es la medida; es el valor por
   defecto) y hasta cuatro `amplia` (textos que la incluyen con otras materias), con `id`, `titulo`,
   `descripcion`, `sentido`, `alcance`, `fecha`,
   `legislatura`, `resultado`, `expediente`, `sesion`, `numero`, `url_json`, `url_pdf`, `url_ficha` y
-  `diario_sesiones` (página del debate); las votaciones por llamamiento, sin datos abiertos, llevan
+  `diario_sesiones` (página del debate), o `fuentes` ya redactadas si no encajan en ese formato (p. ej. el
+  BOE de un real decreto-ley derogado); las votaciones por llamamiento, sin datos abiertos, llevan
   `votos_llamamiento` (contados con `contar_llamamiento`) y `metodo_votos`. `descartadas` recoge las que no
   cumplen la regla, con su motivo.
 
@@ -204,6 +207,16 @@ def posicion(partido: str, medida: str, prog: Mapping | None) -> dict:
     prog = prog or {}
     e = prog.get("medidas", {}).get(medida)
     docs = prog.get("documentos", [])
+    if e is not None and e.get("posicion") == "sin_posicion" and e.get("argumento"):
+        # Frase propia de la medida (p. ej. vivienda): se usan su argumento, su fecha y sus fuentes.
+        return {
+            "partido_id": partido,
+            "posicion": "sin_posicion",
+            "argumento": e["argumento"],
+            "fecha": e.get("fecha"),
+            "legislatura": e.get("legislatura") or prog.get("legislatura"),
+            "fuentes": [{k: f[k] for k in ("tipo", "titulo", "url", "referencia")} for f in e["fuentes"]],
+        }
     if e is None or e.get("posicion") == "sin_posicion":
         return {
             "partido_id": partido,
@@ -279,7 +292,7 @@ def votacion(v: Mapping, votos: Mapping[str, str]) -> dict:
         "fecha": v["fecha"],
         "legislatura": v["legislatura"],
         "resultado": v["resultado"],
-        "fuentes": fuentes_votacion(v),
+        "fuentes": [dict(f) for f in v["fuentes"]] if v.get("fuentes") else fuentes_votacion(v),
     }
     if v.get("url_json") and not v.get("votos_llamamiento"):
         out["url_datos"] = v["url_json"]
@@ -397,7 +410,7 @@ def ensamblar(
                 avisos.append(f"{ruta}: alcance {v.get('alcance')!r} no admitido")
             if len(v.get("descripcion", "")) > LARGO_MAX:
                 avisos.append(f"{ruta}: descripción de {len(v['descripcion'])} caracteres")
-            if not v.get("diario_sesiones"):
+            if not v.get("diario_sesiones") and not any(fu.get("tipo") == "diario_sesiones" for fu in v.get("fuentes", [])):
                 avisos.append(f"{ruta}: sin página del Diario de Sesiones")
             if v.get("votos_llamamiento"):
                 votos = v["votos_llamamiento"]
