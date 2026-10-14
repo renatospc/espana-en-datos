@@ -2,21 +2,26 @@
 
 Entradas, en `temas/<slug>/posiciones/`:
 
-- `programa/<partido_id>.json`: posición del partido según su programa y sus documentos (§4.1 y §4.2).
-  Lleva `documentos` (programas consultados: `fichero_txt`, `titulo`, `url`, `fecha`),
+- `programa/<partido_id>.json`: posición del partido según su programa y sus documentos propios (§4.1 y
+  §4.2). Lleva `documentos` (programas consultados: `fichero_txt`, `titulo`, `url`, `fecha`),
   `argumento_sin_posicion` (frase fija cuando ningún documento trata la medida) y `medidas.<medida_id>`
-  con `posicion`, `argumento`, `fuentes` (de tipo `programa`, `iniciativa` o `comunicado`), `fecha`,
-  `legislatura`, `cita_textual` (frase literal), `fichero_txt` y `pagina` (página del PDF del programa, si
-  la cita es del programa), `busquedas` y `nota`.
-- `votaciones/<medida_id>.json`: hasta cuatro votaciones del Pleno cuyo objeto principal es la medida, de
-  la más reciente a la más antigua (§4.2), con `id`, `titulo`, `descripcion`, `sentido`, `fecha`,
+  con `posicion`, `argumento`, `fuentes` (de tipo `programa` o `comunicado`), `fecha`, `legislatura`,
+  `cita_textual` (frase literal), `fichero_txt` y `pagina` (página del PDF del programa), `busquedas`,
+  `nota` y, si el grupo del partido tiene una iniciativa sobre la medida en el Congreso, `iniciativa` (la
+  más reciente: `sentido`, `alcance`, `argumento`, `cita_textual`, `fuentes` de tipo `iniciativa` o
+  `diario_sesiones`, `fecha` y `legislatura`), que va aparte de la posición según el programa.
+- `votaciones/<medida_id>.json`: votaciones del Pleno sobre la medida, de la más reciente a la más antigua
+  (§4.2), hasta cuatro con `alcance` `especifica` (su objeto principal es la medida; es el valor por
+  defecto) y hasta cuatro `amplia` (textos que la incluyen con otras materias), con `id`, `titulo`,
+  `descripcion`, `sentido`, `alcance`, `fecha`,
   `legislatura`, `resultado`, `expediente`, `sesion`, `numero`, `url_json`, `url_pdf`, `url_ficha` y
   `diario_sesiones` (página del debate); las votaciones por llamamiento, sin datos abiertos, llevan
   `votos_llamamiento` (contados con `contar_llamamiento`) y `metodo_votos`. `descartadas` recoge las que no
   cumplen la regla, con su motivo.
 
 Salida: por medida, la posición según el programa de cada partido (en `sin_posicion`, con la frase fija del
-partido y los documentos consultados como fuentes, §4.1) y las votaciones con el voto de cada partido,
+partido y los documentos consultados como fuentes, §4.1), las iniciativas de los partidos que la tienen y las
+votaciones con el voto de cada partido,
 calculado con `lib/congreso.py` a partir de los datos abiertos. Avisa de citas que no están en su página
 (si se dan los textos de los programas), resultados que no coinciden con los datos abiertos, partidos sin
 ningún diputado en una votación, más de cuatro votaciones o mal ordenadas, textos de más de 300
@@ -51,7 +56,10 @@ RAIZ = Path(__file__).resolve().parent.parent
 LARGO_MAX = 300
 MAX_VOTACIONES = 4
 POSICIONES = ("a_favor", "en_contra", "matizada", "sin_posicion")
-TIPOS_FUENTE_POSICION = ("programa", "iniciativa", "comunicado", "diario_sesiones")
+TIPOS_FUENTE_POSICION = ("programa", "comunicado")
+TIPOS_FUENTE_INICIATIVA = ("iniciativa", "diario_sesiones")
+SENTIDOS_INICIATIVA = ("a_favor", "en_contra", "matizada")
+ALCANCES = ("especifica", "amplia")
 VOTOS = ("si", "no", "abstencion", "no_vota", "dividido")
 MESES = "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split()
 
@@ -215,6 +223,22 @@ def posicion(partido: str, medida: str, prog: Mapping | None) -> dict:
     }
 
 
+def iniciativa(partido: str, e: Mapping | None) -> dict | None:
+    """Iniciativa del partido sobre la medida (contrato `Iniciativa` de src/lib/schema.ts), si la tiene."""
+    i = (e or {}).get("iniciativa")
+    if not i:
+        return None
+    return {
+        "partido_id": partido,
+        "sentido": i["sentido"],
+        "alcance": i["alcance"],
+        "argumento": i["argumento"],
+        "fecha": i["fecha"],
+        "legislatura": i["legislatura"],
+        "fuentes": [{k: f[k] for k in ("tipo", "titulo", "url", "referencia")} for f in i["fuentes"]],
+    }
+
+
 def fuentes_votacion(v: Mapping) -> list[dict]:
     """Ficha de la iniciativa, resultado oficial y Diario de Sesiones del debate (como en vivienda)."""
     fuentes = []
@@ -251,6 +275,7 @@ def votacion(v: Mapping, votos: Mapping[str, str]) -> dict:
         "titulo": v["titulo"],
         "descripcion": v["descripcion"],
         "sentido": v["sentido"],
+        "alcance": v.get("alcance", "especifica"),
         "fecha": v["fecha"],
         "legislatura": v["legislatura"],
         "resultado": v["resultado"],
@@ -320,7 +345,7 @@ def ensamblar(
         if "ref" in m:  # medida de otro tema: sus posiciones están en su posiciones.json
             continue
         mid = m["id"]
-        posiciones = []
+        posiciones, iniciativas = [], []
         for p in partidos:
             e = programas.get(p, {}).get("medidas", {}).get(mid)
             if p in programas and e is None:
@@ -336,15 +361,31 @@ def ensamblar(
                 avisos.append(f"{mid}/{p}: sin legislatura")
             for fu in pos["fuentes"]:
                 if fu["tipo"] not in TIPOS_FUENTE_POSICION:
-                    avisos.append(f"{mid}/{p}: fuente de tipo {fu['tipo']!r}")
+                    avisos.append(f"{mid}/{p}: fuente de tipo {fu['tipo']!r} en la posición según el programa (las iniciativas van en `iniciativa`)")
             posiciones.append(pos)
+            ini = iniciativa(p, e)
+            if ini:
+                ruta = f"{mid}/{p}/iniciativa"
+                if ini["sentido"] not in SENTIDOS_INICIATIVA:
+                    avisos.append(f"{ruta}: sentido {ini['sentido']!r} no admitido")
+                if ini["alcance"] not in ALCANCES:
+                    avisos.append(f"{ruta}: alcance {ini['alcance']!r} no admitido")
+                if ini["sentido"] == "en_contra" and ini["alcance"] != "especifica":
+                    avisos.append(f"{ruta}: una iniciativa en contra debe proponer expresamente suprimir o rechazar la medida (alcance especifica)")
+                if len(ini["argumento"] or "") > LARGO_MAX:
+                    avisos.append(f"{ruta}: argumento de {len(ini['argumento'])} caracteres")
+                if not ini["fuentes"] or any(fu["tipo"] not in TIPOS_FUENTE_INICIATIVA for fu in ini["fuentes"]):
+                    avisos.append(f"{ruta}: sin fuentes o con fuentes que no son del BOCG o del Diario de Sesiones")
+                iniciativas.append(ini)
 
         f = base / "votaciones" / f"{mid}.json"
         if not f.exists():
             avisos.append(f"votaciones/{mid}.json: no existe")
         lista = _leer(f).get("votaciones", []) if f.exists() else []
-        if len(lista) > MAX_VOTACIONES:
-            avisos.append(f"{mid}: {len(lista)} votaciones; el máximo es {MAX_VOTACIONES}")
+        for alcance in ALCANCES:
+            n = sum(v.get("alcance", "especifica") == alcance for v in lista)
+            if n > MAX_VOTACIONES:
+                avisos.append(f"{mid}: {n} votaciones de alcance {alcance}; el máximo es {MAX_VOTACIONES}")
         if [v["fecha"] for v in lista] != sorted((v["fecha"] for v in lista), reverse=True):
             avisos.append(f"{mid}: las votaciones no van de la más reciente a la más antigua")
         votaciones = []
@@ -352,6 +393,8 @@ def ensamblar(
             ruta = f"{mid}/{v['id']}"
             if v.get("sentido") not in ("a_favor", "en_contra"):
                 avisos.append(f"{ruta}: sentido {v.get('sentido')!r} no admitido")
+            if v.get("alcance", "especifica") not in ALCANCES:
+                avisos.append(f"{ruta}: alcance {v.get('alcance')!r} no admitido")
             if len(v.get("descripcion", "")) > LARGO_MAX:
                 avisos.append(f"{ruta}: descripción de {len(v['descripcion'])} caracteres")
             if not v.get("diario_sesiones"):
@@ -372,7 +415,7 @@ def ensamblar(
             votaciones.append(votacion(v, votos))
         if len({v["id"] for v in votaciones}) != len(votaciones):
             avisos.append(f"{mid}: ids de votaciones duplicados")
-        medidas.append({"medida_id": mid, "posiciones": posiciones, "votaciones": votaciones})
+        medidas.append({"medida_id": mid, "posiciones": posiciones, "iniciativas": iniciativas, "votaciones": votaciones})
     return {"tema": config["slug"], "medidas": medidas}, avisos
 
 
@@ -380,12 +423,17 @@ ABREV = {"a_favor": "F", "en_contra": "C", "matizada": "M", "sin_posicion": "·"
 
 
 def tabla(salida: Mapping) -> str:
-    """Posición según el programa por medida y partido (F, C, M, ·) y número de votaciones."""
+    """Posición según el programa por medida y partido (F, C, M, ·), con la de su iniciativa tras una barra
+    si la tiene (p. ej. `·/F`), y número de votaciones."""
     if not salida["medidas"]:
         return ""
     filas = ["medida".ljust(36) + " ".join(p["partido_id"][:5].ljust(5) for p in salida["medidas"][0]["posiciones"]) + "  votaciones"]
     for m in salida["medidas"]:
-        celdas = " ".join(ABREV.get(p["posicion"], "?").ljust(5) for p in m["posiciones"])
+        ini = {i["partido_id"]: i["sentido"] for i in m.get("iniciativas", [])}
+        celdas = " ".join(
+            (ABREV.get(p["posicion"], "?") + (f"/{ABREV.get(ini[p['partido_id']], '?')}" if p["partido_id"] in ini else "")).ljust(5)
+            for p in m["posiciones"]
+        )
         filas.append(m["medida_id"][:35].ljust(36) + celdas + f"  {len(m['votaciones'])}")
     return "\n".join(filas)
 

@@ -175,6 +175,11 @@
               "codigo": {
                 "type": "string"
               },
+              "anio": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
               "x": {
                 "type": "number"
               },
@@ -184,6 +189,7 @@
             },
             "required": [
               "codigo",
+              "anio",
               "x",
               "y"
             ],
