@@ -33,7 +33,7 @@ comprobar los votos de `posiciones.json`.
 
 Uso, desde `research/` (necesita red para los datos abiertos; `--cache` guarda los JSON descargados)::
 
-    uv run python -m lib.posiciones ensamblar fiscalidad [--escribir] [--programas DIR] [--cache DIR]
+    uv run python -m lib.posiciones ensamblar fiscalidad [--escribir] [--programas DIR] [--cache DIR] [--medidas id1,id2]
     uv run python -m lib.posiciones extraer-programa programa.pdf DIR/psoe-2023.txt
     uv run python -m lib.posiciones llamamiento DS.pdf PAG_INI PAG_FIN VOT_REF.json "INICIO" "FIN"
 
@@ -333,8 +333,13 @@ def ensamblar(
     obtener_json: Callable[[str], dict],
     dir_programas: Path | None = None,
     partidos: list[str] | None = None,
+    medidas_ids: Iterable[str] | None = None,
 ) -> tuple[dict, list[str]]:
-    """Devuelve (contenido de posiciones.json, avisos) para el tema de `dir_tema`."""
+    """Devuelve (contenido de posiciones.json, avisos) para el tema de `dir_tema`.
+
+    Con `medidas_ids` solo se ensamblan esas medidas propias (las demás del config quedan sin entrada, sin avisos):
+    sirve cuando las posiciones de un tema se investigan por partes.
+    """
     config = _leer(dir_tema / "config.json")
     partidos = partidos or congreso.partidos_globales()
     base = dir_tema / "posiciones"
@@ -358,6 +363,8 @@ def ensamblar(
         if "ref" in m:  # medida de otro tema: sus posiciones están en su posiciones.json
             continue
         mid = m["id"]
+        if medidas_ids is not None and mid not in medidas_ids:
+            continue
         posiciones, iniciativas = [], []
         for p in partidos:
             e = programas.get(p, {}).get("medidas", {}).get(mid)
@@ -459,6 +466,7 @@ def main(argv: list[str]) -> int:
     a.add_argument("--escribir", action="store_true")
     a.add_argument("--programas", type=Path)
     a.add_argument("--cache", type=Path)
+    a.add_argument("--medidas", help="ids de medidas separados por comas: ensambla solo esas (el resto del config queda sin entrada)")
     e = sub.add_parser("extraer-programa")
     e.add_argument("pdf", type=Path)
     e.add_argument("salida", type=Path)
@@ -479,7 +487,8 @@ def main(argv: list[str]) -> int:
         print(json.dumps({"votos_llamamiento": votos, "totales_contados": totales, "sin_identificar": sin_casar}, ensure_ascii=False, indent=2))
         return 0
     dir_tema = RAIZ / "temas" / args.slug
-    salida, avisos = ensamblar(dir_tema, obtener_json=descargador(args.cache), dir_programas=args.programas)
+    solo = [x.strip() for x in args.medidas.split(",") if x.strip()] if args.medidas else None
+    salida, avisos = ensamblar(dir_tema, obtener_json=descargador(args.cache), dir_programas=args.programas, medidas_ids=solo)
     print(tabla(salida))
     if not args.programas:
         print("(sin --programas: no se comprueban las citas de los programas)")
