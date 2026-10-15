@@ -7,12 +7,14 @@ from pathlib import Path
 from typing import Any
 
 import math
+import textwrap
 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.ticker import FuncFormatter, MaxNLocator
 
 from .ccaa import NOMBRES_CCAA
+from .paises import NOMBRES_AGREGADOS, nombre_punto
 
 GLOBAL = Path(__file__).resolve().parent.parent / "global.json"
 
@@ -258,5 +260,84 @@ def componer(fig, ax, *, titulo: str, datos: dict, modo: str = "claro") -> None:
     ))
     fig.text(
         x, 0.025, f"Fuente: {', '.join(organismos)} · Licencia CC BY 4.0 · {ATRIBUCION}",
+        ha="left", va="bottom", fontsize=9, color=p["texto_sec"],
+    )
+
+
+# ---------- Dispersión (METODOLOGIA §2.6), con las reglas de src/lib/dispersion.ts ----------
+
+NOMBRADOS = ("USA", "CAN")  # además de España y las medias, llevan su nombre junto al punto
+
+
+def clase_punto(codigo: str) -> str:
+    """«espana», «nombrado» (EE. UU. y Canadá), «agregado» (medias) o «pais», como `clasePunto` de la web."""
+    if codigo == "ESP":
+        return "espana"
+    if codigo in NOMBRADOS:
+        return "nombrado"
+    if codigo in NOMBRES_AGREGADOS:
+        return "agregado"
+    return "pais"
+
+
+def titulo_eje(eje: dict) -> str:
+    """«Cuña fiscal (% del coste laboral, 2023)», como `tituloEje` de la web."""
+    return f"{eje['titulo']} ({eje['unidad']}, {eje['periodo']})"
+
+
+def dibujar_dispersion(ax, datos: dict, modo: str = "claro") -> None:
+    """Dibuja los `puntos` de un `GraficaDispersion` ya construido, sin línea de tendencia.
+
+    Países en gris; España con el color de `espana`, más grande y con su nombre en negrita;
+    Estados Unidos, Canadá y las medias (rombo) con su nombre. Rejilla en los dos ejes y títulos
+    de eje con unidad y periodo.
+    """
+    p = _paleta(modo)
+    color_espana = estilo_benchmark("espana", modo)["color"]
+    peso = {"pais": 0, "nombrado": 1, "agregado": 2, "espana": 3}
+    for pt in sorted(datos["puntos"], key=lambda q: peso[clase_punto(q["codigo"])]):
+        clase = clase_punto(pt["codigo"])
+        espana = clase == "espana"
+        ax.scatter(
+            pt["x"], pt["y"], s=110 if espana else 70 if clase == "agregado" else 45,
+            marker="D" if clase == "agregado" else "o",
+            color=color_espana if espana else GRIS_NEUTRO[modo],
+            edgecolors=p["fondo"], linewidths=1.2, zorder=4 if espana else 3,
+        )
+        if clase != "pais":
+            ax.annotate(
+                nombre_punto(pt["codigo"]), xy=(pt["x"], pt["y"]), xytext=(7, 0), textcoords="offset points",
+                va="center", fontsize=10 if espana else 9, fontweight="bold" if espana else "normal",
+                color=p["texto"] if espana else p["texto_sec"], zorder=5,
+            )
+    ax.grid(True, axis="both")
+    ax.spines["left"].set_visible(False)
+    ax.set_xlabel(textwrap.fill(titulo_eje(datos["eje_x"]), 80))
+    ax.set_ylabel(textwrap.fill(titulo_eje(datos["eje_y"]), 45))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: formato_es(v)))
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: formato_es(v)))
+
+
+NOMBRE_UNIVERSO = {"ocde": "OCDE", "ue27": "UE-27"}
+
+
+def componer_dispersion(fig, ax, *, titulo: str, datos: dict, modo: str = "claro") -> None:
+    """Encabezado y pie de una dispersión: título, universo y fuentes por eje con licencia."""
+    p = _paleta(modo)
+    x = 0.02
+    fig.subplots_adjust(left=0.13, right=0.9, top=0.84, bottom=0.18)
+    fig.text(x, 0.965, titulo, ha="left", va="top", fontsize=16, fontweight="bold", color=p["texto"])
+    universo = NOMBRE_UNIVERSO.get(datos["universo"], datos["universo"])
+    fig.text(
+        x, 0.905, f"Un punto por país de la {universo} con dato en los dos indicadores",
+        ha="left", va="top", fontsize=11, color=p["texto_sec"],
+    )
+    partes = []
+    for eje in ("eje_x", "eje_y"):
+        org = list(dict.fromkeys(f["organismo"] for f in datos["fuentes"] if f["serie"] == eje))
+        if org:
+            partes.append(f"{datos[eje]['titulo']}: {', '.join(org)}")
+    fig.text(
+        x, 0.02, f"Fuente: {'; '.join(partes)} · Licencia CC BY 4.0 · {ATRIBUCION}",
         ha="left", va="bottom", fontsize=9, color=p["texto_sec"],
     )

@@ -12,6 +12,7 @@ import jsonschema
 import pandas as pd
 
 from .ccaa import CODIGOS_CCAA, NOMBRES_CCAA
+from .paises import GRUPOS_PAISES, NOMBRES_AGREGADOS, nombre_punto, paises_de
 from .tipos import FuenteMeta, validar_df
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -98,6 +99,22 @@ def _notas_automaticas(
     return notas
 
 
+def _validar_esquema(datos: dict) -> None:
+    esquema = json.loads(ESQUEMA.read_text(encoding="utf-8"))
+    validador = jsonschema.Draft202012Validator(
+        esquema, format_checker=jsonschema.FormatChecker()
+    )
+    errores = sorted(validador.iter_errors(datos), key=lambda e: list(e.absolute_path))
+    if errores:
+        raise ValueError(
+            "no cumple grafica-data.schema.json:\n"
+            + "\n".join(
+                f"  {'.'.join(map(str, e.absolute_path)) or '(raíz)'}: {e.message}"
+                for e in errores
+            )
+        )
+
+
 def construir_grafica_data(
     df: pd.DataFrame,
     fuentes: Sequence[FuenteMeta],
@@ -166,19 +183,7 @@ def construir_grafica_data(
         "generado_en": generado_en
         or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
-    esquema = json.loads(ESQUEMA.read_text(encoding="utf-8"))
-    validador = jsonschema.Draft202012Validator(
-        esquema, format_checker=jsonschema.FormatChecker()
-    )
-    errores = sorted(validador.iter_errors(datos), key=lambda e: list(e.absolute_path))
-    if errores:
-        raise ValueError(
-            "no cumple grafica-data.schema.json:\n"
-            + "\n".join(
-                f"  {'.'.join(map(str, e.absolute_path)) or '(raíz)'}: {e.message}"
-                for e in errores
-            )
-        )
+    _validar_esquema(datos)
     return datos
 
 
@@ -258,5 +263,167 @@ def write_grafica_data(
         json.dumps(datos, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     csv = csv_grafica(datos, formato=csv_formato, decimales=csv_decimales)
+    path.with_suffix(".csv").write_text(csv, encoding="utf-8", newline="")
+    return path
+
+
+# ---------- Dispersión (METODOLOGIA §2.6) ----------
+
+NOTA_CAUSALIDAD = "La relación entre dos indicadores no muestra que uno cause el otro."
+EJES = ("eje_x", "eje_y")
+
+
+def _periodo(años: Sequence[int]) -> str:
+    """Intervalo de años de los puntos de un eje: «2023» o «2019-2023»."""
+    a, b = min(años), max(años)
+    return str(a) if a == b else f"{a}-{b}"
+
+
+def _por_codigo(df: pd.DataFrame, nombre: str, desde: int, anios: tuple[int, int] | None) -> pd.Series:
+    """Serie (código, año) → valor sin huecos, dentro de la ventana."""
+    df = validar_df(df)
+    df = df[(df["periodo"] >= desde) & df["valor"].notna()]
+    if anios is not None:
+        df = df[df["periodo"].between(*anios)]
+    if df.empty:
+        raise ValueError(f"{nombre}: no hay ningún dato en la ventana temporal")
+    return df.set_index(["serie", "periodo"])["valor"]
+
+
+def construir_dispersion_data(
+    x: pd.DataFrame,
+    y: pd.DataFrame,
+    fuentes: Sequence[FuenteMeta],
+    *,
+    id: str,
+    universo: str,
+    eje_x: dict,
+    eje_y: dict,
+    notas: Sequence[str],
+    generado_por: str,
+    desde: int = 1976,
+    anios: tuple[int, int] | None = None,
+    generado_en: str | None = None,
+) -> dict:
+    """Construye y valida el `data/<id>.json` de una gráfica `dispersion` (sin escribirlo).
+
+    `x` e `y` son DataFrames estándar (`serie, periodo, valor`) con una serie por código de país
+    (ISO 3166-1 alfa-3 de `paises`) o de agregado (`codigo_iso` de un benchmark, p. ej. OECD) y
+    periodos anuales. Cada punto usa el último año en que el país tiene dato en los dos ejes, el
+    mismo para `x` e `y` (METODOLOGIA §2.6); `anios` = (desde, hasta) limita los años candidatos
+    si el notebook fija una ventana. `eje_x` y `eje_y` son `{"titulo": ..., "unidad": ...}`: el
+    `periodo` de cada eje se calcula con los años de los puntos. `fuentes` lleva `serie` = "eje_x"
+    o "eje_y" (al menos una por eje). Las notas añaden los países del universo sin dato en los dos
+    ejes y la advertencia de que la relación no muestra causa.
+    """
+    del_universo = paises_de(universo)
+    vx = _por_codigo(x, "eje x", desde, anios)
+    vy = _por_codigo(y, "eje y", desde, anios)
+    validos = set(del_universo) | set(NOMBRES_AGREGADOS)
+    ajenos = (set(vx.index.get_level_values(0)) | set(vy.index.get_level_values(0))) - validos
+    if ajenos:
+        fuera = sorted(c for c in ajenos if c in GRUPOS_PAISES)
+        raise ValueError(
+            f"códigos que no son de {universo} ni agregados de benchmarks: {', '.join(sorted(ajenos))}"
+            + (f" (países de otro universo: {', '.join(fuera)})" if fuera else "")
+        )
+    comunes = vx.index.intersection(vy.index)
+    puntos = []
+    for codigo in [*del_universo, *NOMBRES_AGREGADOS]:
+        años = [a for c, a in comunes if c == codigo]
+        if años:
+            a = max(años)
+            puntos.append(
+                {"codigo": codigo, "anio": int(a), "x": float(vx[(codigo, a)]), "y": float(vy[(codigo, a)])}
+            )
+    con_punto = {p["codigo"] for p in puntos}
+    if "ESP" not in con_punto:
+        raise ValueError("España (ESP) no tiene dato en los dos ejes el mismo año")
+
+    por_eje = {e: [f for f in fuentes if f.serie == e] for e in EJES}
+    otras = [f.serie for f in fuentes if f.serie not in EJES]
+    if otras:
+        raise ValueError(f'en dispersion, la serie de cada fuente es "eje_x" o "eje_y" (no {", ".join(otras)})')
+    sin_fuente = [e for e in EJES if not por_eje[e]]
+    if sin_fuente:
+        raise ValueError(f"falta la fuente de {', '.join(sin_fuente)}")
+
+    años_puntos = [p["anio"] for p in puntos]
+    sin_dato = [nombre_punto(c) for c in del_universo if c not in con_punto]
+    notas_auto = []
+    if sin_dato:
+        notas_auto.append(
+            f"Sin dato en los dos ejes el mismo año ({len(sin_dato)} de los {len(del_universo)} países): "
+            f"{_unir(sorted(sin_dato))}."
+        )
+    notas_auto.append(NOTA_CAUSALIDAD)
+
+    datos = {
+        "id": id,
+        "tipo": "dispersion",
+        "universo": universo,
+        "eje_x": {"titulo": eje_x["titulo"], "unidad": eje_x["unidad"], "periodo": _periodo(años_puntos)},
+        "eje_y": {"titulo": eje_y["titulo"], "unidad": eje_y["unidad"], "periodo": _periodo(años_puntos)},
+        "puntos": puntos,
+        "fuentes": [f.to_dict() for e in EJES for f in por_eje[e]],
+        "notas": [*notas, *notas_auto],
+        "generado_por": generado_por,
+        "generado_en": generado_en
+        or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+    _validar_esquema(datos)
+    return datos
+
+
+def csv_dispersion(datos: dict, *, formato: str = "es", decimales: int = 2) -> str:
+    """CSV de una dispersión, idéntico a `csvDescarga` de src/lib/descargas.ts: `codigo;pais;anio;eje_x;eje_y`."""
+    if formato not in FORMATOS_CSV:
+        raise ValueError(f"formato de CSV desconocido: {formato!r}; válidos: {', '.join(FORMATOS_CSV)}")
+    if not isinstance(decimales, int) or not 0 <= decimales <= 10:
+        raise ValueError(f"decimales del CSV debe ser un entero entre 0 y 10, no {decimales!r}")
+    sep, coma = FORMATOS_CSV[formato]
+
+    def campo(texto: str) -> str:
+        return '"' + texto.replace('"', '""') + '"' if any(c in texto for c in f'"{sep}\r\n') else texto
+
+    filas = [sep.join(["codigo", "pais", "anio", "eje_x", "eje_y"])]
+    for p in datos["puntos"]:
+        celdas = [
+            p["codigo"], nombre_punto(p["codigo"]), str(p["anio"]),
+            _numero(p["x"], decimales, coma), _numero(p["y"], decimales, coma),
+        ]
+        filas.append(sep.join(campo(c) for c in celdas))
+    return "﻿" + "\r\n".join(filas) + "\r\n"
+
+
+def write_dispersion_data(
+    x: pd.DataFrame,
+    y: pd.DataFrame,
+    fuentes: Sequence[FuenteMeta],
+    *,
+    id: str,
+    universo: str,
+    eje_x: dict,
+    eje_y: dict,
+    notas: Sequence[str],
+    generado_por: str,
+    path: str | Path,
+    desde: int = 1976,
+    anios: tuple[int, int] | None = None,
+    generado_en: str | None = None,
+    csv_formato: str = "es",
+    csv_decimales: int = 2,
+) -> Path:
+    """Escribe `data/<id>.json` de una dispersión, validado, y al lado `data/<id>.csv` (ver `csv_dispersion`)."""
+    path = Path(path)
+    if path.name != f"{id}.json":
+        raise ValueError(f"el fichero debe llamarse {id}.json, no {path.name}")
+    datos = construir_dispersion_data(
+        x, y, fuentes, id=id, universo=universo, eje_x=eje_x, eje_y=eje_y, notas=notas,
+        generado_por=generado_por, desde=desde, anios=anios, generado_en=generado_en,
+    )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(datos, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    csv = csv_dispersion(datos, formato=csv_formato, decimales=csv_decimales)
     path.with_suffix(".csv").write_text(csv, encoding="utf-8", newline="")
     return path
