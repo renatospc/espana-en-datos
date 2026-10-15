@@ -63,6 +63,7 @@
     { "id": "cc", "nombre": "Coalición Canaria", "siglas": "CC", "grupo_parlamentario": "Mixto", "color_hex": "#FFD700", "color_verificado": false },
     { "id": "upn", "nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "grupo_parlamentario": "Mixto", "color_hex": "#2A52BE", "color_verificado": false }
   ],
+  "coaliciones": [],
   "comunidades": [
     { "codigo": "ES-AN", "nombre": "Andalucía" },
     { "codigo": "ES-AR", "nombre": "Aragón" },
