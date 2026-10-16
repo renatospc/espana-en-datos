@@ -44,7 +44,7 @@
   ],
   "notas_estilo": "Las series de benchmarks usan una escala de grises neutra diferenciada por tipo de trazo y nunca colores de partidos. Los colores de partido solo se usan en contextos de partidos (matriz de medidas) y deben verificarse contra el manual de marca de cada formación (color_verificado).",
   "seleccion_partidos": {
-    "regla": "Partidos con escaño en el Congreso de los Diputados en la legislatura en curso. Un partido cuenta por separado si tiene grupo parlamentario propio o si ha abandonado el grupo de la candidatura por la que fue elegido; no cuenta si solo lo ha abandonado parte de sus diputados. Los partidos que permanecen en el grupo de su candidatura quedan cubiertos por la posición del partido titular del grupo. Ver METODOLOGIA.md §3.2.",
+    "regla": "Partidos con escaño en el Congreso de los Diputados en la última legislatura (la XV, ya disuelta). Un partido cuenta por separado si tiene grupo parlamentario propio o si ha abandonado el grupo de la candidatura por la que fue elegido; no cuenta si solo lo ha abandonado parte de sus diputados. Los partidos que permanecen en el grupo de su candidatura quedan cubiertos por la posición del partido titular del grupo. Ver METODOLOGIA.md §3.2.",
     "legislatura": "XV",
     "fuente": "https://www.congreso.es/es/grupos/composicion-en-la-legislatura",
     "revisado_en": "2026-10-10"
