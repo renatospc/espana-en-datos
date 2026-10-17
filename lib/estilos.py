@@ -144,6 +144,36 @@ def _ultimo(valores: list) -> int | None:
     return next((i for i in range(len(valores) - 1, -1, -1) if valores[i] is not None), None)
 
 
+# Trazo de los años proyectados (`proyeccion`), como TRAZO_PROYECCION de PanelGrafica.tsx.
+TRAZO_PROYECCION = (0, (1, 2.5))
+
+
+def partir_proyeccion(valores: list, labels: list[str], desde: str | None) -> tuple[list, list | None]:
+    """Parte una serie en los años observados y los proyectados desde `desde`, como `partirProyeccion` de
+    src/lib/grafica.ts: la parte proyectada empieza en el último año observado para que las dos se unan."""
+    if desde is None:
+        return list(valores), None
+    if desde in labels:
+        i0 = labels.index(desde)
+    elif labels and int(desde) < int(labels[0]):
+        i0 = 0
+    else:
+        return list(valores), None
+    return (
+        [v if i < i0 else None for i, v in enumerate(valores)],
+        [v if i >= i0 - 1 else None for i, v in enumerate(valores)],
+    )
+
+
+def ultimo_indice_comun(datos: dict) -> int | None:
+    """Último periodo con dato en todas las series que tienen alguno (vista de categorías), como
+    `ultimoIndiceComun` de src/lib/grafica.ts."""
+    con = [v for v in datos["series"].values() if any(x is not None for x in v)]
+    if not con:
+        return None
+    return next((i for i in range(len(datos["labels"]) - 1, -1, -1) if all(v[i] is not None for v in con)), None)
+
+
 def dibujar_series(ax, datos: dict, modo: str = "claro") -> None:
     """Dibuja `series` de un `GraficaData` ya construido.
 
@@ -151,17 +181,32 @@ def dibujar_series(ax, datos: dict, modo: str = "claro") -> None:
     comunidades van en gris fino con `espana` destacada. Cada serie acaba en un punto (también se
     marcan los datos aislados, sin vecinos con los que formar línea) y solo
     `espana` lleva el último valor como etiqueta. Si `datos` trae `referencia`, dibuja una línea
-    horizontal en ese valor (p. ej. 100 en un índice), como la web. La unidad no va en el eje: la
-    pone `componer` como subtítulo.
+    horizontal en ese valor (p. ej. 100 en un índice), como la web. Las series con `proyeccion` se
+    parten en lo observado (trazo propio) y lo proyectado (trazo de puntos que une los años con dato,
+    publicados a veces cada cinco años), con una línea vertical en el primer año proyectado si hay años observados; el punto
+    final y el último valor de España son los del último año observado, como en la web. La unidad no
+    va en el eje: la pone `componer` como subtítulo.
     """
     p = _paleta(modo)
     años = [int(x) for x in datos["labels"]]
     por_benchmark = datos["tipo"] in ("serie_temporal", "solo_espana")
     if datos.get("referencia") is not None:
         ax.axhline(datos["referencia"], color=p["texto_sec"], linewidth=1, zorder=1)
-    for clave, valores in datos["series"].items():
-        if all(v is None for v in valores):
+    proyeccion = datos.get("proyeccion", {})
+    observados = [
+        partir_proyeccion(v, datos["labels"], proyeccion.get(k, {}).get("desde"))[0] for k, v in datos["series"].items()
+    ]
+    if proyeccion and any(x is not None for v in observados for x in v):  # si todo es proyección, sobra la línea
+        desde = min(int(x["desde"]) for x in proyeccion.values())
+        ax.axvline(desde, color=p["texto_sec"], linewidth=1, linestyle=(0, (4, 3)), zorder=1)
+        ax.annotate(
+            "Proyección", xy=(desde, 1), xycoords=("data", "axes fraction"), xytext=(4, -2),
+            textcoords="offset points", va="top", fontsize=9, color=p["texto_sec"],
+        )
+    for clave, todos in datos["series"].items():
+        if all(v is None for v in todos):
             continue  # sin ningún dato: ni línea ni entrada en la leyenda (lo explican las notas)
+        valores, proyectada = partir_proyeccion(todos, datos["labels"], proyeccion.get(clave, {}).get("desde"))
         if clave in datos.get("desglose", {}):
             kw = estilo_desglose(clave, datos, modo)
         elif por_benchmark:
@@ -170,6 +215,19 @@ def dibujar_series(ax, datos: dict, modo: str = "claro") -> None:
             kw = {"label": clave, "linewidth": 3 if clave == "espana" else 1}
             kw["color"] = estilo_benchmark("espana", modo)["color"] if clave == "espana" else "#9CA3AF"
         destacada = clave == "espana"
+        if proyectada is not None:
+            con = [(años[j], v) for j, v in enumerate(proyectada) if v is not None]
+            observada = any(v is not None for v in valores)
+            ax.plot(
+                [a for a, _ in con], [v for _, v in con], zorder=3 if destacada else 2,
+                **{**kw, "linestyle": TRAZO_PROYECCION, "label": "_nolegend_" if observada else kw["label"]},
+            )
+            ax.plot(
+                con[-1][0], con[-1][1], "o", markersize=5, color=kw["color"], markeredgecolor=p["fondo"],
+                markeredgewidth=1.5, zorder=4, label="_nolegend_",
+            )
+            if not observada:
+                continue
         (linea,) = ax.plot(
             años, [math.nan if v is None else v for v in valores], zorder=3 if destacada else 2, **kw
         )
@@ -235,6 +293,38 @@ def _rotular_ccaa(ax, datos: dict, años: list[int], p: dict[str, str]) -> None:
             NOMBRES_CCAA.get(clave, clave), xy=(a, v), xytext=(8, 0), textcoords="offset points",
             va="center", fontsize=9, color=p["texto_sec"], annotation_clip=False,
         )
+
+
+def dibujar_categorias(ax, datos: dict, modo: str = "claro") -> None:
+    """Vista de categorías (`categorias`), como `PanelCategorias` de la web: una barra horizontal por
+    categoría, en el orden declarado, en el último año con dato de todas las categorías que tienen
+    alguno; las que no tienen dato ese año no se dibujan (lo explican las notas). El año va bajo el eje."""
+    if not datos.get("categorias"):
+        raise ValueError("la vista de categorías necesita `categorias` en los datos")
+    i = ultimo_indice_comun(datos)
+    if i is None:
+        raise ValueError("ningún año reúne a todas las categorías con datos")
+    p = _paleta(modo)
+    filas = [
+        (nombre, datos["series"][clave][i])
+        for clave, nombre in datos["categorias"].items()
+        if datos["series"][clave][i] is not None
+    ]
+    color = estilo_benchmark("espana", modo)["color"]
+    posiciones = range(len(filas))
+    ax.barh(list(posiciones), [v for _, v in filas], height=0.6, color=color, zorder=2)
+    ax.set_yticks(list(posiciones), [textwrap.fill(n, 30) for n, _ in filas])
+    ax.invert_yaxis()  # la primera categoría arriba
+    for y, (_, v) in zip(posiciones, filas):
+        ax.annotate(
+            formato_es(v), xy=(v, y), xytext=(6, 0), textcoords="offset points", va="center",
+            fontsize=10, fontweight="bold", color=p["texto"], annotation_clip=False,
+        )
+    ax.grid(axis="y", visible=False)
+    ax.grid(axis="x", visible=True)
+    ax.set_xlim(0, max(v for _, v in filas) * 1.12)
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: formato_es(x)))
+    ax.set_xlabel(datos["labels"][i])
 
 
 def componer(fig, ax, *, titulo: str, datos: dict, modo: str = "claro") -> None:
