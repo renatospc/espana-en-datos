@@ -35,6 +35,39 @@
             "type": "string"
           }
         },
+        "categorias": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "proyeccion": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "desde": {
+                "type": "string"
+              },
+              "edicion": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "desde",
+              "edicion"
+            ],
+            "additionalProperties": false
+          }
+        },
         "labels": {
           "type": "array",
           "items": {
