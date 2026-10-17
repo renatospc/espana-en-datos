@@ -15,6 +15,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import tempfile
 import time
 from pathlib import Path
 from typing import Callable, Mapping, Sequence
@@ -113,3 +114,21 @@ def pedir(
         time.sleep(2**intento)
         intento += 1
     raise error_cls(f"{etiqueta}: la consulta falló tras {intento + n429 + 1} intentos: {ultimo}")
+
+
+# Algunos servidores públicos españoles (mites.gob.es, airef.es) no envían el certificado intermedio de la FNMT
+# («AC Componentes Informáticos»), que no está en certifi (sí su raíz, «AC RAIZ FNMT-RCM»). Se añade al paquete de
+# certifi para verificar la conexión sin desactivar la verificación. Descargado el 2026-10-16 de la dirección que
+# indica el propio certificado de esos servidores (http://www.cert.fnmt.es/certs/ACCOMP.crt); caduca en junio de 2028.
+CERT_FNMT = Path(__file__).parent / "certs" / "fnmt-ac-componentes-informaticos.pem"
+
+
+def sesion_fnmt() -> requests.Session:
+    """Sesión que verifica los certificados con certifi más el intermedio de la FNMT (`CERT_FNMT`)."""
+    import certifi
+
+    paquete = Path(tempfile.gettempdir()) / "espanaendatos-certifi-fnmt.pem"
+    paquete.write_text(Path(certifi.where()).read_text() + "\n" + CERT_FNMT.read_text())
+    s = requests.Session()
+    s.verify = str(paquete)
+    return s
