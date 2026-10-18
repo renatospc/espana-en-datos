@@ -306,16 +306,15 @@ def _rotular_ccaa(ax, datos: dict, años: list[int], p: dict[str, str]) -> None:
 def componer(
     fig, ax, *, titulo: str, datos: dict, modo: str = "claro", subtitulo: str | None = None, izquierda: float = 0.07
 ) -> None:
-    """Encabezado y pie de la figura: título, unidad (o `subtitulo`), leyenda en una fila, nota de los años
-    proyectados si los hay y fuentes con licencia. Las distancias van en pulgadas desde el borde, para que
-    las figuras más altas (barras por comunidad) tengan la misma cabecera y el mismo pie."""
+    """Encabezado y pie de la figura: título, unidad (o `subtitulo`), leyenda en una fila y fuentes con
+    licencia; los años proyectados se explican en las notas, como en la web. Las distancias van en pulgadas
+    desde el borde, para que las figuras más altas (barras por comunidad) tengan la misma cabecera y el mismo pie."""
     p = _paleta(modo)
     x = 0.02
     alto = fig.get_figheight()
     arriba = lambda pulgadas: 1 - pulgadas / alto  # noqa: E731
     abajo = lambda pulgadas: pulgadas / alto  # noqa: E731
-    proyecciones = {k: v for k, v in (datos.get("proyeccion") or {}).items() if k in datos["series"]}
-    fig.subplots_adjust(left=izquierda, right=0.92, top=arriba(1.2), bottom=abajo(0.66 + 0.2 * len(proyecciones)))
+    fig.subplots_adjust(left=izquierda, right=0.92, top=arriba(1.2), bottom=abajo(0.66))
     fig.text(x, arriba(0.21), titulo, ha="left", va="top", fontsize=16, fontweight="bold", color=p["texto"])
     fig.text(x, arriba(0.57), subtitulo or datos["unidad"], ha="left", va="top", fontsize=11, color=p["texto_sec"])
     leyenda = ax.get_legend()
@@ -326,14 +325,6 @@ def componer(
         fig.legend(
             claves, etiquetas, loc="upper left", bbox_to_anchor=(x - 0.005, arriba(0.75)), ncol=len(claves),
             handlelength=2.6, columnspacing=1.6, labelcolor=p["texto"],
-        )
-    # Una línea por serie con años proyectados, como el pie de PanelGrafica.tsx
-    for n, (clave, pr) in enumerate(proyecciones.items()):
-        nombre = _nombre_serie(clave, datos, modo)
-        fig.text(
-            x, abajo(0.35 + 0.2 * n),
-            f"Trazo de puntos: {nombre}, años proyectados desde {pr['desde']} según la proyección de {pr['edicion']}.",
-            ha="left", va="bottom", fontsize=9, color=p["texto_sec"],
         )
     # Solo las fuentes de las series con datos (las consultadas sin dato se explican en las notas)
     con_datos = {k for k, v in datos["series"].items() if any(x is not None for x in v)}
