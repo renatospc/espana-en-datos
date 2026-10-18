@@ -21,6 +21,9 @@ como `EurostatError` (acota los filtros o `desde`).
 
 Los geos que Eurostat no publica (p. ej. `US`, `CA`) no aparecen en el DataFrame
 ni en `fuentes`: el notebook los completa con `null` (METODOLOGIA §2.4) u otra fuente.
+
+`get_estados` descarga las marcas de estado de las mismas celdas (p. ej. `b` = ruptura de serie,
+`u` = fiabilidad baja, `p` = provisional), para documentarlas en las notas (METODOLOGIA §2.5).
 """
 
 from __future__ import annotations
@@ -133,6 +136,75 @@ def jsonstat_a_df(js: dict, geos: Mapping[str, str], dataset: str = "") -> pd.Da
     return validar_df(df)
 
 
+def _descargar(
+    dataset: str,
+    filtros: Mapping[str, str],
+    geos: Mapping[str, str],
+    desde: int,
+    sesion: requests.Session | None,
+    reintentos: int,
+) -> dict:
+    for dim, val in filtros.items():
+        if not isinstance(val, str):
+            raise ValueError(f"filtro {dim!r}: se espera un único código (str), no {val!r}")
+    params = [("format", "JSON"), ("lang", "EN"), ("sinceTimePeriod", str(desde))]
+    params += [(dim, val) for dim, val in filtros.items()]
+    params += [("geo", g) for g in geos]
+    return _pedir(dataset, params, sesion or requests.Session(), reintentos)
+
+
+def jsonstat_estados(js: dict, geos: Mapping[str, str]) -> tuple[pd.DataFrame, dict[str, str]]:
+    """Marcas de estado de un dataset JSON-stat: `(DataFrame serie/periodo/estado, {código: etiqueta})`.
+
+    Solo las celdas con marca; mismas restricciones que `jsonstat_a_df` (una celda por geo y año).
+    """
+    ids, tamanos = js["id"], js["size"]
+    cats = {
+        d: list(js["dimension"][d]["category"]["index"].keys())
+        if isinstance(js["dimension"][d]["category"]["index"], dict)
+        else list(js["dimension"][d]["category"]["index"])
+        for d in ids
+    }
+    if any(n > 1 and d not in ("geo", "time") for d, n in zip(ids, tamanos)):
+        raise ValueError("dimensiones con varios valores, fíjalas en `filtros`")
+    pasos, acc = {}, 1
+    for d, n in reversed(list(zip(ids, tamanos))):
+        pasos[d] = acc
+        acc *= n
+    estados = js.get("status", {})
+    if isinstance(estados, list):
+        estados = {str(i): v for i, v in enumerate(estados) if v}
+    filas = []
+    for g, geo in enumerate(cats["geo"]):
+        if geo not in geos:
+            continue
+        for t, anio in enumerate(cats["time"]):
+            e = estados.get(str(g * pasos["geo"] + t * pasos["time"]))
+            if e:
+                filas.append((geos[geo], int(anio), e))
+    etiquetas = js.get("extension", {}).get("status", {}).get("label", {})
+    df = pd.DataFrame(filas, columns=["serie", "periodo", "estado"])
+    return df.sort_values(["serie", "periodo"]).reset_index(drop=True), dict(etiquetas)
+
+
+def get_estados(
+    dataset: str,
+    filtros: Mapping[str, str],
+    *,
+    geos: Mapping[str, str] | None = None,
+    desde: int = 1976,
+    sesion: requests.Session | None = None,
+    reintentos: int = 2,
+) -> tuple[pd.DataFrame, dict[str, str]]:
+    """Marcas de estado de las celdas que descargaría `get` con los mismos argumentos.
+
+    Devuelve `(DataFrame serie/periodo/estado, {código: etiqueta})`, p. ej. `("espana", 2021, "b")`
+    y `{"b": "break in time series"}`. Una marca puede combinar varios códigos (`"bu"`).
+    """
+    geos = dict(geos or GEOS_POR_DEFECTO)
+    return jsonstat_estados(_descargar(dataset, filtros, geos, desde, sesion, reintentos), geos)
+
+
 def get(
     dataset: str,
     filtros: Mapping[str, str],
@@ -151,16 +223,57 @@ def get(
     Se devuelve una `FuenteMeta` por serie con datos.
     """
     geos = dict(geos or GEOS_POR_DEFECTO)
-    for dim, val in filtros.items():
-        if not isinstance(val, str):
-            raise ValueError(f"filtro {dim!r}: se espera un único código (str), no {val!r}")
-    params = [("format", "JSON"), ("lang", "EN"), ("sinceTimePeriod", str(desde))]
-    params += [(dim, val) for dim, val in filtros.items()]
-    params += [("geo", g) for g in geos]
-    s = sesion or requests.Session()
-    js = _pedir(dataset, params, s, reintentos)
+    js = _descargar(dataset, filtros, geos, desde, sesion, reintentos)
     df = jsonstat_a_df(js, geos, dataset)
     hoy = fecha_consulta or date.today().isoformat()
     url = URL_DATABROWSER.format(dataset=dataset)
     fuentes = [FuenteMeta(serie, ORGANISMO, dataset, url, hoy) for serie in df["serie"].unique()]
     return df, fuentes
+
+
+# Marcas de estado de Eurostat, en español, para las notas.
+ESTADOS = {
+    "b": "ruptura de serie",
+    "c": "dato confidencial",
+    "d": "definición distinta (ver los metadatos de Eurostat)",
+    "e": "dato estimado",
+    "f": "previsión",
+    "n": "dato no significativo",
+    "p": "dato provisional",
+    "r": "dato revisado",
+    "s": "estimación de Eurostat",
+    "u": "fiabilidad baja",
+    "z": "no aplicable",
+}
+
+
+def _intervalos(años: list[int]) -> str:
+    """[2013, 2014, 2015, 2021] → «2013-2015 y 2021»."""
+    tramos: list[list[int]] = []
+    for a in sorted(set(años)):
+        if tramos and a == tramos[-1][-1] + 1:
+            tramos[-1].append(a)
+        else:
+            tramos.append([a])
+    textos = [str(t[0]) if len(t) == 1 else f"{t[0]}-{t[-1]}" for t in tramos]
+    return textos[0] if len(textos) == 1 else f"{', '.join(textos[:-1])} y {textos[-1]}"
+
+
+def nota_estados(estados: pd.DataFrame, nombres: Mapping[str, str], codigos: str = "bdu") -> list[str]:
+    """Una nota por marca de `codigos` presente en `estados` (de `get_estados`), con las series y sus años.
+
+    `nombres` da el nombre que ve el lector de cada serie, en el orden en que se citan; las series
+    que no están en `nombres` se ignoran. Ejemplo: «Eurostat marca ruptura de serie en: España (2005 y
+    2021) y UE-27 (2021).»
+    """
+    notas = []
+    for codigo in codigos:
+        partes = []
+        for serie, nombre in nombres.items():
+            filas = estados[(estados["serie"] == serie) & estados["estado"].str.contains(codigo, regex=False)]
+            if not filas.empty:
+                partes.append(f"{nombre} ({_intervalos(filas['periodo'].tolist())})")
+        if partes:
+            lista = partes[0] if len(partes) == 1 else f"{'; '.join(partes[:-1])}; y {partes[-1]}"
+            notas.append(f"Eurostat marca {ESTADOS.get(codigo, codigo)} en: {lista}.")
+    return notas
