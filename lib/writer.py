@@ -35,6 +35,7 @@ def _orden_series(
     benchmarks: list[str],
     desglose: Sequence[str] = (),
     categorias: Sequence[str] = (),
+    composicion: Sequence[str] = (),
 ) -> list[str]:
     """Comprueba las claves según `tipo` y devuelve el orden estable de salida."""
     if desglose and tipo != "solo_espana":
@@ -43,11 +44,16 @@ def _orden_series(
         raise ValueError(
             'las categorías solo valen en solo_espana, sin desglose y sin "espana"'
         )
-    if tipo == "serie_temporal":
-        esperadas = set(benchmarks)
+    if composicion and tipo != "serie_temporal":
+        raise ValueError("la composición solo vale en serie_temporal")
+    if tipo == "serie_temporal" and composicion:
+        orden = [f"{b}__{k}" for b in benchmarks for k in composicion]
+        etiqueta = "serie_temporal con composición (<benchmark>__<parte>)"
+    elif tipo == "serie_temporal":
+        orden = list(benchmarks)
         etiqueta = "serie_temporal (cesta de benchmarks)"
     elif tipo == "solo_espana":
-        esperadas = set(categorias) if categorias else {"espana", *desglose}
+        orden = list(categorias) or ["espana", *desglose]
         etiqueta = "solo_espana"
     elif tipo == "por_ccaa":
         sobran = claves - {"espana", *CODIGOS_CCAA}
@@ -59,6 +65,7 @@ def _orden_series(
         return ["espana", *sorted(claves - {"espana"})]
     else:
         raise ValueError(f"tipo desconocido: {tipo!r}; válidos: {', '.join(TIPOS)}")
+    esperadas = set(orden)
     faltan, sobran = esperadas - claves, claves - esperadas
     if faltan or sobran:
         raise ValueError(
@@ -66,7 +73,7 @@ def _orden_series(
             + (f"; faltan: {', '.join(sorted(faltan))}" if faltan else "")
             + (f"; sobran: {', '.join(sorted(sobran))}" if sobran else "")
         )
-    return [b for b in benchmarks if b in esperadas] if tipo == "serie_temporal" else list(categorias) or ["espana", *desglose]
+    return orden
 
 
 def _unir(nombres: Sequence[str]) -> str:
@@ -138,6 +145,7 @@ def construir_grafica_data(
     desglose: dict[str, str] | None = None,
     categorias: dict[str, str] | None = None,
     proyeccion: dict[str, dict[str, str]] | None = None,
+    composicion: dict[str, str] | None = None,
 ) -> dict:
     """Construye y valida el diccionario de `data/<id>.json` (sin escribirlo).
 
@@ -149,8 +157,11 @@ def construir_grafica_data(
     total, como {clave: nombre}: cada clave es una serie, con su fuente, y no hay serie `espana`.
     `proyeccion` marca las series con años proyectados, como {serie: {"desde": "2030", "edicion":
     "OCDE, Pensions at a Glance 2023"}}: `desde` es el primer periodo proyectado.
+    `composicion` (solo en `serie_temporal`) nombra las partes en que se reparte cada serie de la cesta,
+    como {clave: nombre}: las series del DataFrame son `<benchmark>__<clave>`, cada una con su fuente.
     """
     desglose = desglose or {}
+    composicion = composicion or {}
     categorias = categorias or {}
     df = validar_df(df)
     df = df[df["periodo"] >= desde]  # la ventana empieza en `desde` (METODOLOGIA §2.3)
@@ -162,7 +173,7 @@ def construir_grafica_data(
 
     benchmarks = _benchmarks()
     series_orden = _orden_series(
-        tipo, set(df["serie"]), [b["id"] for b in benchmarks], list(desglose), list(categorias)
+        tipo, set(df["serie"]), [b["id"] for b in benchmarks], list(desglose), list(categorias), list(composicion)
     )
     series: dict[str, list[float | None]] = {}
     for s in series_orden:
@@ -172,7 +183,16 @@ def construir_grafica_data(
             for a in años
         ]
     nombres = {**NOMBRES_CCAA, **{b["id"]: b["nombre"] for b in benchmarks}, **desglose, **categorias}
-    notas_auto = _notas_automaticas(series, nombres, tipo, años)
+    if composicion:
+        # Primer año con dato de cada benchmark: el primero con todas sus partes
+        completas = {
+            b["id"]: [None if any(series[f"{b['id']}__{k}"][i] is None for k in composicion) else 1.0
+                      for i in range(len(años))]
+            for b in benchmarks
+        }
+        notas_auto = _notas_automaticas(completas, nombres, tipo, años)
+    else:
+        notas_auto = _notas_automaticas(series, nombres, tipo, años)
 
     por_serie = {f.serie: f for f in fuentes}
     if len(por_serie) != len(fuentes):
@@ -191,6 +211,7 @@ def construir_grafica_data(
         **({} if referencia is None else {"referencia": referencia}),
         **({"desglose": dict(desglose)} if desglose else {}),
         **({"categorias": dict(categorias)} if categorias else {}),
+        **({"composicion": dict(composicion)} if composicion else {}),
         **({"proyeccion": proyeccion} if proyeccion else {}),
         "labels": labels,
         "series": series,
@@ -257,6 +278,7 @@ def write_grafica_data(
     desglose: dict[str, str] | None = None,
     categorias: dict[str, str] | None = None,
     proyeccion: dict[str, dict[str, str]] | None = None,
+    composicion: dict[str, str] | None = None,
     csv_formato: str = "es",
     csv_decimales: int = 2,
 ) -> Path:
@@ -278,6 +300,7 @@ def write_grafica_data(
         desglose=desglose,
         categorias=categorias,
         proyeccion=proyeccion,
+        composicion=composicion,
     )
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(

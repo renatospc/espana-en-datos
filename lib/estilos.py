@@ -34,7 +34,10 @@ MODOS = ("claro", "oscuro")
 
 # Debe coincidir con el enum `vista` de src/lib/schema.ts (lo comprueba tests/test_estilos.py): cada vista
 # de la web tiene su dibujo aquí, para que el notebook muestre la misma gráfica que la web.
-VISTAS = ("lineas", "ultimo_anio", "proyeccion", "categorias")
+VISTAS = ("lineas", "ultimo_anio", "proyeccion", "categorias", "composicion")
+# Colores de las partes en la vista `composicion` (solo notebook): los de las series de la paleta
+# (docs/paleta_colores_elecciones_espana.md), primero enteros y después más claros.
+COLORES_PARTES = ["#2C8585", "#5B7CFA", "#9585E8", "#C58A2B", "#527093"]
 
 # Superficie, texto principal y secundario, y rejilla por modo (la rejilla, un paso por encima de la superficie).
 PALETA = {
@@ -474,6 +477,51 @@ def dibujar_categorias(ax, datos: dict, eje_max: float | None = None, modo: str 
     _eje_barras(ax, ticks, p)
 
 
+def ultimo_indice_completo(datos: dict, benchmark: str) -> int | None:
+    """Último periodo con dato de todas las partes de `composicion` de un benchmark."""
+    partes = list(datos["composicion"])
+    for i in range(len(datos["labels"]) - 1, -1, -1):
+        if all(datos["series"][f"{benchmark}__{k}"][i] is not None for k in partes):
+            return i
+    return None
+
+
+def dibujar_composicion(ax, datos: dict, modo: str = "claro") -> None:
+    """Vista `composicion` (solo notebook): una barra horizontal apilada por benchmark con sus partes de
+    `composicion`, en su último año con dato de todas (que va junto al nombre), en el orden de la cesta."""
+    p = _paleta(modo)
+    if not datos.get("composicion"):
+        raise ValueError("la vista de composición necesita `composicion` en los datos")
+    partes = list(datos["composicion"])
+    filas = []
+    for b in _benchmarks():
+        i = ultimo_indice_completo(datos, b["id"])
+        if i is not None:
+            filas.append((b["id"], b["nombre"], datos["labels"][i], [datos["series"][f"{b['id']}__{k}"][i] for k in partes]))
+    if not filas:
+        raise ValueError("ningún benchmark tiene dato de todas las partes")
+    y = list(range(len(filas)))[::-1]  # la primera de la cesta, arriba
+    for yy, (_, _, _, valores) in zip(y, filas):
+        izquierda = 0.0
+        for n, v in enumerate(valores):
+            color = COLORES_PARTES[n % len(COLORES_PARTES)]
+            alfa = 1.0 if n < len(COLORES_PARTES) else 0.5
+            ax.barh(yy, v, left=izquierda, height=0.6, color=color, alpha=alfa, zorder=3,
+                    label=datos["composicion"][partes[n]] if yy == y[0] else None)
+            if v >= 6:
+                ax.annotate(formato_es(v, 0), xy=(izquierda + v / 2, yy), ha="center", va="center", fontsize=8,
+                            color="#FFFFFF" if alfa == 1.0 else p["texto"], zorder=4)
+            izquierda += v
+    ax.set_yticks(y, [f"{nombre} ({anio})" for _, nombre, anio, _ in filas])
+    for etiqueta, (clave, *_rest) in zip(ax.get_yticklabels(), filas):
+        if clave == "espana":
+            etiqueta.set_color(estilo_benchmark("espana", modo)["color"])
+            etiqueta.set_fontweight("bold")
+    ax.set_ylim(-0.6, len(filas) - 0.4)
+    total = max(sum(v) for *_r, v in filas)
+    _eje_barras(ax, escala([0, total]), p)
+
+
 # ---------- Dispersión (METODOLOGIA §2.6), con las reglas de src/lib/dispersion.ts ----------
 
 NOMBRADOS = ("USA", "CAN")  # además de España y las medias, llevan su nombre junto al punto
@@ -604,6 +652,22 @@ def figura(
         dibujar_categorias(ax, datos, eje_max, modo)
         sub = datos["unidad"] + (f" · {datos['labels'][i]}, último año con dato de todas las categorías" if i is not None else "")
         componer(fig, ax, titulo=titulo, datos=datos, modo=modo, subtitulo=sub, izquierda=0.24)
+        return fig
+    if vista == "composicion":
+        filas = sum(ultimo_indice_completo(datos, b["id"]) is not None for b in _benchmarks()) if datos.get("composicion") else 1
+        partes = len(datos.get("composicion") or {})
+        filas_leyenda = -(-partes // 3)  # tres partes por fila
+        fig, ax = plt.subplots(figsize=(10, 2.2 + filas * 0.6 + filas_leyenda * 0.28))
+        dibujar_composicion(ax, datos, modo)
+        claves, etiquetas = ax.get_legend_handles_labels()
+        componer(fig, ax, titulo=titulo, datos=datos, modo=modo, subtitulo=f"{datos['unidad']} · último año con dato de cada serie",
+                 izquierda=0.2)
+        # La leyenda de las partes, en tres columnas debajo de las barras y encima de las fuentes
+        alto = fig.get_figheight()
+        pie = 0.45 + filas_leyenda * 0.28
+        fig.subplots_adjust(bottom=(pie + 0.35) / alto)
+        fig.legend(claves, etiquetas, loc="lower left", bbox_to_anchor=(0.015, 0.4 / alto), ncol=3, handlelength=1.2,
+                   fontsize=9, labelcolor=_paleta(modo)["texto"], frameon=False)
         return fig
     fig, ax = plt.subplots()
     dibujar_series(ax, datos, modo)
