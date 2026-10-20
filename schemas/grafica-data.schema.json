@@ -140,6 +140,88 @@
             "type": "string"
           }
         },
+        "ccaa": {
+          "type": "object",
+          "properties": {
+            "unidad": {
+              "type": "string"
+            },
+            "referencia": {
+              "type": "number"
+            },
+            "labels": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "series": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "fuentes": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "serie": {
+                    "type": "string"
+                  },
+                  "organismo": {
+                    "type": "string"
+                  },
+                  "dataset_codigo": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "fecha_consulta": {
+                    "type": "string",
+                    "format": "date",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                  }
+                },
+                "required": [
+                  "serie",
+                  "organismo",
+                  "dataset_codigo",
+                  "url",
+                  "fecha_consulta"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "notas": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "unidad",
+            "labels",
+            "series",
+            "fuentes",
+            "notas"
+          ],
+          "additionalProperties": false
+        },
         "generado_por": {
           "type": "string"
         },

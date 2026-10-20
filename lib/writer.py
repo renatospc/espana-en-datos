@@ -130,6 +130,29 @@ def _validar_esquema(datos: dict) -> None:
         )
 
 
+def construir_vista_ccaa(
+    df: pd.DataFrame,
+    fuentes: Sequence[FuenteMeta],
+    *,
+    unidad: str,
+    notas: Sequence[str],
+    desde: int = 1976,
+    referencia: float | None = None,
+) -> dict:
+    """Vista `ccaa` de una gráfica de España (METODOLOGIA §2.7), para el parámetro `ccaa` de `construir_grafica_data`.
+
+    `df` es un DataFrame estándar con la serie `espana` (el total de España de la fuente regional) y una
+    serie por código ISO 3166-2:ES. Igual que una gráfica `por_ccaa`: periodos anuales desde `desde`
+    hasta el último con algún dato, huecos en `null`, `fuentes` una por serie y, tras las `notas` del
+    notebook, las automáticas con el primer año con dato. `referencia`: línea horizontal (p. ej. 100).
+    """
+    d = construir_grafica_data(
+        df, fuentes, id="vista-ccaa", tipo="por_ccaa", unidad=unidad, notas=notas, generado_por="",
+        desde=desde, referencia=referencia, generado_en="2000-01-01T00:00:00Z",
+    )
+    return {k: d[k] for k in ("unidad", "referencia", "labels", "series", "fuentes", "notas") if k in d}
+
+
 def construir_grafica_data(
     df: pd.DataFrame,
     fuentes: Sequence[FuenteMeta],
@@ -146,6 +169,7 @@ def construir_grafica_data(
     categorias: dict[str, str] | None = None,
     proyeccion: dict[str, dict[str, str]] | None = None,
     composicion: dict[str, str] | None = None,
+    ccaa: dict | None = None,
 ) -> dict:
     """Construye y valida el diccionario de `data/<id>.json` (sin escribirlo).
 
@@ -159,7 +183,11 @@ def construir_grafica_data(
     "OCDE, Pensions at a Glance 2023"}}: `desde` es el primer periodo proyectado.
     `composicion` (solo en `serie_temporal`) nombra las partes en que se reparte cada serie de la cesta,
     como {clave: nombre}: las series del DataFrame son `<benchmark>__<clave>`, cada una con su fuente.
+    `ccaa` es la vista por comunidades (solo en `serie_temporal` sin `composicion` y en `solo_espana`),
+    construida con `construir_vista_ccaa`.
     """
+    if ccaa and (tipo not in ("serie_temporal", "solo_espana") or composicion):
+        raise ValueError("la vista ccaa solo vale en serie_temporal (sin composición) y solo_espana")
     desglose = desglose or {}
     composicion = composicion or {}
     categorias = categorias or {}
@@ -217,6 +245,7 @@ def construir_grafica_data(
         "series": series,
         "fuentes": [por_serie[s].to_dict() for s in series],
         "notas": [*notas, *notas_auto],
+        **({"ccaa": ccaa} if ccaa else {}),
         "generado_por": generado_por,
         "generado_en": generado_en
         or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -279,6 +308,7 @@ def write_grafica_data(
     categorias: dict[str, str] | None = None,
     proyeccion: dict[str, dict[str, str]] | None = None,
     composicion: dict[str, str] | None = None,
+    ccaa: dict | None = None,
     csv_formato: str = "es",
     csv_decimales: int = 2,
 ) -> Path:
@@ -301,6 +331,7 @@ def write_grafica_data(
         categorias=categorias,
         proyeccion=proyeccion,
         composicion=composicion,
+        ccaa=ccaa,
     )
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(

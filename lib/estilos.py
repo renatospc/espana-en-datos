@@ -675,6 +675,30 @@ def figura(
     return fig
 
 
+def datos_ccaa(datos: dict) -> dict | None:
+    """La vista `ccaa` de unos datos como una gráfica `por_ccaa`, o None si no la tienen (como `vistaCcaa` de
+    src/lib/grafica.ts)."""
+    v = datos.get("ccaa")
+    if not v:
+        return None
+    return {**v, "id": datos["id"], "tipo": "por_ccaa", "generado_por": datos["generado_por"],
+            "generado_en": datos["generado_en"]}
+
+
+def vista_ccaa(ccaa: dict) -> str:
+    """`lineas` si España tiene dato en más de un periodo; si no, `ultimo_anio` (como `vistaDibujoCcaa` de la web)."""
+    return "lineas" if sum(v is not None for v in ccaa["series"].get("espana", [])) > 1 else "ultimo_anio"
+
+
+def figura_ccaa(datos: dict, *, titulo: str, modo: str = "claro"):
+    """La vista por comunidades de la gráfica (el selector «Por comunidad» de la web): la evolución de cada
+    comunidad y de España, sin benchmarks, o sus barras si la fuente solo da un año. Devuelve la figura para `mostrar`."""
+    ccaa = datos_ccaa(datos)
+    if ccaa is None:
+        raise ValueError("los datos no tienen vista ccaa")
+    return figura(ccaa, titulo=titulo, vista=vista_ccaa(ccaa), modo=modo)
+
+
 def salida(fig) -> dict:
     """Salida `display_data` del notebook con la imagen PNG de `fig` y la huella de los estilos.
 
