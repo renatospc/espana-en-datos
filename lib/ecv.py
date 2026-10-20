@@ -4,7 +4,8 @@ Ficheros de usuario transversales, base 2013 (2008 en adelante; el de 2008 viene
 https://www.ine.es/ftp/microdatos/ecv/ecv_b2013/datos_<año>.zip. Mecanismo verificado el 2026-10-20. Cada zip
 trae, a veces dentro de otro zip, los ficheros de Eurostat (EU-SILC) en CSV: `esudb<aa>d.csv` (hogar: región,
 `DB040`), `esudb<aa>h.csv` (hogar: tenencia, costes, renta) y el de personas (`esudb<aa>r.csv`,
-`esudb<aa>r_AROPE.csv` o `ECV_Tr_<año>.csv` según el año: peso `RB050`, residencia `RB200`). Los microdatos no
+`esudb<aa>r_AROPE.csv` o `ECV_Tr_<año>.csv` según el año: peso `RB050`, residencia `RB200`). `RB050_F` vale 1
+(peso completo) en todas las personas de 2008-2025, así que no hace falta filtrar por él. Los microdatos no
 se guardan en el repositorio: se descargan al ejecutar el notebook (unos 500 MB entre todos los años).
 
 - `get(anio)`: los tres ficheros de un año, con las columnas que usa `sobrecarga`.
@@ -178,7 +179,8 @@ def sobrecarga(ficheros: dict[str, pd.DataFrame], tenencia: str = "total") -> pd
 
     Fórmula de Eurostat: carga = (HH070 × 12 − HY070G) / (HY020 − HY070G) × 100, con carga 0 si el coste neto es
     ≤ 0 y 100 si la renta neta es ≤ 0 o menor que el coste; sobrecarga si la carga supera el 40 %. Se cuenta por
-    personas que residen en el hogar (`RB200` = 1), ponderadas con `RB050`, de los hogares con renta conocida.
+    personas que residen en el hogar, ponderadas con `RB050`, de los hogares con renta conocida; solo se excluye a quien consta que ya no reside
+    (`RB200` = 2), no a quien tiene la residencia sin dato, igual que Eurostat (así se acerca más a su dato).
     Devuelve una fila por comunidad (código ISO) y otra para "espana": `tasa`, `hogares` y `personas` de la muestra.
     """
     if tenencia not in TENENCIAS:
@@ -191,7 +193,7 @@ def sobrecarga(ficheros: dict[str, pd.DataFrame], tenencia: str = "total") -> pd
     carga = (coste / renta * 100).mask(coste <= 0, 0).mask((renta <= 0) | (renta < coste), 100)
     hog = hog.assign(sobrecarga=carga > UMBRAL_SOBRECARGA)
     r = ficheros["r"]
-    personas = r[r["RB200"] == 1].assign(HB030=lambda x: x["RB030"] // 100).merge(hog, on="HB030")
+    personas = r[r["RB200"] != 2].assign(HB030=lambda x: x["RB030"] // 100).merge(hog, on="HB030")
 
     def resumen(g: pd.DataFrame) -> pd.Series:
         return pd.Series({
