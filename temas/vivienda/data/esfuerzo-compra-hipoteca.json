@@ -114,16 +114,16 @@
       "organismo": "Banco de España",
       "dataset_codigo": "D_TKB57210_IPV",
       "url": "https://app.bde.es/bierest/resources/srdatosapp/listaSeries?idioma=es&series=D_TKB57210_IPV&rango=MAX",
-      "fecha_consulta": "2026-10-15"
+      "fecha_consulta": "2026-10-22"
     }
   ],
   "notas": [
     "Banco de España, indicadores de accesibilidad a la vivienda: esfuerzo teórico anual sin deducciones fiscales, en porcentaje de la renta disponible del hogar.",
-    "Supone el hogar mediano, que compra una vivienda tipo con un préstamo hipotecario estándar por el 80 % de su valor; las demás hipótesis del préstamo son las de la metodología del Banco de España.",
+    "Supone el hogar mediano, que compra una vivienda tipo con un préstamo hipotecario estándar por el 80 % de su valor; el plazo y el tipo de interés del préstamo no son fijos: siguen los de cada momento, según la metodología del Banco de España (Boletín Económico de mayo de 2005: https://www.bde.es/f/webbde/SES/Secciones/Publicaciones/InformesBoletinesRevistas/BoletinEconomico/05/May/Fich/art5.pdf).",
     "Serie trimestral: se usa la media de los cuatro trimestres de cada año; el año en curso, incompleto, no se incluye.",
     "Solo España: no hay un indicador equivalente en las fuentes internacionales autorizadas.",
     "España: primer dato disponible en 1987."
   ],
   "generado_por": "temas/vivienda/notebooks/esfuerzo-compra-hipoteca.ipynb",
-  "generado_en": "2026-10-15T07:30:27Z"
+  "generado_en": "2026-10-22T06:44:07Z"
 }
