@@ -44,8 +44,14 @@ class OecdError(RuntimeError):
     """Error devuelto por el servicio SDMX de la OCDE o fallo de red persistente."""
 
 
-def csv_a_df(texto: str, areas: Mapping[str, str], etiqueta: str = "") -> pd.DataFrame:
-    """Convierte SDMX-CSV al DataFrame estándar `serie, periodo, valor`."""
+def csv_a_df(
+    texto: str, areas: Mapping[str, str], etiqueta: str = "", *, unidades: bool = False
+) -> pd.DataFrame:
+    """Convierte SDMX-CSV al DataFrame estándar `serie, periodo, valor`.
+
+    `unidades=True` multiplica cada valor por 10 elevado a su `UNIT_MULT` (p. ej. 9 = miles de millones),
+    para comparar importes de dataflows que publican en escalas distintas.
+    """
     if not texto.strip():
         raise OecdError(f"{etiqueta}: respuesta vacía")
     raw = pd.read_csv(io.StringIO(texto), dtype=str)
@@ -62,11 +68,16 @@ def csv_a_df(texto: str, areas: Mapping[str, str], etiqueta: str = "") -> pd.Dat
             f"{etiqueta}: varias observaciones por (área, año); fija en `clave` las dimensiones: "
             + ", ".join(sobran)
         )
+    valor = pd.to_numeric(raw["OBS_VALUE"])
+    if unidades:
+        if "UNIT_MULT" not in raw.columns:
+            raise OecdError(f"{etiqueta}: la respuesta no trae UNIT_MULT")
+        valor = valor * 10.0 ** pd.to_numeric(raw["UNIT_MULT"]).fillna(0)
     df = pd.DataFrame(
         {
             "serie": raw["REF_AREA"].map(areas),
             "periodo": raw["TIME_PERIOD"].astype(int),
-            "valor": pd.to_numeric(raw["OBS_VALUE"]),
+            "valor": valor,
         }
     )[COLUMNAS].dropna(subset=["valor"])
     return validar_df(df)
@@ -81,10 +92,12 @@ def get(
     fecha_consulta: str | None = None,
     sesion: requests.Session | None = None,
     reintentos: int = 2,
+    unidades: bool = False,
 ) -> tuple[pd.DataFrame, list[FuenteMeta]]:
     """Descarga datos anuales de la OCDE. Devuelve `(DataFrame serie/periodo/valor, fuentes)`.
 
     `areas`: código de área OCDE → id de serie (por defecto ESP, USA, CAN, OECD).
+    `unidades`: aplica el `UNIT_MULT` de cada observación (ver `csv_a_df`).
     """
     areas = dict(areas or AREAS_POR_DEFECTO)
     if "{AREA}" not in clave:
@@ -101,7 +114,7 @@ def get(
         headers=CABECERA_CSV,
         reintentos=reintentos,
     )
-    df = csv_a_df(r.text, areas, etiqueta)
+    df = csv_a_df(r.text, areas, etiqueta, unidades=unidades)
     hoy = fecha_consulta or date.today().isoformat()
     fuentes = [FuenteMeta(s, ORGANISMO, etiqueta, URL_EXPLORER, hoy) for s in df["serie"].unique()]
     return df, fuentes
