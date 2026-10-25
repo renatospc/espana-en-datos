@@ -18,22 +18,29 @@ Entradas, en `temas/<slug>/posiciones/`:
   `descripcion`, `sentido`, `alcance`, `fecha`,
   `legislatura`, `resultado`, `expediente`, `sesion`, `numero`, `url_json`, `url_pdf`, `url_ficha` y
   `diario_sesiones` (página del debate), o `fuentes` ya redactadas si no encajan en ese formato (p. ej. el
-  BOE de un real decreto-ley derogado); las votaciones por llamamiento, sin datos abiertos, llevan
-  `votos_llamamiento` (contados con `contar_llamamiento`) y `metodo_votos`. `descartadas` recoge las que no
-  cumplen la regla, con su motivo.
+  BOE de un real decreto-ley derogado). Las votaciones por llamamiento, sin datos abiertos, llevan
+  `llamamiento`: `pdf` (el Diario de Sesiones), `paginas` (primera y última de las listas de votos),
+  `referencia` (JSON de datos abiertos de otra votación de la misma sesión, que da el grupo de cada diputado) e
+  `inicio` y `fin` (textos que abren y cierran el tramo de esa votación); el ensamblado descarga el PDF y cuenta
+  los votos con `contar_llamamiento`, igual que con los datos abiertos, y `metodo_votos` lo explica en texto.
+  `descartadas` recoge las que no cumplen la regla, con su motivo.
 
 Salida: por medida, la posición según el programa de cada partido (en `sin_posicion`, con la frase fija del
 partido y los documentos consultados como fuentes, §4.1), las iniciativas de los partidos que la tienen y las
 votaciones con el voto de cada partido,
-calculado con `lib/congreso.py` a partir de los datos abiertos. Avisa de citas que no están en su página
+calculado con `lib/congreso.py` a partir de los datos abiertos (o contado en el Diario de Sesiones en las votaciones
+por llamamiento): ningún voto se escribe a mano. Avisa de citas que no están en su página
 (si se dan los textos de los programas), resultados que no coinciden con los datos abiertos, partidos sin
-ningún diputado en una votación, más de cuatro votaciones o mal ordenadas, textos de más de 300
-caracteres y valores o tipos de fuente no admitidos. Después, `python -m lib.congreso comprobar` vuelve a
-comprobar los votos de `posiciones.json`.
+ningún diputado en una votación, diputados sin identificar en un llamamiento, más de cuatro votaciones o mal
+ordenadas, textos de más de 300 caracteres y valores o tipos de fuente no admitidos. `comprobar` vuelve a
+ensamblar los temas y falla si el resultado no es el `posiciones.json` commiteado (lo ejecuta la CI cuando cambian
+las posiciones).
 
-Uso, desde `research/` (necesita red para los datos abiertos; `--cache` guarda los JSON descargados)::
+Uso, desde `research/` (necesita red para los datos abiertos y `pdftotext` para los llamamientos; `--cache` guarda
+los JSON y los PDF descargados)::
 
     uv run python -m lib.posiciones ensamblar fiscalidad [--escribir] [--programas DIR] [--cache DIR] [--medidas id1,id2]
+    uv run python -m lib.posiciones comprobar [slug ...] [--cache DIR]
     uv run python -m lib.posiciones extraer-programa programa.pdf DIR/psoe-2023.txt
     uv run python -m lib.posiciones llamamiento DS.pdf PAG_INI PAG_FIN VOT_REF.json "INICIO" "FIN"
 
@@ -49,6 +56,7 @@ import json
 import re
 import subprocess
 import sys
+import tempfile
 import unicodedata
 from pathlib import Path
 from typing import Callable, Iterable, Mapping
@@ -82,6 +90,38 @@ def descargador(cache: Path | None = None) -> Callable[[str], dict]:
             cache.mkdir(parents=True, exist_ok=True)
             fichero.write_text(json.dumps(datos, ensure_ascii=False), encoding="utf-8")
         return datos
+
+    return obtener
+
+
+def tramo_llamamiento(pdf: Path, pag_ini: int, pag_fin: int, inicio: str, fin: str) -> str:
+    """Texto de las páginas `pag_ini`-`pag_fin` del Diario de Sesiones desde `inicio` hasta el primer `fin` posterior."""
+    texto = subprocess.run(
+        ["pdftotext", "-layout", "-f", str(pag_ini), "-l", str(pag_fin), str(pdf), "-"], capture_output=True, text=True, check=True
+    ).stdout
+    try:
+        ini = texto.index(inicio)
+        return texto[ini : texto.index(fin, ini)]
+    except ValueError:
+        raise ValueError(f"no están «{inicio}» y, después, «{fin}» en las pp. {pag_ini}-{pag_fin} de {pdf.name}") from None
+
+
+def descargador_llamamiento(cache: Path | None = None) -> Callable[[Mapping], str]:
+    """Función que, con el campo `llamamiento` de una votación, descarga el PDF del Diario de Sesiones (con
+    `congreso.descargar_pdf`; si se da `cache`, lo guarda allí) y devuelve el tramo con las listas de votos."""
+    pdfs: dict[str, Path] = {}
+
+    def obtener(ll: Mapping) -> str:
+        url = ll["pdf"].split("#")[0]
+        if url not in pdfs:
+            carpeta = cache or Path(tempfile.mkdtemp(prefix="diario-sesiones-"))
+            f = carpeta / url.rsplit("/", 1)[-1]
+            if not f.exists():
+                carpeta.mkdir(parents=True, exist_ok=True)
+                f.write_bytes(congreso.descargar_pdf(url))
+            pdfs[url] = f
+        pag_ini, pag_fin = ll["paginas"]
+        return tramo_llamamiento(pdfs[url], pag_ini, pag_fin, ll["inicio"], ll["fin"])
 
     return obtener
 
@@ -262,7 +302,7 @@ def fuentes_votacion(v: Mapping) -> list[dict]:
             "url": v["url_ficha"],
             "referencia": "textos, tramitación, diarios de sesiones y votaciones",
         })
-    if v.get("url_pdf") and not v.get("votos_llamamiento"):
+    if v.get("url_pdf") and not v.get("llamamiento"):
         fuentes.append({
             "tipo": "votacion",
             "titulo": f"Resultado de la votación del Pleno del {fecha_larga(v['fecha'])} (Congreso de los Diputados)",
@@ -294,7 +334,7 @@ def votacion(v: Mapping, votos: Mapping[str, str]) -> dict:
         "resultado": v["resultado"],
         "fuentes": [dict(f) for f in v["fuentes"]] if v.get("fuentes") else fuentes_votacion(v),
     }
-    if v.get("url_json") and not v.get("votos_llamamiento"):
+    if v.get("url_json") and not v.get("llamamiento"):
         out["url_datos"] = v["url_json"]
     out["votos"] = dict(votos)
     return out
@@ -331,6 +371,7 @@ def ensamblar(
     dir_tema: Path,
     *,
     obtener_json: Callable[[str], dict],
+    obtener_llamamiento: Callable[[Mapping], str] | None = None,
     dir_programas: Path | None = None,
     partidos: list[str] | None = None,
     medidas_ids: Iterable[str] | None = None,
@@ -338,9 +379,11 @@ def ensamblar(
     """Devuelve (contenido de posiciones.json, avisos) para el tema de `dir_tema`.
 
     Con `medidas_ids` solo se ensamblan esas medidas propias (las demás del config quedan sin entrada, sin avisos):
-    sirve cuando las posiciones de un tema se investigan por partes.
+    sirve cuando las posiciones de un tema se investigan por partes. `obtener_llamamiento` da el tramo del Diario de
+    Sesiones de una votación por llamamiento (por defecto, `descargador_llamamiento()`).
     """
     config = _leer(dir_tema / "config.json")
+    obtener_llamamiento = obtener_llamamiento or descargador_llamamiento()
     partidos = partidos or congreso.partidos_globales()
     base = dir_tema / "posiciones"
     avisos: list[str] = []
@@ -419,10 +462,19 @@ def ensamblar(
                 avisos.append(f"{ruta}: descripción de {len(v['descripcion'])} caracteres")
             if not v.get("diario_sesiones") and not any(fu.get("tipo") == "diario_sesiones" for fu in v.get("fuentes", [])):
                 avisos.append(f"{ruta}: sin página del Diario de Sesiones")
-            if v.get("votos_llamamiento"):
-                votos = v["votos_llamamiento"]
-                if set(votos) != set(partidos) or any(x not in VOTOS for x in votos.values()):
-                    avisos.append(f"{ruta}: votos_llamamiento incompleto o con valores no admitidos")
+            if v.get("llamamiento"):
+                ll = v["llamamiento"]
+                try:
+                    tramo = obtener_llamamiento(ll)
+                except ValueError as e:
+                    avisos.append(f"{ruta}: {e}")
+                    continue
+                votos, totales, sin_casar = contar_llamamiento(tramo, obtener_json(ll["referencia"]), partidos)
+                if sin_casar:
+                    avisos.append(f"{ruta}: diputados sin identificar en el Diario de Sesiones: {', '.join(sin_casar)}")
+                recuento = "aprobada" if totales.get("Sí", 0) > totales.get("No", 0) else "rechazada"
+                if recuento != v["resultado"]:
+                    avisos.append(f"{ruta}: resultado {v['resultado']!r} y recuento del Diario de Sesiones {recuento!r}")
             else:
                 datos = obtener_json(v["url_json"])
                 votos = congreso.votos_por_partido(datos, partidos)
@@ -437,6 +489,57 @@ def ensamblar(
             avisos.append(f"{mid}: ids de votaciones duplicados")
         medidas.append({"medida_id": mid, "posiciones": posiciones, "iniciativas": iniciativas, "votaciones": votaciones})
     return {"tema": config["slug"], "medidas": medidas}, avisos
+
+
+def _diferencias(a, b, ruta: str = "") -> Iterable[str]:
+    """Rutas en las que difieren dos JSON (las medidas y las votaciones, por su id)."""
+    if isinstance(a, list) and isinstance(b, list) and all(isinstance(x, dict) for x in a + b):
+        clave = next((k for k in ("medida_id", "partido_id", "id") if all(k in x for x in a + b)), None)
+        if clave:
+            da, db = {x[clave]: x for x in a}, {x[clave]: x for x in b}
+            for k in [*da, *(k for k in db if k not in da)]:
+                if k not in db or k not in da:
+                    yield f"{ruta}/{k}: {'falta en el ensamblado' if k not in db else 'no está en el commiteado'}"
+                else:
+                    yield from _diferencias(da[k], db[k], f"{ruta}/{k}")
+            if [x[clave] for x in a] != [x[clave] for x in b] and set(da) == set(db):
+                yield f"{ruta}: otro orden"
+            return
+    if isinstance(a, dict) and isinstance(b, dict):
+        for k in [*a, *(k for k in b if k not in a)]:
+            if a.get(k) != b.get(k):
+                yield from _diferencias(a.get(k), b.get(k), f"{ruta}.{k}" if ruta else k)
+        return
+    if a != b:
+        yield f"{ruta}: commiteado {json.dumps(a, ensure_ascii=False)[:80]}, ensamblado {json.dumps(b, ensure_ascii=False)[:80]}"
+
+
+def comprobar(
+    slugs: Iterable[str],
+    *,
+    obtener_json: Callable[[str], dict],
+    obtener_llamamiento: Callable[[Mapping], str] | None = None,
+    raiz: Path = RAIZ,
+) -> list[str]:
+    """Vuelve a ensamblar `posiciones.json` de cada tema (las medidas que ya tiene) y devuelve sus avisos y las
+    diferencias con el commiteado: vacío si todo se reproduce."""
+    problemas: list[str] = []
+    for slug in slugs:
+        dir_tema = raiz / "temas" / slug
+        actual = _leer(dir_tema / "posiciones.json")
+        salida, avisos = ensamblar(
+            dir_tema,
+            obtener_json=obtener_json,
+            obtener_llamamiento=obtener_llamamiento,
+            medidas_ids=[m["medida_id"] for m in actual["medidas"]],
+        )
+        problemas += [f"{slug}: {a}" for a in avisos]
+        problemas += [f"{slug}: {d}" for d in _diferencias(actual, salida)]
+    return problemas
+
+
+def temas_con_posiciones(raiz: Path = RAIZ) -> list[str]:
+    return sorted(d.parent.name for d in (raiz / "temas").glob("*/posiciones") if d.is_dir())
 
 
 ABREV = {"a_favor": "F", "en_contra": "C", "matizada": "M", "sin_posicion": "·"}
@@ -467,6 +570,9 @@ def main(argv: list[str]) -> int:
     a.add_argument("--programas", type=Path)
     a.add_argument("--cache", type=Path)
     a.add_argument("--medidas", help="ids de medidas separados por comas: ensambla solo esas (el resto del config queda sin entrada)")
+    c = sub.add_parser("comprobar")
+    c.add_argument("slugs", nargs="*", help="temas que comprobar (por defecto, todos los que tienen posiciones/)")
+    c.add_argument("--cache", type=Path)
     e = sub.add_parser("extraer-programa")
     e.add_argument("pdf", type=Path)
     e.add_argument("salida", type=Path)
@@ -479,16 +585,28 @@ def main(argv: list[str]) -> int:
         args.salida.write_text(extraer_programa(args.pdf), encoding="utf-8")
         return 0
     if args.orden == "llamamiento":
-        texto = subprocess.run(["pdftotext", "-layout", "-f", args.pag_ini, "-l", args.pag_fin, args.pdf, "-"], capture_output=True, text=True, check=True).stdout
-        ini = texto.index(args.inicio)
-        tramo = texto[ini : texto.index(args.fin, ini)]
+        tramo = tramo_llamamiento(Path(args.pdf), int(args.pag_ini), int(args.pag_fin), args.inicio, args.fin)
         referencia = json.loads(Path(args.referencia).read_text(encoding="utf-8-sig"))
         votos, totales, sin_casar = contar_llamamiento(tramo, referencia, congreso.partidos_globales())
         print(json.dumps({"votos_llamamiento": votos, "totales_contados": totales, "sin_identificar": sin_casar}, ensure_ascii=False, indent=2))
         return 0
+    if args.orden == "comprobar":
+        slugs = args.slugs or temas_con_posiciones()
+        cache_ll = args.cache / "diarios" if args.cache else None
+        problemas = comprobar(slugs, obtener_json=descargador(args.cache), obtener_llamamiento=descargador_llamamiento(cache_ll))
+        for x in problemas:
+            print("DIFERENCIA", x)
+        print(f"{len(slugs)} temas, {len(problemas)} diferencias o avisos")
+        return 1 if problemas else 0
     dir_tema = RAIZ / "temas" / args.slug
     solo = [x.strip() for x in args.medidas.split(",") if x.strip()] if args.medidas else None
-    salida, avisos = ensamblar(dir_tema, obtener_json=descargador(args.cache), dir_programas=args.programas, medidas_ids=solo)
+    salida, avisos = ensamblar(
+        dir_tema,
+        obtener_json=descargador(args.cache),
+        obtener_llamamiento=descargador_llamamiento(args.cache / "diarios" if args.cache else None),
+        dir_programas=args.programas,
+        medidas_ids=solo,
+    )
     print(tabla(salida))
     if not args.programas:
         print("(sin --programas: no se comprueban las citas de los programas)")

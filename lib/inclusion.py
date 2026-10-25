@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import io
 import re
+import time
 from datetime import date
 from typing import Iterable
 
@@ -71,6 +72,30 @@ def enlaces(html: str) -> list[tuple[str, str]]:
         texto = re.sub(r"<[^>]+>|\s+", " ", m.group(2)).strip()
         out.append((href, texto))
     return out
+
+
+def diagnostico(r: requests.Response) -> str:
+    """Qué página ha llegado (estado, dirección final, título y número de enlaces), para los errores de `buscar`."""
+    titulo = re.search(r"<title[^>]*>(.*?)</title>", r.text, re.S | re.I)
+    titulo = re.sub(r"\s+", " ", titulo.group(1)).strip()[:80] if titulo else "sin título"
+    return f"HTTP {r.status_code}, {r.url}, «{titulo}», {len(enlaces(r.text))} enlaces, {len(r.text)} caracteres"
+
+
+ESPERAS_PAGINA = (5, 20, 60)  # segundos entre reintentos cuando el portal devuelve su página genérica («Content Root»)
+
+
+def _pagina(sesion: requests.Session, url: str, etiqueta: str, patron: str) -> tuple[requests.Response, list[str]]:
+    """Página del portal y los ficheros que cumplen `patron`. Si llega la página genérica del portal, sin
+    ficheros (pasa desde GitHub Actions), lo reintenta con una sesión nueva tras `ESPERAS_PAGINA`."""
+    r = _get(sesion, url, etiqueta)
+    urls = buscar(r.text, patron)
+    for espera in ESPERAS_PAGINA:
+        if urls or "Content Root" not in r.text[:5000]:
+            break
+        time.sleep(espera)
+        r = _get(requests.Session(), url, etiqueta)
+        urls = buscar(r.text, patron)
+    return r, urls
 
 
 def buscar(html: str, patron: str) -> list[str]:
@@ -169,9 +194,11 @@ def get_afiliacion(*, desde: int = 1976, fecha_consulta: str | None = None,
                    sesion: requests.Session | None = None) -> tuple[pd.DataFrame, list[FuenteMeta]]:
     """Afiliados medios en alta laboral (total del sistema), media anual. Serie `afiliados`."""
     s = sesion or requests.Session()
-    urls = buscar(_get(s, PAGINA_AFILIACION, "afiliación").text, r"Serie afiliaci[oó]n media por reg[ií]menes")
+    pagina, urls = _pagina(s, PAGINA_AFILIACION, "afiliación", r"Serie afiliaci[oó]n media por reg[ií]menes")
     if len(urls) != 1:
-        raise InclusionError(f"afiliación: se esperaba un fichero de la serie por regímenes y hay {len(urls)}")
+        raise InclusionError(
+            f"afiliación: se esperaba un fichero de la serie por regímenes y hay {len(urls)} ({diagnostico(pagina)})"
+        )
     anual = _anual(leer_serie_afiliacion(_libro(s, urls[0])), "afiliación")
     df = validar_df(pd.DataFrame({"serie": "afiliados", "periodo": anual.index, "valor": anual.values}))
     df = df[df["periodo"] >= desde].reset_index(drop=True)

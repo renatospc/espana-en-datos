@@ -14,8 +14,9 @@ identifican por el código de grupo (`GRUPOS`) y los del Grupo Mixto por el nomb
 Mixto sin partido en `global.json` (p. ej. los que dejaron su grupo sin formar partido) no cuentan.
 
 Las votaciones por llamamiento (p. ej. la convalidación de los Reales Decretos-leyes 26/2026 y 27/2026,
-2-10-2026) no están en los datos abiertos: su fuente es el Diario de Sesiones, no llevan `url_datos` y se
-comprueban a mano. Si cambia la composición de los grupos, actualiza `GRUPOS` y `DIPUTADOS`.
+2-10-2026) no están en los datos abiertos: su fuente es el Diario de Sesiones, no llevan `url_datos` y sus votos
+los cuenta `lib/posiciones.py` en el PDF del Diario (`descargar_pdf`). Si cambia la composición de los grupos,
+actualiza `GRUPOS` y `DIPUTADOS`.
 
 Uso, desde `research/` (comprueba los votos de `posiciones.json` contra los datos abiertos; necesita red)::
 
@@ -120,6 +121,21 @@ def descargar(url: str, sesion: requests.Session | None = None) -> dict:
         headers=_cabecera(),
     )
     return json.loads(r.content.decode("utf-8-sig"))
+
+
+def descargar_pdf(url: str, sesion: requests.Session | None = None) -> bytes:
+    """PDF de un Diario de Sesiones (sin el `#page=` de la dirección)."""
+    url = url.split("#")[0]
+    r = pedir(
+        sesion or requests.Session(),
+        url,
+        None,
+        error_cls=CongresoError,
+        etiqueta=url,
+        mensaje=lambda r: r.text[:200],
+        headers=_cabecera(),
+    )
+    return r.content
 
 
 def partidos_globales() -> list[str]:
