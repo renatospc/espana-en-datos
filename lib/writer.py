@@ -24,6 +24,44 @@ TIPOS = ("serie_temporal", "por_ccaa", "solo_espana")
 # En las notas, un grupo con al menos tantas comunidades (la mayoría de las 19) se llama «comunidades autónomas».
 MIN_CCAA_AGRUPADAS = 10
 
+CIFRAS = 10  # cifras significativas con que se comparan los números (las fuentes publican muchas menos)
+
+
+def redondear(x):
+    """`x` con sus números redondeados a `CIFRAS` cifras significativas: la misma operación da a veces otro
+    último decimal en Linux que en macOS, y eso no es un cambio de los datos."""
+    if isinstance(x, float):
+        return float(f"{x:.{CIFRAS}g}")
+    if isinstance(x, list):
+        return [redondear(v) for v in x]
+    if isinstance(x, dict):
+        return {k: redondear(v) for k, v in x.items()}
+    return x
+
+
+def valores(datos: dict) -> dict:
+    """Los valores de unos datos, redondeados: los periodos y las series (también los de la vista por
+    comunidades) o los puntos de una dispersión. Cuando cambian, cambia `datos_actualizados_en`."""
+    if datos.get("tipo") == "dispersion":
+        return redondear({"puntos": datos["puntos"]})
+    out = {"labels": datos["labels"], "series": datos["series"]}
+    if datos.get("ccaa"):
+        out["ccaa"] = {"labels": datos["ccaa"]["labels"], "series": datos["ccaa"]["series"]}
+    return redondear(out)
+
+
+def _escribir_json(datos: dict, path: Path) -> None:
+    """Escribe `datos` en `path` con su `datos_actualizados_en`: la del fichero que había si los valores no
+    han cambiado; si no, el día de `generado_en`."""
+    try:
+        previo = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        previo = None
+    if previo and previo.get("datos_actualizados_en") and valores(previo) == valores(datos):
+        datos["datos_actualizados_en"] = previo["datos_actualizados_en"]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(datos, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
 
 def _benchmarks() -> list[dict]:
     return json.loads(GLOBAL.read_text(encoding="utf-8"))["benchmarks"]
@@ -250,6 +288,7 @@ def construir_grafica_data(
         "generado_en": generado_en
         or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+    datos["datos_actualizados_en"] = datos["generado_en"][:10]  # `_escribir_json` conserva la anterior si no cambian
     _validar_esquema(datos)
     return datos
 
@@ -333,10 +372,7 @@ def write_grafica_data(
         composicion=composicion,
         ccaa=ccaa,
     )
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(datos, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
+    _escribir_json(datos, path)
     csv = csv_grafica(datos, formato=csv_formato, decimales=csv_decimales)
     path.with_suffix(".csv").write_text(csv, encoding="utf-8", newline="")
     return path
@@ -446,6 +482,7 @@ def construir_dispersion_data(
         "generado_en": generado_en
         or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+    datos["datos_actualizados_en"] = datos["generado_en"][:10]  # `_escribir_json` conserva la anterior si no cambian
     _validar_esquema(datos)
     return datos
 
@@ -497,8 +534,7 @@ def write_dispersion_data(
         x, y, fuentes, id=id, universo=universo, eje_x=eje_x, eje_y=eje_y, notas=notas,
         generado_por=generado_por, desde=desde, anios=anios, generado_en=generado_en,
     )
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(datos, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    _escribir_json(datos, path)
     csv = csv_dispersion(datos, formato=csv_formato, decimales=csv_decimales)
     path.with_suffix(".csv").write_text(csv, encoding="utf-8", newline="")
     return path
