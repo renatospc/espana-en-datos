@@ -1,0 +1,211 @@
+{
+  "id": "poblacion-extranjera-empleo-nativos-estudios-bajos",
+  "tipo": "dispersion",
+  "universo": "ue27",
+  "eje_x": {
+    "titulo": "Población nacida en el extranjero",
+    "unidad": "% de la población de 20 a 64 años",
+    "periodo": "2020-2025"
+  },
+  "eje_y": {
+    "titulo": "Tasa de empleo de los nacidos en el país con estudios básicos",
+    "unidad": "% de la población de 20 a 64 años nacida en el país con estudios básicos",
+    "periodo": "2020-2025"
+  },
+  "puntos": [
+    {
+      "codigo": "AUT",
+      "anio": 2025,
+      "x": 28.428245163226524,
+      "y": 56.8
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2025,
+      "x": 25.91854301635482,
+      "y": 46.6
+    },
+    {
+      "codigo": "BGR",
+      "anio": 2025,
+      "x": 3.66309649130225,
+      "y": 46.0
+    },
+    {
+      "codigo": "CYP",
+      "anio": 2025,
+      "x": 35.10851771663938,
+      "y": 65.6
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2025,
+      "x": 12.522280038409619,
+      "y": 56.8
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2025,
+      "x": 24.095015151637636,
+      "y": 62.2
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2025,
+      "x": 19.652846495119274,
+      "y": 60.6
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2025,
+      "x": 25.28418575378783,
+      "y": 62.0
+    },
+    {
+      "codigo": "EST",
+      "anio": 2025,
+      "x": 16.553014737028445,
+      "y": 63.5
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2025,
+      "x": 14.270355529488382,
+      "y": 47.1
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2025,
+      "x": 16.912824360525303,
+      "y": 54.1
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2025,
+      "x": 15.316604247885927,
+      "y": 56.6
+    },
+    {
+      "codigo": "HRV",
+      "anio": 2025,
+      "x": 16.30492031233764,
+      "y": 42.1
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2025,
+      "x": 8.39099530567294,
+      "y": 59.4
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2025,
+      "x": 27.391257007397822,
+      "y": 53.7
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2025,
+      "x": 16.554659231337173,
+      "y": 53.2
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2025,
+      "x": 9.557338381299775,
+      "y": 51.0
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2025,
+      "x": 62.086623846932845,
+      "y": 46.3
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2025,
+      "x": 7.980433224317906,
+      "y": 59.2
+    },
+    {
+      "codigo": "MLT",
+      "anio": 2020,
+      "x": 30.92192952694843,
+      "y": 62.5
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2025,
+      "x": 21.755548631655596,
+      "y": 72.0
+    },
+    {
+      "codigo": "POL",
+      "anio": 2025,
+      "x": 2.0427611204232843,
+      "y": 46.1
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2024,
+      "x": 21.79700181635078,
+      "y": 69.8
+    },
+    {
+      "codigo": "ROU",
+      "anio": 2025,
+      "x": 5.73289832668384,
+      "y": 43.1
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2025,
+      "x": 3.1513034452961772,
+      "y": 33.1
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2025,
+      "x": 18.734520285873483,
+      "y": 51.9
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2025,
+      "x": 27.253687169121378,
+      "y": 64.3
+    },
+    {
+      "codigo": "EU27_2020",
+      "anio": 2023,
+      "x": 16.68411974930973,
+      "y": 57.1
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "Eurostat",
+      "dataset_codigo": "migr_pop3ctb (sex=T, unit=NR, de Y20-24 a Y60-64): c_birth=FOR entre c_birth=TOTAL",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/migr_pop3ctb/default/table?lang=en",
+      "fecha_consulta": "2026-10-18"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "Eurostat",
+      "dataset_codigo": "lfsa_ergaedcob (c_birth=NAT, isced11=ED0-2, sex=T, age=Y20-64, unit=PC)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/lfsa_ergaedcob/default/table?lang=en",
+      "fecha_consulta": "2026-10-18"
+    }
+  ],
+  "notas": [
+    "Población nacida en el extranjero: Eurostat (migr_pop3ctb), población a 1 de enero de 20 a 64 años nacida en el extranjero (c_birth=FOR) entre la población total de esa edad, suma de los grupos quinquenales de 20 a 64 años; solo los años con todos los grupos publicados. Es la población a 1 de enero; la tasa de empleo es la media del año.",
+    "La inmigración se dirige a los países y los años con más demanda de trabajo, así que la relación entre los dos indicadores no muestra el efecto de la inmigración sobre el empleo; la evidencia causal se resume en la del enfoque vias_inmigracion de seguridad social.",
+    "Tasa de empleo: Eurostat (lfsa_ergaedcob), ocupados de 20 a 64 años nacidos en el país con estudios de los niveles 0 a 2 de la CINE (sin la segunda etapa de secundaria) en % de la población de esa edad y estudios nacida en el país.",
+    "El peso de las personas con estudios básicos en la población varía mucho entre países, y con él lo que representa este grupo.",
+    "Media UE-27: los agregados de composición actual (EU27_2020) que publica Eurostat en los dos ejes.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/empleo/notebooks/poblacion-extranjera-empleo-nativos-estudios-bajos.ipynb",
+  "generado_en": "2026-10-18T19:08:43Z"
+}

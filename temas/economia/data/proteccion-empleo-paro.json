@@ -1,0 +1,277 @@
+{
+  "id": "proteccion-empleo-paro",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Rigidez de la protección frente al despido",
+    "unidad": "índice de 0 (menor) a 6",
+    "periodo": "2024-2025"
+  },
+  "eje_y": {
+    "titulo": "Tasa de paro",
+    "unidad": "% de la población activa",
+    "periodo": "2024-2025"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2025,
+      "x": 1.7000779,
+      "y": 4.195469
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2025,
+      "x": 1.9434878,
+      "y": 5.683333
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2025,
+      "x": 2.5911174,
+      "y": 6.2
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2025,
+      "x": 1.0178068,
+      "y": 6.825
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2025,
+      "x": 1.6069735,
+      "y": 4.840408
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2025,
+      "x": 2.3417659,
+      "y": 8.545018
+    },
+    {
+      "codigo": "COL",
+      "anio": 2025,
+      "x": 1.4358112,
+      "y": 8.8975
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2025,
+      "x": 0.63690478,
+      "y": 6.739376
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2025,
+      "x": 3.0252621,
+      "y": 2.891667
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2025,
+      "x": 2.3324111,
+      "y": 3.766667
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2025,
+      "x": 1.937693,
+      "y": 6.358333
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2025,
+      "x": 2.4305141,
+      "y": 10.51667
+    },
+    {
+      "codigo": "EST",
+      "anio": 2025,
+      "x": 1.9342227,
+      "y": 7.441667
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2025,
+      "x": 2.4797511,
+      "y": 9.683333
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2025,
+      "x": 2.6759372,
+      "y": 7.725
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2025,
+      "x": 1.9017237,
+      "y": 4.825
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2025,
+      "x": 2.3214011,
+      "y": 8.891666
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2025,
+      "x": 1.8923346,
+      "y": 4.375
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2025,
+      "x": 2.1731946,
+      "y": 4.683333
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2024,
+      "x": 2.2030895,
+      "y": 3.5
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2024,
+      "x": 2.8320932,
+      "y": 2.966667
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2025,
+      "x": 2.8555663,
+      "y": 6.125
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2025,
+      "x": 2.0809152,
+      "y": 2.508333
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2025,
+      "x": 2.3502338,
+      "y": 2.791667
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2025,
+      "x": 1.848945,
+      "y": 6.908333
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2025,
+      "x": 2.5418367,
+      "y": 6.575
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2025,
+      "x": 2.7081208,
+      "y": 6.941667
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2025,
+      "x": 2.4308035,
+      "y": 2.645921
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2025,
+      "x": 2.8808725,
+      "y": 3.883333
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2025,
+      "x": 2.3734853,
+      "y": 4.508333
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2025,
+      "x": 2.2226827,
+      "y": 5.275
+    },
+    {
+      "codigo": "POL",
+      "anio": 2025,
+      "x": 2.4210324,
+      "y": 3.15
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2025,
+      "x": 2.9610438,
+      "y": 6.041667
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2025,
+      "x": 2.330605,
+      "y": 5.425
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2025,
+      "x": 2.3221097,
+      "y": 3.883333
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2025,
+      "x": 2.5098815,
+      "y": 8.866667
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2025,
+      "x": 2.9496608,
+      "y": 8.358334
+    },
+    {
+      "codigo": "USA",
+      "anio": 2024,
+      "x": 0.76577598,
+      "y": 4.016667
+    },
+    {
+      "codigo": "OECD",
+      "anio": 2024,
+      "x": 2.2096617,
+      "y": 4.923475
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_EPL@DF_EPL (EPL, versión 1.0): EPL_OV, 0_TO_6, VERSION4",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_LFS@DF_IALFS_UNE_M (Encuestas de población activa, versión 1.0): UNE_LF_M, Y_GE15, _T, media anual",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    }
+  ],
+  "notas": [
+    "Protección del empleo: OCDE, indicadores de legislación de protección del empleo (DSD_EPL@DF_EPL, versión 1.0): indicador EPL_OV (contratos indefinidos, despidos individuales y colectivos), escala de 0 (menor rigidez) a 6, metodología VERSION4. Mide lo que dice la ley, no cómo se aplica.",
+    "La serie de España empieza en 2013, después de la reforma laboral de 2012, y la fuente solo cambia su valor en 2019; la reforma de 2021 actuó sobre todo en la contratación temporal, que este indicador no recoge.",
+    "Tasa de paro: OCDE, Encuestas de población activa (DSD_LFS@DF_IALFS_UNE_M, versión 1.0): porcentaje de la población activa de 15 años o más, media anual, definición armonizada.",
+    "Media OCDE: el indicador de protección es el que publica la OCDE para su agregado y la tasa de paro, el agregado de la OCDE, que no es una media simple de los países; cada punto usa su último año común.",
+    "El paro depende del ciclo económico y de la estructura productiva, además de la regulación.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/economia/notebooks/proteccion-empleo-paro.ipynb",
+  "generado_en": "2026-10-15T13:35:26Z"
+}

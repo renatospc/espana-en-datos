@@ -1,0 +1,283 @@
+{
+  "id": "gasto-idi-empresas-productividad",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Gasto de las empresas en I+D",
+    "unidad": "% del PIB",
+    "periodo": "2017-2025"
+  },
+  "eje_y": {
+    "titulo": "PIB por hora trabajada",
+    "unidad": "dólares PPA por hora, precios corrientes",
+    "periodo": "2017-2025"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2023,
+      "x": 0.910831056,
+      "y": 85.57681103737261
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2024,
+      "x": 2.250519136,
+      "y": 102.4172879446308
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2024,
+      "x": 2.430001493,
+      "y": 108.92576770310794
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2025,
+      "x": 1.090562099,
+      "y": 76.8134447915586
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2023,
+      "x": 2.152753547,
+      "y": 103.01161618585306
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2022,
+      "x": 0.164775802,
+      "y": 41.98033949031317
+    },
+    {
+      "codigo": "COL",
+      "anio": 2020,
+      "x": 0.149447785,
+      "y": 19.931954136120343
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2024,
+      "x": 0.084820885,
+      "y": 34.00862206012693
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2024,
+      "x": 1.17940812,
+      "y": 64.00787025823233
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2024,
+      "x": 2.136974846,
+      "y": 99.9172750611077
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2024,
+      "x": 1.8858179,
+      "y": 112.35808425418108
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2024,
+      "x": 0.836866834,
+      "y": 78.44007588621493
+    },
+    {
+      "codigo": "EST",
+      "anio": 2024,
+      "x": 1.185079979,
+      "y": 62.18921188771636
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2024,
+      "x": 2.188026508,
+      "y": 88.71230793893295
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2024,
+      "x": 1.43860257,
+      "y": 93.11733947736872
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2024,
+      "x": 1.923935124,
+      "y": 84.19532387476112
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2024,
+      "x": 0.84544866,
+      "y": 46.658098507587205
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2024,
+      "x": 0.993273128,
+      "y": 57.950922450667434
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2024,
+      "x": 1.170865815,
+      "y": 167.07591655617674
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2024,
+      "x": 1.768421119,
+      "y": 99.07934754932188
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2024,
+      "x": 6.344755006,
+      "y": 65.59448957245455
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2024,
+      "x": 0.78862502,
+      "y": 80.65421460661506
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2024,
+      "x": 2.85910792,
+      "y": 59.915454966337904
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2024,
+      "x": 4.173045975,
+      "y": 59.44743087009523
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2024,
+      "x": 0.425232761,
+      "y": 64.6822759726903
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2024,
+      "x": 0.448283296,
+      "y": 139.56532460551114
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2024,
+      "x": 0.334535271,
+      "y": 55.92327858618221
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2017,
+      "x": 0.071936382,
+      "y": 29.885449585801982
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2024,
+      "x": 1.61462726,
+      "y": 102.05270524738714
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2024,
+      "x": 1.016289998,
+      "y": 141.69685752105894
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2023,
+      "x": 0.973847842,
+      "y": 58.20164478541916
+    },
+    {
+      "codigo": "POL",
+      "anio": 2024,
+      "x": 0.891892478,
+      "y": 60.53207223240112
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2024,
+      "x": 1.091028483,
+      "y": 62.04724266094449
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2024,
+      "x": 0.589700795,
+      "y": 65.49017197280506
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2024,
+      "x": 1.501235177,
+      "y": 68.52215776437896
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2024,
+      "x": 2.606937532,
+      "y": 97.28979121965244
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2021,
+      "x": 0.839411482,
+      "y": 54.18766539453858
+    },
+    {
+      "codigo": "USA",
+      "anio": 2024,
+      "x": 2.667761121,
+      "y": 100.11954674550108
+    },
+    {
+      "codigo": "EU27_2020",
+      "anio": 2024,
+      "x": 1.4064692,
+      "y": 81.37480408795669
+    },
+    {
+      "codigo": "OECD",
+      "anio": 2024,
+      "x": 1.995416421,
+      "y": 77.88611440878287
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_MSTI@DF_MSTI (Main Science and Technology Indicators, versión 1.3): B (BERD), PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_PDB@DF_PDB (Productivity database, versión 2.0): GDPHRS, _T, USD_PPP_H, precios corrientes",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    }
+  ],
+  "notas": [
+    "Gasto de las empresas en I+D: OCDE, Main Science and Technology Indicators (DSD_MSTI@DF_MSTI, versión 1.3): gasto interno en I+D del sector empresas (BERD) en porcentaje del PIB, incluida la parte financiada con fondos públicos y del exterior.",
+    "Productividad: OCDE, base de datos de productividad (DSD_PDB@DF_PDB, versión 2.0): PIB por hora trabajada (total de actividades) en dólares estadounidenses PPA a precios corrientes del mismo año.",
+    "En España, las propias empresas financian el 80,5 % del gasto de las empresas en I+D en 2023; el resto lo financian las administraciones públicas, el exterior y otras entidades (OCDE, DSD_MSTI@DF_MSTI, medida B_FB en porcentaje del BERD).",
+    "El gasto en I+D depende de la composición sectorial de cada economía (más industria y tecnología, más I+D) y la productividad, de las horas trabajadas y de quién trabaja.",
+    "Medias: Media UE-27 y Media OCDE como punto con su agregado de la OCDE en los dos ejes.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/economia/notebooks/gasto-idi-empresas-productividad.ipynb",
+  "generado_en": "2026-10-15T13:40:15Z"
+}

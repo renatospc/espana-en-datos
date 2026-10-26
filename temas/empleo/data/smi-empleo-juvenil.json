@@ -1,0 +1,224 @@
+{
+  "id": "smi-empleo-juvenil",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Salario mínimo legal",
+    "unidad": "% del salario mediano a tiempo completo",
+    "periodo": "2024-2025"
+  },
+  "eje_y": {
+    "titulo": "Tasa de empleo de 15 a 24 años",
+    "unidad": "% de la población de 15 a 24 años",
+    "periodo": "2024-2025"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2025,
+      "x": 54.4514646754739,
+      "y": 64.00074
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2025,
+      "x": 47.4707501242575,
+      "y": 28.45
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2025,
+      "x": 49.2421991084695,
+      "y": 54.29167
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2024,
+      "x": 69.5380626734505,
+      "y": 23.7736
+    },
+    {
+      "codigo": "COL",
+      "anio": 2025,
+      "x": 90.5438354692983,
+      "y": 36.19417
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2025,
+      "x": 84.717360651672,
+      "y": 28.63914
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2025,
+      "x": 46.9134131763538,
+      "y": 24.9
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2025,
+      "x": 49.555057387338,
+      "y": 50.8
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2025,
+      "x": 55.3012584310545,
+      "y": 25.325
+    },
+    {
+      "codigo": "EST",
+      "anio": 2025,
+      "x": 42.6984163900003,
+      "y": 34.15
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2025,
+      "x": 62.4838206379372,
+      "y": 34.5
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2025,
+      "x": 61.854103343465,
+      "y": 51.575
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2025,
+      "x": 50.1017570893352,
+      "y": 19.7
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2025,
+      "x": 47.6256653312285,
+      "y": 26.3
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2025,
+      "x": 51.120621997216,
+      "y": 46.375
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2025,
+      "x": 50.7464781662831,
+      "y": 42.50834
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2025,
+      "x": 46.3648373123194,
+      "y": 49.6075
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2025,
+      "x": 59.5686433084983,
+      "y": 25.26242
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2025,
+      "x": 50.13571602596,
+      "y": 30.6
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2025,
+      "x": 56.3525173196148,
+      "y": 26.45
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2025,
+      "x": 44.8487362920769,
+      "y": 30.775
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2025,
+      "x": 74.9274966282627,
+      "y": 40.59032
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2025,
+      "x": 48.2969571131513,
+      "y": 75.975
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2025,
+      "x": 64.0492476060192,
+      "y": 54.13208
+    },
+    {
+      "codigo": "POL",
+      "anio": 2025,
+      "x": 59.2330368428583,
+      "y": 27.35
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2025,
+      "x": 58.8784128100005,
+      "y": 27.925
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2025,
+      "x": 51.5093231561674,
+      "y": 21.725
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2025,
+      "x": 58.5356035973794,
+      "y": 31.125
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2025,
+      "x": 47.2210808039835,
+      "y": 40.325
+    },
+    {
+      "codigo": "USA",
+      "anio": 2024,
+      "x": 25.0172532781228,
+      "y": 50.89007
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_EARNINGS@MIN2AVE (Minimum relative to average wages, versión 1.0): MR_WG_FT, PT_WG_A_SAL_FT, mediana",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-22"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_LFS@DF_IALFS_EMP_WAP_Q (Encuestas de población activa, versión 1.0): EMP_WAP, Y15T24, _T, media anual",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-22"
+    }
+  ],
+  "notas": [
+    "Salario mínimo: OCDE, Minimum relative to average wages of full-time workers (DSD_EARNINGS@MIN2AVE, versión 1.0): salario mínimo legal nacional en porcentaje del salario mediano de los trabajadores a tiempo completo (MR_WG_FT, PT_WG_A_SAL_FT, mediana). Solo publica los países con salario mínimo legal nacional.",
+    "En Estados Unidos, la OCDE usa el salario mínimo federal, que varios estados superan con el suyo.",
+    "Tasa de empleo juvenil: OCDE, Encuestas de población activa (DSD_LFS@DF_IALFS_EMP_WAP_Q, versión 1.0): personas ocupadas de 15 a 24 años en porcentaje de la población de esa edad, media anual.",
+    "La OCDE no publica salario mínimo para 8 de los 38 países del universo, que no tienen salario mínimo legal nacional (la lista está en la nota de países sin dato); en la mayoría de ellos los salarios mínimos se fijan por convenio colectivo.",
+    "La tasa de empleo de los jóvenes depende de cuántos estudian: con muchos jóvenes en la universidad es baja sin que ello signifique que no encuentren trabajo.",
+    "Sin dato en los dos ejes el mismo año (8 de los 38 países): Austria, Dinamarca, Finlandia, Islandia, Italia, Noruega, Suecia y Suiza.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/empleo/notebooks/smi-empleo-juvenil.ipynb",
+  "generado_en": "2026-10-22T06:44:19Z"
+}

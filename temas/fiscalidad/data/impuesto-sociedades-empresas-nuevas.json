@@ -1,0 +1,208 @@
+{
+  "id": "impuesto-sociedades-empresas-nuevas",
+  "tipo": "dispersion",
+  "universo": "ue27",
+  "eje_x": {
+    "titulo": "Tipo general del Impuesto sobre Sociedades",
+    "unidad": "% de los beneficios",
+    "periodo": "2024"
+  },
+  "eje_y": {
+    "titulo": "Empresas creadas hace tres años que siguen activas",
+    "unidad": "por cada 1.000 habitantes",
+    "periodo": "2024"
+  },
+  "puntos": [
+    {
+      "codigo": "AUT",
+      "anio": 2024,
+      "x": 23.0,
+      "y": 2.3621127337245804
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2024,
+      "x": 25.0,
+      "y": 4.150258236033625
+    },
+    {
+      "codigo": "BGR",
+      "anio": 2024,
+      "x": 10.0,
+      "y": 3.6614800353922385
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2024,
+      "x": 21.0,
+      "y": 6.461781074449879
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2024,
+      "x": 30.133026,
+      "y": 1.7028724521992387
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2024,
+      "x": 22.0,
+      "y": 2.4976309494872635
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2024,
+      "x": 25.0,
+      "y": 3.4640900153733996
+    },
+    {
+      "codigo": "EST",
+      "anio": 2024,
+      "x": 20.0,
+      "y": 15.847243772582411
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2024,
+      "x": 20.0,
+      "y": 4.7685065145379495
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2024,
+      "x": 25.825,
+      "y": 5.562864093727586
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2024,
+      "x": 22.0,
+      "y": 4.4431426929139874
+    },
+    {
+      "codigo": "HRV",
+      "anio": 2024,
+      "x": 18.0,
+      "y": 4.156172230368618
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2024,
+      "x": 9.0,
+      "y": 5.819005789166338
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2024,
+      "x": 12.5,
+      "y": 3.7016406620648725
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2024,
+      "x": 27.81,
+      "y": 3.7416041686768278
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2024,
+      "x": 15.0,
+      "y": 8.7335245856479
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2024,
+      "x": 24.94,
+      "y": 3.772040770775984
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2024,
+      "x": 20.0,
+      "y": 4.817481335586814
+    },
+    {
+      "codigo": "MLT",
+      "anio": 2024,
+      "x": 35.0,
+      "y": 6.722951567416757
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2024,
+      "x": 25.8,
+      "y": 9.83857608189337
+    },
+    {
+      "codigo": "POL",
+      "anio": 2024,
+      "x": 19.0,
+      "y": 5.183259755271365
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2024,
+      "x": 31.5,
+      "y": 7.942873716860754
+    },
+    {
+      "codigo": "ROU",
+      "anio": 2024,
+      "x": 16.0,
+      "y": 3.323233115735319
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2024,
+      "x": 21.0,
+      "y": 8.063138020682114
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2024,
+      "x": 22.0,
+      "y": 5.92622515889035
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2024,
+      "x": 20.6,
+      "y": 4.714687396077242
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_TAX_CIT@DF_CIT (Corporate Tax Statistics, versión 2.0): CIT_C, ST",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-23"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "Eurostat",
+      "dataset_codigo": "bd_size: ENT_SRVL_NR, Y3, TOTAL, B-S_X_O_S94",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/bd_size/default/table?lang=en",
+      "fecha_consulta": "2026-10-23"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "Eurostat",
+      "dataset_codigo": "demo_pjan: población a 1 de enero",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/demo_pjan/default/table?lang=en",
+      "fecha_consulta": "2026-10-23"
+    }
+  ],
+  "notas": [
+    "Tipo del Impuesto sobre Sociedades: OCDE, Corporate Tax Statistics (DSD_TAX_CIT@DF_CIT, versión 2.0): tipo legal combinado de la administración central y las subcentrales (CIT_C) del régimen general, en porcentaje de los beneficios.",
+    "El tipo legal no es el tipo efectivo: no recoge deducciones, bonificaciones ni los tipos reducidos que España aplica a las empresas de nueva creación y a las pymes.",
+    "Tipo efectivo medio de España en 2024 según la OCDE (DSD_ETR@DF_ETR_BASELINE, tipo medio compuesto con interés e inflación fijos): 23,3 %, frente a un tipo legal del 25,0 %.",
+    "Empresas creadas hace tres años que siguen activas: Eurostat, demografía empresarial (bd_size, ENT_SRVL_NR, edad Y3): empresas nacidas tres años antes del año del punto que siguen activas, de todas las clases de tamaño (también sin asalariados), en industria, construcción y servicios de mercado (B-S_X_O_S94), por cada 1.000 habitantes (población a 1 de enero, demo_pjan). Eurostat publica esta serie desde 2021; la anterior (bd_9bd_sz_cl_r2, hasta 2020) no se usa porque cubre otras actividades.",
+    "Junta en un solo dato cuántas empresas se crean y cuántas sobreviven, pero no dice si crecen: muchas son de una sola persona.",
+    "España en 2024: tasa de natalidad del 9,4 % (empresas nacidas en el año entre las activas, ENT_BRTHR_PC) y el 53,6 % de las empresas nacidas tres años antes siguen activas (ENT_SRVLR_BRTH_PC).",
+    "Sin dato en los dos ejes el mismo año (1 de los 27 países): Chipre.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/fiscalidad/notebooks/impuesto-sociedades-empresas-nuevas.ipynb",
+  "generado_en": "2026-10-23T19:29:42Z"
+}

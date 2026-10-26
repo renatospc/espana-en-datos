@@ -1,0 +1,263 @@
+{
+  "id": "presion-fiscal-crecimiento",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Presión fiscal, media 2015-2024",
+    "unidad": "% del PIB (media del periodo)",
+    "periodo": "2024"
+  },
+  "eje_y": {
+    "titulo": "Crecimiento medio anual del PIB por habitante, 2015-2024",
+    "unidad": "% de crecimiento medio anual",
+    "periodo": "2024"
+  },
+  "puntos": [
+    {
+      "codigo": "AUT",
+      "anio": 2024,
+      "x": 42.8620604,
+      "y": 0.5563054593994643
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2024,
+      "x": 42.8013565,
+      "y": 1.061811882886765
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2024,
+      "x": 33.85012,
+      "y": 0.36846294331966956
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2024,
+      "x": 27.303409499999997,
+      "y": 0.9689688122268336
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2024,
+      "x": 20.986285099999996,
+      "y": 0.7139315807245472
+    },
+    {
+      "codigo": "COL",
+      "anio": 2024,
+      "x": 19.6464784,
+      "y": 0.944206005009196
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2024,
+      "x": 23.835145,
+      "y": 2.3219239947275705
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2024,
+      "x": 33.750264599999994,
+      "y": 1.4483272610291698
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2024,
+      "x": 38.1049182,
+      "y": 0.6015183489054277
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2024,
+      "x": 45.5263907,
+      "y": 1.6106415100573201
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2024,
+      "x": 35.310947999999996,
+      "y": 1.3205362512772378
+    },
+    {
+      "codigo": "EST",
+      "anio": 2024,
+      "x": 33.3159759,
+      "y": 1.577367056180612
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2024,
+      "x": 43.0306644,
+      "y": 0.6959727556116846
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2024,
+      "x": 45.15153720000001,
+      "y": 0.8514084694914992
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2024,
+      "x": 33.397735499999996,
+      "y": 0.7010180666863652
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2024,
+      "x": 39.323656899999996,
+      "y": 1.9892366320539923
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2024,
+      "x": 36.189082400000004,
+      "y": 2.91576434991625
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2024,
+      "x": 21.3070357,
+      "y": 4.488681868641309
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2024,
+      "x": 37.039195799999995,
+      "y": 0.9451397772827219
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2024,
+      "x": 31.101480600000002,
+      "y": 1.916107938413103
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2024,
+      "x": 42.2105107,
+      "y": 1.4969854803419835
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2024,
+      "x": 25.7062347,
+      "y": 2.346514754593221
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2024,
+      "x": 30.870231,
+      "y": 3.418934151409414
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2024,
+      "x": 38.3834638,
+      "y": 0.02034487998554546
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2024,
+      "x": 32.39441079999999,
+      "y": 2.3335461644168554
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2024,
+      "x": 16.5411065,
+      "y": 0.17181717199907798
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2024,
+      "x": 38.211536,
+      "y": 1.2413238845127905
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2024,
+      "x": 40.002246500000005,
+      "y": 0.8742461758319386
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2024,
+      "x": 32.4971766,
+      "y": 1.1182670628442581
+    },
+    {
+      "codigo": "POL",
+      "anio": 2024,
+      "x": 34.62695839999999,
+      "y": 3.730658751910476
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2024,
+      "x": 34.85436169999999,
+      "y": 1.9300515607020063
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2024,
+      "x": 34.25769090000001,
+      "y": 2.120942713016638
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2024,
+      "x": 37.8960614,
+      "y": 2.6846688896398296
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2024,
+      "x": 43.0928628,
+      "y": 0.7037524251966909
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2024,
+      "x": 23.672773,
+      "y": 3.635453929351895
+    },
+    {
+      "codigo": "USA",
+      "anio": 2024,
+      "x": 25.966878,
+      "y": 1.8253190447425904
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_REV_COMP_OECD@DF_RSOECD (Revenue Statistics, versión 2.0): TAX_REV, S13, _T (TOTALTAX), PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-22"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_NAAG@DF_NAAG_I (National Accounts at a Glance, versión 1.0): B1GQ_R_POP, USD_PPP_PS",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-22"
+    }
+  ],
+  "notas": [
+    "Periodo: 2015-2024, los diez últimos años en que Revenue Statistics publica la media de la OCDE; el mismo para todos los países. El año de cada punto es el último del periodo.",
+    "Presión fiscal: OCDE, Revenue Statistics (DSD_REV_COMP_OECD@DF_RSOECD, versión 2.0): impuestos y cotizaciones sociales obligatorias de las administraciones públicas, en porcentaje del PIB; media de los diez años 2015-2024.",
+    "Crecimiento: tasa anual compuesta del PIB real por habitante entre 2015 y 2024 (OCDE, National Accounts at a Glance, DSD_NAAG@DF_NAAG_I, versión 1.0: dólares PPA a precios constantes, volúmenes encadenados). Compara el último año con el primero del periodo, así que solo depende de esos dos años.",
+    "Los países con menos renta al inicio del periodo tienden a crecer más (convergencia), con independencia de sus impuestos.",
+    "El PIB de Irlanda y de Luxemburgo está muy influido por las multinacionales y por los trabajadores no residentes.",
+    "Sin punto de la media OCDE ni de la UE-27: Revenue Statistics publica la media simple de los países y las cuentas nacionales el agregado ponderado, que no son el mismo concepto, y la OCDE no publica el agregado de la UE-27 en las cuentas.",
+    "El periodo incluye la pandemia de 2020 y 2021; el crecimiento compara 2024 con 2015, años que no son de la caída ni del rebote, y por eso las tasas reflejan el balance de todo el periodo.",
+    "Sin los diez años del periodo en los dos ejes (2 de los 38 países): Australia y Japón.",
+    "Sin dato en los dos ejes el mismo año (2 de los 38 países): Australia y Japón.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/economia/notebooks/presion-fiscal-crecimiento.ipynb",
+  "generado_en": "2026-10-22T06:44:03Z"
+}

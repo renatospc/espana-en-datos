@@ -1,0 +1,195 @@
+{
+  "id": "carga-administrativa-empresas-alto-crecimiento",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Carga administrativa y regulatoria",
+    "unidad": "índice de 0 (menor) a 6",
+    "periodo": "2018"
+  },
+  "eje_y": {
+    "titulo": "Empresas de alto crecimiento",
+    "unidad": "% de las empresas con 10 o más asalariados",
+    "periodo": "2018"
+  },
+  "puntos": [
+    {
+      "codigo": "AUT",
+      "anio": 2018,
+      "x": 2.65625,
+      "y": 8.383775
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2018,
+      "x": 2.1875,
+      "y": 7.357598
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2018,
+      "x": 1.84261357784271,
+      "y": 11.623909
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2018,
+      "x": 2.31874990463257,
+      "y": 10.753618
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2018,
+      "x": 1.33124995231628,
+      "y": 14.163509
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2018,
+      "x": 0.831250011920929,
+      "y": 16.07345
+    },
+    {
+      "codigo": "EST",
+      "anio": 2018,
+      "x": 1.40625,
+      "y": 10.463614
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2018,
+      "x": 1.86874997615814,
+      "y": 13.919129
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2018,
+      "x": 1.75833332538605,
+      "y": 11.619611
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2018,
+      "x": 1.34375,
+      "y": 12.210964
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2018,
+      "x": 1.41458332538605,
+      "y": 12.547633
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2018,
+      "x": 1.35568189620972,
+      "y": 15.543494
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2018,
+      "x": 2.92499995231628,
+      "y": 11.722365
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2018,
+      "x": 1.14999997615814,
+      "y": 11.319639
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2018,
+      "x": 1.28958332538605,
+      "y": 10.180815
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2018,
+      "x": 2.32556819915771,
+      "y": 11.556657
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2018,
+      "x": 1.93333339691162,
+      "y": 11.129332
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2018,
+      "x": 1.65170454978943,
+      "y": 16.322838
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2018,
+      "x": 2.29375004768372,
+      "y": 10.364061
+    },
+    {
+      "codigo": "POL",
+      "anio": 2018,
+      "x": 1.45416665077209,
+      "y": 12.5031395
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2018,
+      "x": 1.74374997615814,
+      "y": 14.57598
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2018,
+      "x": 2.123295545578,
+      "y": 12.96037
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2018,
+      "x": 1.22083330154419,
+      "y": 14.625064
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2018,
+      "x": 3.625,
+      "y": 12.821008
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_PMR@DF_PMR (Regulación de los mercados de productos, versión 1.3): ADREG_BURDEN",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_SDBSBD_ISIC4@DF_BD_EMP_HG: HGE10, PT_ENT10, S_GE10, BTNXK",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    }
+  ],
+  "notas": [
+    "Carga administrativa y regulatoria: OCDE, regulación de los mercados de productos (DSD_PMR@DF_PMR, versión 1.3): indicador ADREG_BURDEN, escala de 0 (menor carga) a 6, ediciones de 2018 y 2023. Mide la normativa y los procedimientos, no el tiempo ni el coste reales de cada trámite.",
+    "Se usa el indicador completo y no el subindicador ADBURDEN, que solo recoge los requisitos administrativos para constituir sociedades de responsabilidad limitada y empresas individuales.",
+    "ADBURDEN de España en 2018: 1,16 (escala de 0 a 6).",
+    "Los puntos usan la edición de 2018 del indicador de carga administrativa: las empresas de alto crecimiento de la OCDE solo llegan hasta 2021, así que la edición de 2023 no tiene ningún país con dato en los dos ejes.",
+    "Sin punto de la media OCDE ni de la UE-27: la OCDE no publica las empresas de alto crecimiento para esos agregados.",
+    "Empresas de alto crecimiento: OCDE, demografía empresarial (DSD_SDBSBD_ISIC4@DF_BD_EMP_HG, versión 1.0): empresas con al menos 10 asalariados al inicio del periodo cuyo número de asalariados crece de media más de un 10 % al año durante tres años, en porcentaje de las empresas con al menos 10 asalariados (HGE10, PT_ENT10, S_GE10).",
+    "Actividad: economía empresarial salvo actividades financieras y de seguros (BTNXK, secciones B a N salvo K), el agregado de actividad con más países de la OCDE en esta definición.",
+    "Mide el crecimiento del empleo, no el de la facturación, y no cuenta las empresas sin asalariados ni las que no crecen, a diferencia de la tasa de natalidad de empresas.",
+    "Canadá no aparece: la OCDE solo publica sus empresas de alto crecimiento con otra definición (HGE20 y HGT20: crecimiento de más del 20 % anual), sin la del 10 % de esta gráfica.",
+    "España en Eurostat (bd_hgnace_r, industria, construcción y servicios salvo administración pública y asociaciones, B-S_X_O_S94): 9,74 % en 2021, frente al 9,81 % de la OCDE (BTNXK); las dos fuentes no cubren las mismas actividades.",
+    "Tasa de natalidad de las empresas con asalariados de España (OCDE, DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D, BTNXK): 8,5 % de las empresas activas en 2020. No se usa en la gráfica: cuenta todas las empresas nuevas, también las pequeñas que no crecen.",
+    "Con la tasa de natalidad de las empresas con asalariados en lugar de las de alto crecimiento (OCDE, DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D, BTNXK), España (10,5 % en 2018) ocupa el puesto 9 de 21 países con dato en el año de cada punto (de más a menos natalidad).",
+    "Sin dato en los dos ejes el mismo año (14 de los 38 países): Australia, Canadá, Chile, Colombia, Corea del Sur, Costa Rica, Estados Unidos, Grecia, Israel, Japón, México, Nueva Zelanda, Suecia y Suiza.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/economia/notebooks/carga-administrativa-empresas-alto-crecimiento.ipynb",
+  "generado_en": "2026-10-15T13:39:40Z"
+}

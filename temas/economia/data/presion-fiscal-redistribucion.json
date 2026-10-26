@@ -1,0 +1,267 @@
+{
+  "id": "presion-fiscal-redistribucion",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Presión fiscal",
+    "unidad": "% del PIB",
+    "periodo": "2019-2024"
+  },
+  "eje_y": {
+    "titulo": "Desigualdad de la renta disponible (índice de Gini)",
+    "unidad": "índice de Gini (de 0 a 100)",
+    "periodo": "2019-2024"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2020,
+      "x": 28.292731,
+      "y": 31.900000000000002
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2023,
+      "x": 42.610018,
+      "y": 28.8204878568649
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2023,
+      "x": 41.891726,
+      "y": 25.4081040620804
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2023,
+      "x": 34.785133,
+      "y": 30.5999994277954
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2023,
+      "x": 26.898372,
+      "y": 31.4643263816833
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2022,
+      "x": 23.910947,
+      "y": 44.8147548
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2024,
+      "x": 24.840079,
+      "y": 46.0220903158188
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2023,
+      "x": 33.242523,
+      "y": 24.242426455020897
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2023,
+      "x": 37.294771,
+      "y": 30.7000011205673
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2022,
+      "x": 42.054919,
+      "y": 27.639999985694903
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2023,
+      "x": 36.414221,
+      "y": 31.2432140111923
+    },
+    {
+      "codigo": "EST",
+      "anio": 2023,
+      "x": 33.597961,
+      "y": 31.116071343421904
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2024,
+      "x": 42.217254,
+      "y": 27.944999933242798
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2023,
+      "x": 43.854973,
+      "y": 29.899999499321
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2023,
+      "x": 34.965313,
+      "y": 36.703035235405004
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2023,
+      "x": 38.922829,
+      "y": 31.955936551094098
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2023,
+      "x": 35.029253,
+      "y": 28.2334566116333
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2023,
+      "x": 21.285333,
+      "y": 28.0635297298431
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2019,
+      "x": 34.717066,
+      "y": 24.6794939041138
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2023,
+      "x": 29.833744,
+      "y": 34.154999256134
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2023,
+      "x": 41.523746,
+      "y": 32.4743986129761
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2021,
+      "x": 33.877709,
+      "y": 33.800000000000004
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2023,
+      "x": 26.871141,
+      "y": 32.300001382827794
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2023,
+      "x": 32.081225,
+      "y": 35.4825705289841
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2023,
+      "x": 39.808539,
+      "y": 29.6276062726974
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2023,
+      "x": 32.508562,
+      "y": 33.9946329593658
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2022,
+      "x": 16.764848,
+      "y": 40.01119
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2024,
+      "x": 38.541274,
+      "y": 31.0999989509583
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2023,
+      "x": 41.630843,
+      "y": 25.900000333786
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2022,
+      "x": 32.577519,
+      "y": 32.6
+    },
+    {
+      "codigo": "POL",
+      "anio": 2023,
+      "x": 34.947211,
+      "y": 25.6848603487015
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2023,
+      "x": 35.256237,
+      "y": 31.9870173931122
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2023,
+      "x": 35.05424,
+      "y": 21.335244178772
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2023,
+      "x": 36.36232,
+      "y": 24.7194603085518
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2024,
+      "x": 41.437904,
+      "y": 28.9000004529953
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2022,
+      "x": 20.945333,
+      "y": 42.714800000000004
+    },
+    {
+      "codigo": "USA",
+      "anio": 2023,
+      "x": 25.633877,
+      "y": 39.44025
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_REV_COMP_OECD@DF_RSOECD (Revenue Statistics, versión 2.0): TAX_REV, S13, _T (TOTALTAX), PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-18"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_WISE_IDD@DF_IDD (Income Distribution Database, versión 1.0): INC_DISP_GINI, _T, METH2012, D_CUR (INC_MRKT_GINI, solo para las notas)",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-18"
+    }
+  ],
+  "notas": [
+    "Presión fiscal: OCDE, Revenue Statistics (DSD_REV_COMP_OECD@DF_RSOECD, versión 2.0): impuestos y cotizaciones sociales obligatorias de las administraciones públicas, en porcentaje del PIB.",
+    "Desigualdad: OCDE, Income Distribution Database (DSD_WISE_IDD@DF_IDD, versión 1.0): índice de Gini de la renta disponible equivalente (después de impuestos directos y prestaciones monetarias), población total, metodología de 2012; de 0 a 100 (la OCDE publica el índice de 0 a 1).",
+    "El nivel de desigualdad después de impuestos depende también de la desigualdad de la renta de mercado (antes de impuestos y prestaciones), que varía mucho entre países.",
+    "Cuánto la reducen los impuestos directos y las prestaciones (Gini de mercado menos Gini disponible): en España en 2023, 16,4 puntos para la población total y 10,2 para la de 18 a 65 años; entre los 37 países con dato en las dos poblaciones, España ocupa el puesto 18 de 37 con la población total y el 16 con la de 18 a 65 años (de más a menos reducción). Las pensiones públicas cuentan como transferencias, no como renta de mercado, así que en los países con más personas jubiladas la reducción es mayor por ese motivo.",
+    "No incluye el efecto de los servicios públicos (sanidad, educación) ni el de los impuestos indirectos como el IVA.",
+    "Sin punto de la media OCDE ni de la UE-27: la IDD no publica el índice de Gini para esos agregados.",
+    "Sin dato en los dos ejes el mismo año (1 de los 38 países): Colombia.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/economia/notebooks/presion-fiscal-redistribucion.ipynb",
+  "generado_en": "2026-10-18T14:13:54Z"
+}

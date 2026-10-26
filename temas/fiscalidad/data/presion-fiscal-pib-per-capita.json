@@ -1,0 +1,270 @@
+{
+  "id": "presion-fiscal-pib-per-capita",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Presión fiscal",
+    "unidad": "% del PIB",
+    "periodo": "2023-2024"
+  },
+  "eje_y": {
+    "titulo": "PIB por habitante",
+    "unidad": "dólares PPA por habitante, precios corrientes",
+    "periodo": "2023-2024"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2023,
+      "x": 29.867254,
+      "y": 75161.7208240026
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2024,
+      "x": 43.374411,
+      "y": 76674.086850629
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2024,
+      "x": 42.571263,
+      "y": 74276.5584836931
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2024,
+      "x": 34.90457,
+      "y": 65482.9717121952
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2024,
+      "x": 27.169048,
+      "y": 97357.1879084543
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2024,
+      "x": 20.479447,
+      "y": 35493.3564350202
+    },
+    {
+      "codigo": "COL",
+      "anio": 2024,
+      "x": 19.865884,
+      "y": 23020.6623943811
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2024,
+      "x": 24.840079,
+      "y": 30064.0679365964
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2024,
+      "x": 33.975018,
+      "y": 57723.0049538472
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2024,
+      "x": 38.021492,
+      "y": 74946.9863606353
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2024,
+      "x": 45.177061,
+      "y": 82562.9752139819
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2024,
+      "x": 36.682055,
+      "y": 58188.8403365453
+    },
+    {
+      "codigo": "EST",
+      "anio": 2024,
+      "x": 35.231248,
+      "y": 50354.3147565143
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2024,
+      "x": 42.217254,
+      "y": 65163.0097133588
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2024,
+      "x": 43.462209,
+      "y": 62647.9138202442
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2024,
+      "x": 34.366806,
+      "y": 63155.8039020121
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2024,
+      "x": 39.826849,
+      "y": 43641.8072844064
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2024,
+      "x": 34.353895,
+      "y": 48547.7456056374
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2024,
+      "x": 21.694294,
+      "y": 140847.502865352
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2024,
+      "x": 36.948753,
+      "y": 83509.5040088738
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2024,
+      "x": 30.877349,
+      "y": 57449.8650742829
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2024,
+      "x": 42.752192,
+      "y": 62530.3256511649
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2023,
+      "x": 33.733304,
+      "y": 52796.0517694342
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2024,
+      "x": 25.333638,
+      "y": 61226.8493533853
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2024,
+      "x": 33.129851,
+      "y": 56260.8069624939
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2024,
+      "x": 41.458699,
+      "y": 157809.485552826
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2024,
+      "x": 34.90567,
+      "y": 44309.3394120069
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2024,
+      "x": 18.280109,
+      "y": 25986.2559775562
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2024,
+      "x": 38.541274,
+      "y": 84737.972778005
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2024,
+      "x": 40.190578,
+      "y": 105662.31929277
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2024,
+      "x": 32.891771,
+      "y": 55691.8787273435
+    },
+    {
+      "codigo": "POL",
+      "anio": 2024,
+      "x": 36.64229,
+      "y": 50162.4159342938
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2024,
+      "x": 35.134621,
+      "y": 52760.5942282008
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2024,
+      "x": 35.551369,
+      "y": 47524.0827537596
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2024,
+      "x": 38.296929,
+      "y": 57635.917750738
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2024,
+      "x": 41.437904,
+      "y": 71381.4482488247
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2024,
+      "x": 23.954049,
+      "y": 43625.9139231244
+    },
+    {
+      "codigo": "USA",
+      "anio": 2024,
+      "x": 25.618333,
+      "y": 86146.5561093224
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_REV_COMP_OECD@DF_RSOECD (Revenue Statistics, versión 2.0): TAX_REV, S13, _T (TOTALTAX), PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-14"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_NAAG@DF_NAAG_I (National Accounts at a Glance, versión 1.0): B1GQ_POP, USD_PPP_PS",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-14"
+    }
+  ],
+  "notas": [
+    "Presión fiscal: OCDE, Revenue Statistics (DSD_REV_COMP_OECD@DF_RSOECD, versión 2.0): impuestos y cotizaciones sociales obligatorias recaudados por el conjunto de las administraciones públicas, en porcentaje del PIB.",
+    "PIB por habitante: OCDE, National Accounts at a Glance (DSD_NAAG@DF_NAAG_I, versión 1.0), en dólares estadounidenses en paridad de poder adquisitivo (PPA) a precios corrientes del mismo año que la presión fiscal.",
+    "No se calcula el índice de «esfuerzo fiscal» (presión fiscal dividida por la renta por habitante): solo se muestran los dos datos.",
+    "Sin punto de la media OCDE: Revenue Statistics publica la media simple de los países (OECD_REP) y las cuentas nacionales el agregado ponderado (OECD), que no son el mismo concepto.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/fiscalidad/notebooks/presion-fiscal-pib-per-capita.ipynb",
+  "generado_en": "2026-10-14T20:04:41Z"
+}

@@ -1,0 +1,216 @@
+{
+  "id": "presion-fiscal-empresas-alto-crecimiento",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Presión fiscal",
+    "unidad": "% del PIB",
+    "periodo": "2010-2021"
+  },
+  "eje_y": {
+    "titulo": "Empresas de alto crecimiento",
+    "unidad": "% de las empresas con 10 o más asalariados",
+    "periodo": "2010-2021"
+  },
+  "puntos": [
+    {
+      "codigo": "AUT",
+      "anio": 2021,
+      "x": 43.515278,
+      "y": 8.319125
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2021,
+      "x": 42.231397,
+      "y": 5.6569405
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2017,
+      "x": 27.716094,
+      "y": 6.7224803
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2021,
+      "x": 33.654218,
+      "y": 8.284117
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2021,
+      "x": 39.053184,
+      "y": 8.247173
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2021,
+      "x": 47.470033,
+      "y": 13.881402
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2021,
+      "x": 37.412685,
+      "y": 9.813936
+    },
+    {
+      "codigo": "EST",
+      "anio": 2021,
+      "x": 33.799808,
+      "y": 9.720605
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2021,
+      "x": 43.540866,
+      "y": 12.693133
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2021,
+      "x": 45.059326,
+      "y": 6.194945
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2018,
+      "x": 32.761008,
+      "y": 12.210964
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2021,
+      "x": 39.373785,
+      "y": 14.338316
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2020,
+      "x": 35.701674,
+      "y": 10.340394
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2021,
+      "x": 20.080586,
+      "y": 11.776052
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2020,
+      "x": 35.64821,
+      "y": 7.023604
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2021,
+      "x": 42.141739,
+      "y": 6.895741
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2021,
+      "x": 32.002897,
+      "y": 11.026698
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2021,
+      "x": 38.269224,
+      "y": 10.541248
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2021,
+      "x": 32.045652,
+      "y": 9.718193
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2021,
+      "x": 38.264035,
+      "y": 11.084942
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2020,
+      "x": 38.71414,
+      "y": 9.100798
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2010,
+      "x": 30.230403,
+      "y": 7.940371
+    },
+    {
+      "codigo": "POL",
+      "anio": 2021,
+      "x": 36.306536,
+      "y": 9.948272
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2021,
+      "x": 35.147059,
+      "y": 10.599048
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2021,
+      "x": 34.821612,
+      "y": 8.3645525
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2021,
+      "x": 38.545185,
+      "y": 9.570008
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2021,
+      "x": 43.132529,
+      "y": 16.889853
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2020,
+      "x": 23.860801,
+      "y": 12.285948
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_REV_COMP_OECD@DF_RSOECD (Revenue Statistics, versión 2.0): TAX_REV, S13, _T (TOTALTAX), PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_SDBSBD_ISIC4@DF_BD_EMP_HG: HGE10, PT_ENT10, S_GE10, BTNXK",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-15"
+    }
+  ],
+  "notas": [
+    "Presión fiscal: OCDE, Revenue Statistics (DSD_REV_COMP_OECD@DF_RSOECD, versión 2.0): impuestos y cotizaciones sociales obligatorias recaudados por el conjunto de las administraciones públicas, en porcentaje del PIB.",
+    "La presión fiscal total incluye impuestos que recaen sobre las empresas (como el de Sociedades) y otros que no (como el IVA o las cotizaciones de las personas trabajadoras): no mide lo que pagan las empresas.",
+    "Sin punto de la media OCDE ni de la UE-27: la OCDE no publica las empresas de alto crecimiento para esos agregados.",
+    "Empresas de alto crecimiento: OCDE, demografía empresarial (DSD_SDBSBD_ISIC4@DF_BD_EMP_HG, versión 1.0): empresas con al menos 10 asalariados al inicio del periodo cuyo número de asalariados crece de media más de un 10 % al año durante tres años, en porcentaje de las empresas con al menos 10 asalariados (HGE10, PT_ENT10, S_GE10).",
+    "Actividad: economía empresarial salvo actividades financieras y de seguros (BTNXK, secciones B a N salvo K), el agregado de actividad con más países de la OCDE en esta definición.",
+    "Mide el crecimiento del empleo, no el de la facturación, y no cuenta las empresas sin asalariados ni las que no crecen, a diferencia de la tasa de natalidad de empresas.",
+    "Canadá no aparece: la OCDE solo publica sus empresas de alto crecimiento con otra definición (HGE20 y HGT20: crecimiento de más del 20 % anual), sin la del 10 % de esta gráfica.",
+    "España en Eurostat (bd_hgnace_r, industria, construcción y servicios salvo administración pública y asociaciones, B-S_X_O_S94): 9,74 % en 2021, frente al 9,81 % de la OCDE (BTNXK); las dos fuentes no cubren las mismas actividades.",
+    "Tasa de natalidad de las empresas con asalariados de España (OCDE, DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D, BTNXK): 8,5 % de las empresas activas en 2020. No se usa en la gráfica: cuenta todas las empresas nuevas, también las pequeñas que no crecen.",
+    "Sin dato en los dos ejes el mismo año (10 de los 38 países): Australia, Canadá, Chile, Colombia, Corea del Sur, Costa Rica, Estados Unidos, Israel, Japón y México.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/economia/notebooks/presion-fiscal-empresas-alto-crecimiento.ipynb",
+  "generado_en": "2026-10-15T13:01:38Z"
+}

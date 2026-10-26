@@ -1,0 +1,260 @@
+{
+  "id": "proteccion-empleo-temporalidad",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Rigidez de la protección frente al despido",
+    "unidad": "índice de 0 (menor) a 6",
+    "periodo": "2017-2025"
+  },
+  "eje_y": {
+    "titulo": "Asalariados con contrato temporal",
+    "unidad": "% de los asalariados",
+    "periodo": "2017-2025"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2017,
+      "x": 1.7000779,
+      "y": 5.268
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2025,
+      "x": 1.9434878,
+      "y": 8.307
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2025,
+      "x": 2.5911174,
+      "y": 11.295
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2025,
+      "x": 1.0178068,
+      "y": 11.844
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2025,
+      "x": 1.6069735,
+      "y": 13.143
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2025,
+      "x": 2.3417659,
+      "y": 24.936
+    },
+    {
+      "codigo": "COL",
+      "anio": 2025,
+      "x": 1.4358112,
+      "y": 23.032
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2025,
+      "x": 0.63690478,
+      "y": 4.275
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2025,
+      "x": 3.0252621,
+      "y": 8.101
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2025,
+      "x": 2.3324111,
+      "y": 11.48
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2025,
+      "x": 1.937693,
+      "y": 12.505
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2025,
+      "x": 2.4305141,
+      "y": 15.307
+    },
+    {
+      "codigo": "EST",
+      "anio": 2025,
+      "x": 1.9342227,
+      "y": 3.419
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2025,
+      "x": 2.4797511,
+      "y": 15.21
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2025,
+      "x": 2.6759372,
+      "y": 15.356
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2025,
+      "x": 1.9017237,
+      "y": 5.052
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2025,
+      "x": 2.3214011,
+      "y": 9.576
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2025,
+      "x": 1.8923346,
+      "y": 4.579
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2025,
+      "x": 2.1731946,
+      "y": 7.093
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2024,
+      "x": 2.2030895,
+      "y": 10.91
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2025,
+      "x": 2.8555663,
+      "y": 13.473
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2025,
+      "x": 2.0809152,
+      "y": 14.232
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2025,
+      "x": 2.3502338,
+      "y": 27.484
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2025,
+      "x": 1.848945,
+      "y": 1.817
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2025,
+      "x": 2.5418367,
+      "y": 9.302
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2025,
+      "x": 2.7081208,
+      "y": 2.669
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2025,
+      "x": 2.8808725,
+      "y": 25.811
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2025,
+      "x": 2.3734853,
+      "y": 8.313
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2025,
+      "x": 2.2226827,
+      "y": 7.205
+    },
+    {
+      "codigo": "POL",
+      "anio": 2025,
+      "x": 2.4210324,
+      "y": 15.9
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2025,
+      "x": 2.9610438,
+      "y": 15.062
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2025,
+      "x": 2.330605,
+      "y": 4.284
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2025,
+      "x": 2.3221097,
+      "y": 9.856
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2025,
+      "x": 2.5098815,
+      "y": 13.342
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2025,
+      "x": 2.9496608,
+      "y": 12.203
+    },
+    {
+      "codigo": "OECD",
+      "anio": 2024,
+      "x": 2.2096617,
+      "y": 11.122
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_EPL@DF_EPL (EPL, versión 1.0): EPL_OV, 0_TO_6, VERSION4",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-23"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_TEMP@DF_TEMP_I (empleo temporal, versión 1.0): EMP_TEMP, ICSE93_1, todas las edades",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-23"
+    }
+  ],
+  "notas": [
+    "Protección del empleo: OCDE, indicadores de legislación de protección del empleo (DSD_EPL@DF_EPL, versión 1.0): indicador EPL_OV (contratos indefinidos, despidos individuales y colectivos), escala de 0 (menor rigidez) a 6, metodología VERSION4. Mide lo que dice la ley, no cómo se aplica.",
+    "La serie de España empieza en 2013 y la fuente solo cambia su valor en 2019; la reforma laboral de 2021 (Real Decreto-ley 32/2021) actuó sobre todo en la contratación temporal, que este indicador no recoge.",
+    "Empleo temporal: OCDE, empleo según la permanencia del puesto (DSD_TEMP@DF_TEMP_I, versión 1.0): asalariados con contrato temporal en % del total de asalariados, de todas las edades (el dataflow no publica el tramo de 15 a 64 años). Los fijos discontinuos de España cuentan como indefinidos.",
+    "EE. UU. queda fuera, como en la gráfica de asalariados con contrato temporal: su encuesta no pregunta por el tipo de contrato y la OCDE cuenta como temporales a los asalariados que no esperan que su empleo dure.",
+    "Media OCDE: el indicador de protección y el empleo temporal que publica la OCDE para su agregado; cada punto usa su último año común.",
+    "Sin dato en los dos ejes el mismo año (3 de los 38 países): Estados Unidos, Israel y México.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/empleo/notebooks/proteccion-empleo-temporalidad.ipynb",
+  "generado_en": "2026-10-23T16:58:39Z"
+}

@@ -1,0 +1,276 @@
+{
+  "id": "horas-productividad",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Horas trabajadas al año por ocupado",
+    "unidad": "horas al año",
+    "periodo": "2021-2025"
+  },
+  "eje_y": {
+    "titulo": "PIB por hora trabajada",
+    "unidad": "dólares PPA por hora, precios corrientes",
+    "periodo": "2021-2025"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2025,
+      "x": 1633.0,
+      "y": 86.85092198877794
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2025,
+      "x": 1442.206,
+      "y": 103.88905468733272
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2025,
+      "x": 1586.0,
+      "y": 109.72766177725842
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2025,
+      "x": 1687.0,
+      "y": 76.8134447915586
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2025,
+      "x": 1512.249,
+      "y": 115.34560585400212
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2025,
+      "x": 1912.0,
+      "y": 50.575770309445154
+    },
+    {
+      "codigo": "COL",
+      "anio": 2024,
+      "x": 2219.261,
+      "y": 23.21339242610958
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2024,
+      "x": 2149.0,
+      "y": 34.00862206012693
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2025,
+      "x": 1823.628,
+      "y": 66.50552859665801
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2025,
+      "x": 1332.2,
+      "y": 102.68714306675987
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2025,
+      "x": 1369.337,
+      "y": 115.33407274034448
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2025,
+      "x": 1632.7,
+      "y": 80.06011809198327
+    },
+    {
+      "codigo": "EST",
+      "anio": 2025,
+      "x": 1609.7,
+      "y": 64.73825393403385
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2025,
+      "x": 1491.905,
+      "y": 91.62733922821916
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2025,
+      "x": 1498.293,
+      "y": 96.0522719976544
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2025,
+      "x": 1532.915,
+      "y": 85.56289151471329
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2025,
+      "x": 1874.319,
+      "y": 48.12302353982968
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2025,
+      "x": 1670.694,
+      "y": 58.989058781246165
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2025,
+      "x": 1638.974,
+      "y": 173.85822183428218
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2025,
+      "x": 1420.837,
+      "y": 102.08111925615736
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2025,
+      "x": 1870.0,
+      "y": 68.13109445484739
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2025,
+      "x": 1715.7,
+      "y": 80.36317139143858
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2025,
+      "x": 1597.507,
+      "y": 61.773697278626145
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2025,
+      "x": 1833.0,
+      "y": 62.45921939435561
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2025,
+      "x": 1673.062,
+      "y": 65.9737329721951
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2025,
+      "x": 1459.0,
+      "y": 141.13698876439884
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2025,
+      "x": 1588.149,
+      "y": 59.393250112097654
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2025,
+      "x": 2205.4,
+      "y": 40.79893818375647
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2025,
+      "x": 1436.037,
+      "y": 105.508722322984
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2025,
+      "x": 1385.662,
+      "y": 139.82646826347306
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2025,
+      "x": 1723.0,
+      "y": 63.656961179253074
+    },
+    {
+      "codigo": "POL",
+      "anio": 2025,
+      "x": 1775.994,
+      "y": 64.75275575339991
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2025,
+      "x": 1764.278,
+      "y": 62.78014642717436
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2025,
+      "x": 1618.886,
+      "y": 68.39714409914872
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2025,
+      "x": 1599.433,
+      "y": 72.40478369874212
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2025,
+      "x": 1421.206,
+      "y": 100.75645146692734
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2021,
+      "x": 1732.088,
+      "y": 54.18766539453858
+    },
+    {
+      "codigo": "USA",
+      "anio": 2025,
+      "x": 1800.232,
+      "y": 104.74444383172305
+    },
+    {
+      "codigo": "OECD",
+      "anio": 2025,
+      "x": 1736.12891474911,
+      "y": 80.51217149717034
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_HW@DF_AVG_ANN_HRS_WKD (horas trabajadas, versión 1.0): HW, H_Y_PS, EMP, ACTUAL, _T",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-18"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_PDB@DF_PDB (productividad, versión 2.0): GDPHRS, _T, USD_PPP_H, V",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-18"
+    }
+  ],
+  "notas": [
+    "Horas: OCDE, horas trabajadas (DSD_HW@DF_AVG_ANN_HRS_WKD, versión 1.0): horas efectivamente trabajadas al año por persona ocupada, asalariados y autónomos. La OCDE advierte de que no son del todo comparables entre países por las diferencias de las fuentes.",
+    "Productividad: OCDE, base de datos de productividad (DSD_PDB@DF_PDB, versión 2.0): PIB por hora trabajada en dólares PPA a precios corrientes del año de cada punto.",
+    "Más horas por ocupado no implican más horas por habitante: depende también de cuántas personas trabajan.",
+    "Medias: la OCDE, con los agregados que publica la OCDE en los dos ejes.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/empleo/notebooks/horas-productividad.ipynb",
+  "generado_en": "2026-10-18T19:16:13Z"
+}
