@@ -63,7 +63,1397 @@
     { "id": "cc", "nombre": "Coalición Canaria", "siglas": "CC", "grupo_parlamentario": "Mixto", "color_hex": "#FFD700", "color_verificado": false },
     { "id": "upn", "nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "grupo_parlamentario": "Mixto", "color_hex": "#2A52BE", "color_verificado": false }
   ],
-  "coaliciones": [],
+  "coaliciones": [
+    {
+      "id": "generales-2023-sumar",
+      "nombre": "Sumar",
+      "siglas": "SUMAR",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "ambito": "Congreso: todas las circunscripciones; Senado: todas salvo Eivissa-Formentera. Con las denominaciones Sumar-En Comú Podem (Cataluña), Compromís-Sumar: Sumem per Guanyar (Comunitat Valenciana), Sumar Galicia, Sumar Canarias, Sumar Aragón, Sumar Andalucía y Sumar Més (Illes Balears)",
+      "integrantes": [
+        {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"},
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida", "siglas": "IU"},
+        {"nombre": "Más País", "siglas": "MÁS PAÍS"},
+        {"nombre": "Verdes Equo", "siglas": "EQUO"},
+        {"nombre": "Más Madrid", "siglas": "MÁS MADRID"},
+        {"nombre": "En Comú Podem", "siglas": "ECP"},
+        {"nombre": "Catalunya en Comú", "siglas": "CATCOMÚ"},
+        {"nombre": "Coalició Compromís", "siglas": "COMPROMÍS"},
+        {"nombre": "Més Compromís", "siglas": "MÉS"},
+        {"nombre": "Iniciativa del Poble Valencià", "siglas": "INICIATIVA"},
+        {"nombre": "Verds Equo del País Valencià", "siglas": "VERDSEQUO"},
+        {"nombre": "Chunta Aragonesista", "siglas": "CHA"},
+        {"nombre": "Partido Drago Canarias", "siglas": "DRAGO"},
+        {"nombre": "Més per Mallorca", "siglas": "MÉS"},
+        {"nombre": "Més per Menorca", "siglas": "MxMe"},
+        {"nombre": "Batzarre-Asamblea de Izquierdas", "siglas": "BATZARRE"},
+        {"nombre": "Iniciativa del Pueblo Andaluz", "siglas": "IdPA"},
+        {"nombre": "Izquierda Asturiana", "siglas": "IAS"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Congreso de los Diputados y al Senado convocadas por Real Decreto 400/2023 (BOE núm. 152, de 27 de junio de 2023)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15066", "referencia": "Candidatura «Sumar» y sus denominaciones territoriales en cada junta electoral provincial"},
+        {"titulo": "Junta Electoral Central: coaliciones electorales válidamente constituidas ante la Junta Electoral Central (elecciones generales de 23 de julio de 2023), pacto de coalición «Sumar»", "url": "https://app.juntaelectoralcentral.es/svtjec/descargarFichero?tipo=tipoCoalicion&codigoCoalicion=69075", "referencia": "Coalición C11: escrito de subsanación (pp. 1-4) y pacto de coalición (integrantes, pp. 5-8; denominaciones por circunscripción, pp. 9-14)"}
+      ]
+    },
+    {
+      "id": "generales-2023-eivissa-formentera-senat",
+      "nombre": "Eivissa i Formentera al Senat",
+      "siglas": "PSOE-SUMAR-EUIB-ARA EIVISSA",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "ambito": "Senado: circunscripción de Eivissa-Formentera",
+      "integrantes": [
+        {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+        {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"},
+        {"nombre": "Izquierda Unida-Esquerra Unida de les Illes Balears", "siglas": "EUIB"},
+        {"nombre": "Ara Eivissa", "siglas": "ARA EIVISSA"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Congreso de los Diputados y al Senado convocadas por Real Decreto 400/2023 (BOE núm. 152, de 27 de junio de 2023)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15066", "referencia": "Junta Electoral Provincial de Illes Balears, Senado, circunscripción de Eivissa-Formentera, candidatura n.º 3"},
+        {"titulo": "Junta Electoral Central: coaliciones electorales válidamente constituidas ante las Juntas Electorales Provinciales (elecciones generales de 2023), pacto de coalición «Eivissa i Formentera al Senat»", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C1_senat_eivissa.pdf", "referencia": "Pacto de coalición ante la Junta Electoral Provincial de Illes Balears"}
+      ]
+    },
+    {
+      "id": "generales-2023-junts",
+      "nombre": "Junts per Catalunya-Junts",
+      "siglas": "JxCAT-JUNTS",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "ambito": "Congreso y Senado: Barcelona, Girona, Lleida y Tarragona (en Barcelona, con la denominación «Junts»)",
+      "integrantes": [
+        {"nombre": "Junts per Catalunya", "siglas": "JUNTS", "partido_id": "junts"},
+        {"nombre": "Moviment d'Esquerres de Catalunya", "siglas": "MES"},
+        {"nombre": "Demòcrates de Catalunya", "siglas": "DC"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Congreso de los Diputados y al Senado convocadas por Real Decreto 400/2023 (BOE núm. 152, de 27 de junio de 2023)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15066", "referencia": "Juntas electorales provinciales de Barcelona, Girona, Lleida y Tarragona (en Barcelona, proclamada como «Junts»)"},
+        {"titulo": "Junta Electoral Central: coaliciones electorales válidamente constituidas ante la Junta Electoral Central (elecciones generales de 23 de julio de 2023), pacto de coalición «Junts»", "url": "https://app.juntaelectoralcentral.es/svtjec/descargarFichero?tipo=tipoCoalicion&codigoCoalicion=69072", "referencia": "Coalición C8: pacto de coalición (integrantes y denominación por circunscripción, pp. 1-3)"}
+      ]
+    },
+    {
+      "id": "generales-2023-erc-esquerres-per-la-independencia",
+      "nombre": "Esquerra Republicana de Catalunya-Esquerres per la Independència",
+      "siglas": "ERC-ESQUERRES PER LA INDEPENDÈNCIA",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "ambito": "Senado: Barcelona, Girona, Lleida y Tarragona (coalición «Izquierdas por la Independencia», que en el País Vasco y Navarra concurre como EH Bildu-Independentzia Ezkerretik)",
+      "integrantes": [
+        {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc"},
+        {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Congreso de los Diputados y al Senado convocadas por Real Decreto 400/2023 (BOE núm. 152, de 27 de junio de 2023)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15066", "referencia": "Senado: juntas electorales provinciales de Barcelona, Girona, Lleida y Tarragona"},
+        {"titulo": "Junta Electoral Central: coaliciones electorales válidamente constituidas ante la Junta Electoral Central (elecciones generales de 23 de julio de 2023), pacto de coalición «Izquierdas por la Independencia»", "url": "https://app.juntaelectoralcentral.es/svtjec/descargarFichero?tipo=tipoCoalicion&codigoCoalicion=69068", "referencia": "Coalición C4 «Izquierdas por la Independencia»: integrantes y denominación en Cataluña"}
+      ]
+    },
+    {
+      "id": "generales-2023-eh-bildu-independentzia-ezkerretik",
+      "nombre": "Euskal Herria Bildu-Independentzia Ezkerretik",
+      "siglas": "EH BILDU-INDEPENDENTZIA EZKERRETIK",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "ambito": "Senado: Araba/Álava, Bizkaia, Gipuzkoa y Navarra (coalición «Izquierdas por la Independencia», que en Cataluña concurre como ERC-Esquerres per la Independència)",
+      "integrantes": [
+        {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu"},
+        {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Congreso de los Diputados y al Senado convocadas por Real Decreto 400/2023 (BOE núm. 152, de 27 de junio de 2023)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15066", "referencia": "Senado: juntas electorales provinciales de Álava, Bizkaia, Gipuzkoa y Navarra"},
+        {"titulo": "Junta Electoral Central: coaliciones electorales válidamente constituidas ante la Junta Electoral Central (elecciones generales de 23 de julio de 2023), pacto de coalición «Izquierdas por la Independencia»", "url": "https://app.juntaelectoralcentral.es/svtjec/descargarFichero?tipo=tipoCoalicion&codigoCoalicion=69068", "referencia": "Coalición C4 «Izquierdas por la Independencia»: integrantes y denominación en el País Vasco y Navarra"}
+      ]
+    },
+    {
+      "id": "generales-2023-geroa-bai",
+      "nombre": "Geroa Bai",
+      "siglas": "GBAI",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "ambito": "Congreso y Senado: Navarra",
+      "integrantes": [
+        {"nombre": "Geroa Socialverdes de Navarra en Europa-Geroa Nafarroako Sozialberdeak Europan", "siglas": "GEROA SOCIALVERDES"},
+        {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv"},
+        {"nombre": "Agrupación Atarrabia-Atarrabia Taldea", "siglas": "ATARRABIA"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Congreso de los Diputados y al Senado convocadas por Real Decreto 400/2023 (BOE núm. 152, de 27 de junio de 2023)", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15066", "referencia": "Junta Electoral Provincial de Navarra: Congreso, candidatura n.º 4; Senado, candidatura n.º 3"},
+        {"titulo": "Junta Electoral Central: coaliciones electorales válidamente constituidas ante las Juntas Electorales Provinciales (elecciones generales de 2023), pacto de coalición «Geroa Bai»", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/coalicion_geroa_bai.pdf", "referencia": "Pacto de coalición ante la Junta Electoral Provincial de Navarra"}
+      ]
+    },
+    {
+      "id": "andalucia-2026-por-andalucia",
+      "nombre": "Por Andalucía: Izquierda Unida Andalucía-Podemos-Movimiento Sumar-Iniciativa del Pueblo Andaluz-Verdes Equo-Alternativa Republicana-Alianza Verde",
+      "siglas": "PorA",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-05-17",
+      "comunidad": "ES-AN",
+      "integrantes": [
+        {"nombre": "Izquierda Unida Los Verdes-Convocatoria por Andalucía", "siglas": "IULV-CA"},
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"},
+        {"nombre": "Iniciativa del Pueblo Andaluz", "siglas": "IdPA"},
+        {"nombre": "Verdes Equo", "siglas": "EQUO"},
+        {"nombre": "Alternativa Republicana", "siglas": "ALTER"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas a las elecciones al Parlamento de Andalucía del día 17 de mayo de 2026 (BOJA núm. 75 C1, de 21 de abril de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/andalucia_2026_candidaturas_proclamadas.pdf", "referencia": "Candidatura «Por Andalucía» en las ocho circunscripciones"},
+        {"titulo": "Junta Electoral de Andalucía: pacto de coalición «Por Andalucía» (elecciones al Parlamento de Andalucía de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C3%20Coalicion-PorAndalucia.pdf", "referencia": "Coalición C3: integrantes, pp. 1-3"}
+      ]
+    },
+    {
+      "id": "aragon-2026-podemos-alianza-verde",
+      "nombre": "Podemos-Alianza Verde",
+      "siglas": "PODEMOS-AV",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-02-08",
+      "comunidad": "ES-AR",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones a las Cortes de Aragón de 2026 ante la Junta Electoral Provincial de Zaragoza (BOA núm. 7, de 13 de enero de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/zaragoza_candidaturas_proclamadas.pdf", "referencia": "Candidatura n.º 5 (también proclamada en Huesca y Teruel)"},
+        {"titulo": "Junta Electoral de Aragón: pacto de coalición «Podemos-Alianza Verde» (elecciones a las Cortes de Aragón de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C3_Coalici%C3%B3nPodemosAV.pdf", "referencia": "Coalición C3: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "aragon-2026-iu-movimiento-sumar",
+      "nombre": "Izquierda Unida-Movimiento Sumar",
+      "siglas": "IU-MOVIMIENTO SUMAR",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-02-08",
+      "comunidad": "ES-AR",
+      "integrantes": [
+        {"nombre": "Izquierda Unida de Aragón", "siglas": "IU"},
+        {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones a las Cortes de Aragón de 2026 ante la Junta Electoral Provincial de Zaragoza (BOA núm. 7, de 13 de enero de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/zaragoza_candidaturas_proclamadas.pdf", "referencia": "Candidatura n.º 10 (también proclamada en Huesca y Teruel)"},
+        {"titulo": "Junta Electoral de Aragón: pacto de coalición «Izquierda Unida-Movimiento Sumar» (elecciones a las Cortes de Aragón de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C4_coalici%C3%B3nIU_MOVIMIENTOSUMAR.pdf", "referencia": "Coalición C4: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "castilla-y-leon-2026-podemos-alianza-verde",
+      "nombre": "Podemos-Alianza Verde CyL 2026",
+      "siglas": "PODEMOS-AV",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-03-15",
+      "comunidad": "ES-CL",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas a las elecciones a las Cortes de Castilla y León convocadas por Decreto 1/2026, de 19 de enero (BOCYL núm. 32, de 17 de febrero de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/cyl_2026_candidaturas_proclamadas.pdf", "referencia": "Candidatura «Podemos-Alianza Verde CyL 2026» en las nueve circunscripciones"},
+        {"titulo": "Junta Electoral de Castilla y León: pacto de coalición «Podemos-Alianza Verde CyL 2026»", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C2_PODEMOS-ALIANZA%20VERDE.pdf", "referencia": "Coalición C3: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "castilla-y-leon-2026-en-comun",
+      "nombre": "Izquierda Unida, Movimiento Sumar, Verdes Equo: En Común",
+      "siglas": "IU-MS-VQ",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-03-15",
+      "comunidad": "ES-CL",
+      "integrantes": [
+        {"nombre": "Izquierda Unida de Castilla y León", "siglas": "IU"},
+        {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"},
+        {"nombre": "Verdes Equo", "siglas": "EQUO"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas a las elecciones a las Cortes de Castilla y León convocadas por Decreto 1/2026, de 19 de enero (BOCYL núm. 32, de 17 de febrero de 2026)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/cyl_2026_candidaturas_proclamadas.pdf", "referencia": "Candidatura «Izquierda Unida, Movimiento Sumar, Verdes Equo: En Común» en las nueve circunscripciones"},
+        {"titulo": "Junta Electoral de Castilla y León: pacto de coalición «Izquierda Unida, Movimiento Sumar, Verdes Equo: En Común»", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C3_IU-SUMAR-VERDES%20EQUO.pdf", "referencia": "Coalición C4: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "extremadura-2025-unidas-por-extremadura",
+      "nombre": "Unidas por Extremadura Podemos Izquierda Unida Alianza Verde",
+      "siglas": "PODEMOS-IU-AV",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2025-12-21",
+      "comunidad": "ES-EX",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida", "siglas": "IU"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Edicto de 24 de noviembre de 2025 de proclamación de las candidaturas presentadas ante la Junta Electoral Provincial de Badajoz para las elecciones a la Asamblea de Extremadura (DOE núm. 227, de 25 de noviembre de 2025)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/badajoz_candidaturas_proclamadas.pdf", "referencia": "Candidatura n.º 4 (también proclamada en Cáceres)"},
+        {"titulo": "Junta Electoral de Extremadura: pacto de coalición «Unidas por Extremadura» (elecciones a la Asamblea de Extremadura de 2025)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/c3_podemosiuav.pdf", "referencia": "Coalición C3: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "cataluna-2024-junts",
+      "nombre": "Junts + Carles Puigdemont per Catalunya-Junts+",
+      "siglas": "CAT-JUNTS+",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-05-12",
+      "comunidad": "ES-CT",
+      "integrantes": [
+        {"nombre": "Junts per Catalunya", "siglas": "JUNTS", "partido_id": "junts"},
+        {"nombre": "Demòcrates de Catalunya", "siglas": "DC"}
+      ],
+      "fuentes": [
+        {"titulo": "Edicto de 15 de abril de 2024 por el que se hacen públicas las candidaturas proclamadas por la Junta Electoral Provincial de Barcelona para las elecciones al Parlamento de Cataluña 2024 (DOGC núm. 9143, de 16 de abril de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/candidaturas_proclamadas_barcelona.pdf", "referencia": "Candidatura «Junts + Carles Puigdemont per Catalunya-Junts+» (también proclamada en Girona, Lleida y Tarragona)"},
+        {"titulo": "Junta Electoral Central: pacto de coalición «Junts + Carles Puigdemont per Catalunya-Junts+» (elecciones al Parlamento de Cataluña de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C2%20CAT_JUNTS%20.pdf", "referencia": "Coalición C2: integrantes, pp. 1-2"}
+      ]
+    },
+    {
+      "id": "cataluna-2024-comuns-sumar",
+      "nombre": "Comuns Sumar",
+      "siglas": "COMUNS SUMAR",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-05-12",
+      "comunidad": "ES-CT",
+      "integrantes": [
+        {"nombre": "Catalunya en Comú", "siglas": "CATCOMÚ"},
+        {"nombre": "Barcelona en Comú", "siglas": "BCOMÚ"},
+        {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"}
+      ],
+      "fuentes": [
+        {"titulo": "Edicto de 15 de abril de 2024 por el que se hacen públicas las candidaturas proclamadas por la Junta Electoral Provincial de Barcelona para las elecciones al Parlamento de Cataluña 2024 (DOGC núm. 9143, de 16 de abril de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/candidaturas_proclamadas_barcelona.pdf", "referencia": "Candidatura «Comuns Sumar» (también proclamada en Girona, Lleida y Tarragona)"},
+        {"titulo": "Junta Electoral Central: pacto de coalición «Comuns Sumar» (elecciones al Parlamento de Cataluña de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C3%20COMUNS%20SUMAR.pdf", "referencia": "Coalición C3: integrantes, pp. 1-2"}
+      ]
+    },
+    {
+      "id": "pais-vasco-2024-sumar",
+      "nombre": "Sumar",
+      "siglas": "SUMAR",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-04-21",
+      "comunidad": "ES-PV",
+      "integrantes": [
+        {"nombre": "Sumar Mugimendua-Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"},
+        {"nombre": "Ezker Anitza-IU", "siglas": "EA-IU"},
+        {"nombre": "Berdeak Equo", "siglas": "EQUO"},
+        {"nombre": "Más Euskadi-Euskadi Eraiki", "siglas": "MÁS EUSKADI"}
+      ],
+      "fuentes": [
+        {"titulo": "Certificación comprensiva de las candidaturas proclamadas ante la Junta Electoral del Territorio Histórico de Gipuzkoa (BOPV núm. 58, de 20 de marzo de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/candi_presen_%20Gipuzkoa_200324.pdf", "referencia": "Candidatura n.º 11"},
+        {"titulo": "Junta Electoral de Euskadi: pacto de coalición «Sumar» (elecciones al Parlamento Vasco de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C1_sumar.pdf", "referencia": "Coalición C1: integrantes, pp. 1-2"}
+      ]
+    },
+    {
+      "id": "pais-vasco-2024-elkarrekin-podemos-alianza-verde",
+      "nombre": "Elkarrekin Podemos-Alianza Verde",
+      "siglas": "PODEMOS-AHAL DUGU, ALIANZA VERDE",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-04-21",
+      "comunidad": "ES-PV",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Certificación comprensiva de las candidaturas proclamadas ante la Junta Electoral del Territorio Histórico de Gipuzkoa (BOPV núm. 58, de 20 de marzo de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/candi_presen_%20Gipuzkoa_200324.pdf", "referencia": "Candidatura n.º 5"},
+        {"titulo": "Junta Electoral de Euskadi: pacto de coalición «Elkarrekin Podemos-Alianza Verde» (elecciones al Parlamento Vasco de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C2_podemos.pdf", "referencia": "Coalición C2: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "galicia-2024-podemos-galicia",
+      "nombre": "Podemos Galicia",
+      "siglas": "PODEMOS-ALIANZA VERDE",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-02-18",
+      "comunidad": "ES-GA",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Resolución de 22 de enero de 2024 por la que se hacen públicas las candidaturas proclamadas por las juntas electorales provinciales de A Coruña, Lugo, Ourense y Pontevedra para las elecciones al Parlamento de Galicia de 2024 (DOG núm. 16, de 23 de enero de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/candidaturas_proclamadas.pdf", "referencia": "Candidatura «Podemos Galicia» en las cuatro circunscripciones"},
+        {"titulo": "Junta Electoral de Galicia: pacto de coalición «Podemos Galicia» (elecciones al Parlamento de Galicia de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C.E.%20Podemos%20Alianza%20Verde.pdf", "referencia": "Coalición C1: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "galicia-2024-sumar-galicia",
+      "nombre": "Sumar Galicia",
+      "siglas": "SUMAR GALICIA",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-02-18",
+      "comunidad": "ES-GA",
+      "integrantes": [
+        {"nombre": "Movemento Sumar Galicia", "siglas": "SUMAR", "partido_id": "sumar"},
+        {"nombre": "Izquierda Unida-Esquerda Unida", "siglas": "EU"},
+        {"nombre": "Verdes Equo", "siglas": "EQUO"}
+      ],
+      "fuentes": [
+        {"titulo": "Resolución de 22 de enero de 2024 por la que se hacen públicas las candidaturas proclamadas por las juntas electorales provinciales de A Coruña, Lugo, Ourense y Pontevedra para las elecciones al Parlamento de Galicia de 2024 (DOG núm. 16, de 23 de enero de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/candidaturas_proclamadas.pdf", "referencia": "Candidatura «Sumar Galicia» en las cuatro circunscripciones"},
+        {"titulo": "Junta Electoral de Galicia: pacto de coalición «Sumar Galicia» (elecciones al Parlamento de Galicia de 2024)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/C.E.%20Sumar%20Galicia.pdf", "referencia": "Coalición C2: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "illes-balears-2023-unidas-podemos",
+      "nombre": "Unidas Podemos",
+      "siglas": "EUIB-PODEMOS",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-IB",
+      "ambito": "Mallorca, Menorca y Eivissa",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Esquerra Unida de les Illes Balears", "siglas": "EUIB"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas para las elecciones al Parlament de les Illes Balears y al Consell Insular de Mallorca del día 28 de mayo de 2023 (BOIB núm. 56, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/BALEARES_2023_Candidaturas_Proclamadas.pdf", "referencia": "Circunscripción de Mallorca, candidatura n.º 11"},
+        {"titulo": "Junta Electoral de les Illes Balears: comunicación de constitución válida de coaliciones electorales y pactos de coalición (elecciones de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/BALEARES_2023_coaliciones.pdf", "referencia": "Coalición «Unidas Podemos»: integrantes y ámbito, pp. 1-2"}
+      ]
+    },
+    {
+      "id": "illes-balears-2023-sa-unio-de-formentera",
+      "nombre": "Sa Unió de Formentera (PP-Compromís)",
+      "siglas": "SA UNIÓ",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-IB",
+      "ambito": "Formentera",
+      "integrantes": [
+        {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+        {"nombre": "Compromís amb Formentera", "siglas": "COMPROMÍS"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral de les Illes Balears: comunicación de constitución válida de coaliciones electorales y pactos de coalición (elecciones de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/BALEARES_2023_coaliciones.pdf", "referencia": "Coalición «Sa Unió de Formentera (PP-Compromís)»: integrantes y ámbito, p. 2"}
+      ]
+    },
+    {
+      "id": "illes-balears-2023-gent-per-formentera-psib",
+      "nombre": "Gent per Formentera+Partit Socialista de les Illes Balears",
+      "siglas": "GxF+PSIB-PSOE",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-IB",
+      "ambito": "Formentera",
+      "integrantes": [
+        {"nombre": "Gent per Formentera", "siglas": "GxF"},
+        {"nombre": "Partido Socialista Obrero Español (PSIB-PSOE) a les Illes Balears", "siglas": "PSIB-PSOE", "partido_id": "psoe"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral de les Illes Balears: comunicación de constitución válida de coaliciones electorales y pactos de coalición (elecciones de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/BALEARES_2023_coaliciones.pdf", "referencia": "Coalición «Gent per Formentera+Partit Socialista de les Illes Balears»: integrantes y ámbito, p. 2"}
+      ]
+    },
+    {
+      "id": "canarias-2023-unidas-si-podemos",
+      "nombre": "Unidas Sí Podemos",
+      "siglas": "USP",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-CN",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida", "siglas": "IU"},
+        {"nombre": "Sí Se Puede", "siglas": "SSP"}
+      ],
+      "fuentes": [
+        {"titulo": "Resolución de 1 de mayo de 2023, del Presidente de la Junta Electoral de Canarias, relativa a la proclamación de las candidaturas por la circunscripción autonómica (BOC núm. 84, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Canarias%20candidaturas%20proclamadas%20Parlamento.pdf", "referencia": "Circunscripción autonómica, candidatura n.º 13"},
+        {"titulo": "Junta Electoral de Canarias: pacto de coalición «Unidas Sí Podemos» (elecciones al Parlamento de Canarias de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Canarias_c3_unidassipodemos.pdf", "referencia": "Coalición C3: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "cantabria-2023-podemos-iu",
+      "nombre": "Podemos-Izquierda Unida",
+      "siglas": "Podemos-IU",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-CB",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida", "siglas": "IU"}
+      ],
+      "fuentes": [
+        {"titulo": "Relación de candidaturas proclamadas para las elecciones de diputados al Parlamento de Cantabria de 28 de mayo de 2023 (BOC extraordinario núm. 27, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Cantabria%20candidaturas%20proclamadas%20Parlamento.pdf", "referencia": "Candidatura n.º 8"},
+        {"titulo": "Junta Electoral de Cantabria: pacto de coalición «Podemos-Izquierda Unida» (elecciones al Parlamento de Cantabria de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Cantabria_c1_Podemos_iu.pdf", "referencia": "Coalición C1: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "madrid-2023-podemos-iu-alianza-verde",
+      "nombre": "Podemos-Izquierda Unida-Alianza Verde",
+      "siglas": "Podemos-IU-AV",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-MD",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida", "siglas": "IU"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral Provincial de Madrid. Elecciones a la Asamblea de Madrid 2023. Publicación de candidaturas: fase de proclamación (BOCM núm. 103, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Madrid%20candidaturas%20proclamadas%20Parlamento.pdf", "referencia": "Candidatura «Podemos-Izquierda Unida-Alianza Verde»"},
+        {"titulo": "Junta Electoral Provincial de Madrid: pacto de coalición «Podemos-Izquierda Unida-Alianza Verde» (elecciones a la Asamblea de Madrid de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Madrid_c1_Podemos_iu_av.pdf", "referencia": "Coalición C1: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "murcia-2023-podemos-iu-verdes-alianza-verde",
+      "nombre": "Podemos-Izquierda Unida Verdes-Alianza Verde",
+      "siglas": "PODEMOS-IU VERDES-AV",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-MC",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida Verdes de la Región de Murcia", "siglas": "IU-V"},
+        {"nombre": "Alianza Verde", "siglas": "AV"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral Provincial de Murcia: comunicación a la Junta Electoral Central de las coaliciones válidamente constituidas para las elecciones a la Asamblea Regional de 2023 (17 de abril de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/murcia_c1_podemos_masregion.pdf", "referencia": "Primera coalición de la relación; los integrantes se deducen de la denominación"}
+      ]
+    },
+    {
+      "id": "navarra-2023-contigo-zurekin",
+      "nombre": "Podemos+Izquierda Unida+Batzarre+Alianza Verde+Berdeak Equo",
+      "siglas": "CONTIGO ZUREKIN",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-NC",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida de Navarra-Nafarroako Ezker Batua", "siglas": "IUN-NEB"},
+        {"nombre": "Batzarre-Asamblea de Izquierdas", "siglas": "BATZARRE"},
+        {"nombre": "Alianza Verde", "siglas": "AV"},
+        {"nombre": "Verdes Equo", "siglas": "EQUO"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral Provincial de Navarra. Candidaturas proclamadas para las elecciones al Parlamento de Navarra de 28 de mayo de 2023 (BON extraordinario núm. 91, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Navarra%20candidaturas%20proclamadas%20Parlamento%202023.pdf", "referencia": "Candidatura R-8"},
+        {"titulo": "Junta Electoral Provincial de Navarra: pacto de coalición «Contigo Zurekin» (elecciones de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/JEP%20Navarra_c1_contigozurekin.pdf", "referencia": "Coalición C1: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "navarra-2023-geroa-bai",
+      "nombre": "Geroa Bai",
+      "siglas": "GBAI",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-NC",
+      "integrantes": [
+        {"nombre": "Geroa Socialverdes de Navarra en Europa-Geroa Nafarroako Sozialberdeak Europan", "siglas": "GEROA SOCIALVERDES"},
+        {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv"},
+        {"nombre": "Agrupación Atarrabia-Atarrabia Taldea", "siglas": "ATARRABIA"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral Provincial de Navarra. Candidaturas proclamadas para las elecciones al Parlamento de Navarra de 28 de mayo de 2023 (BON extraordinario núm. 91, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Navarra%20candidaturas%20proclamadas%20Parlamento%202023.pdf", "referencia": "Candidatura R-2"},
+        {"titulo": "Junta Electoral Provincial de Navarra: pacto de coalición «Geroa Bai» (elecciones de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/JEP%20Navarra_c2_geroabai.pdf", "referencia": "Coalición C2: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "la-rioja-2023-podemos-iu",
+      "nombre": "Podemos-Izquierda Unida",
+      "siglas": "PODEMOS-I.U.",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-RI",
+      "integrantes": [
+        {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos"},
+        {"nombre": "Izquierda Unida", "siglas": "IU"}
+      ],
+      "fuentes": [
+        {"titulo": "Junta Electoral Provincial de La Rioja: pacto de coalición «Podemos-Izquierda Unida» (elecciones al Parlamento de La Rioja de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/LARIOJA_2023_C1_Podemos-Izquierda%20Unida.pdf", "referencia": "Coalición C1: integrantes, p. 1"}
+      ]
+    },
+    {
+      "id": "comunitat-valenciana-2023-unides-podem-eu",
+      "nombre": "Unides Podem-Esquerra Unida",
+      "siglas": "UP-EUPV",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-VC",
+      "integrantes": [
+        {"nombre": "Podemos (Podem en la Comunitat Valenciana)", "siglas": "PODEM", "partido_id": "podemos"},
+        {"nombre": "Esquerra Unida del País Valencià", "siglas": "EUPV"},
+        {"nombre": "Alianza Verde", "siglas": "AV"},
+        {"nombre": "Els Verds", "siglas": "ELS VERDS"}
+      ],
+      "fuentes": [
+        {"titulo": "Candidaturas proclamadas por las circunscripciones de Alicante, Castellón y Valencia para las elecciones a Les Corts del día 28 de mayo de 2023 (DOGV núm. 9586, de 2 de mayo de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/VALENCIA_2023_Candiaturas_Proclamadas_Valencia.pdf", "referencia": "Candidatura «Unides Podem-Esquerra Unida» en las tres circunscripciones"},
+        {"titulo": "Junta Electoral de la Comunitat Valenciana: pacto de coalición «Unides Podem-Esquerra Unida» (elecciones a Les Corts de 2023)", "url": "https://www.juntaelectoralcentral.es/cs/jec/documentos/VALENCIA_2023_unides_podems_esquerra.pdf", "referencia": "Coalición C3: integrantes, pp. 1-2"}
+      ]
+    }
+  ],
+  "investiduras": [
+    {
+      "id": "generales-2023-nunez-feijoo",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "candidato": "Alberto Núñez Feijóo",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-09-27",
+          "mayoria": "absoluta",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar", "voto": "no"},
+            {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc", "voto": "no"},
+            {"nombre": "Junts per Catalunya", "siglas": "JUNTS", "partido_id": "junts", "voto": "no"},
+            {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu", "voto": "no"},
+            {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv", "voto": "no"},
+            {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos", "voto": "no"},
+            {"nombre": "Bloque Nacionalista Galego", "siglas": "BNG", "partido_id": "bng", "voto": "no"},
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc", "voto": "si"},
+            {"nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "partido_id": "upn", "voto": "si"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Congreso de los Diputados, Pleno, núm. 5", "url": "https://www.congreso.es/public_oficiales/L15/CONG/DS/PL/DSCD-15-PL-5.PDF", "referencia": "27-9-2023, pp. 41-48 (votación por llamamiento)"}
+          ],
+          "llamamiento": {"pdf": "https://www.congreso.es/public_oficiales/L15/CONG/DS/PL/DSCD-15-PL-5.PDF", "paginas": [41, 48], "referencias": ["https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion003/20230921/Votacion001/VOT_20230921120048.json"], "inicio": "dijeron «sí»", "fin": "escrutinio de los votos"}
+        },
+        {
+          "fecha": "2023-09-29",
+          "mayoria": "simple",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar", "voto": "no"},
+            {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc", "voto": "no"},
+            {"nombre": "Junts per Catalunya", "siglas": "JUNTS", "partido_id": "junts", "voto": "no"},
+            {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu", "voto": "no"},
+            {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv", "voto": "no"},
+            {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos", "voto": "no"},
+            {"nombre": "Bloque Nacionalista Galego", "siglas": "BNG", "partido_id": "bng", "voto": "no"},
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc", "voto": "si"},
+            {"nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "partido_id": "upn", "voto": "si"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Congreso de los Diputados, Pleno, núm. 6", "url": "https://www.congreso.es/public_oficiales/L15/CONG/DS/PL/DSCD-15-PL-6.PDF", "referencia": "29-9-2023, pp. 17-24 (votación por llamamiento)"}
+          ],
+          "llamamiento": {"pdf": "https://www.congreso.es/public_oficiales/L15/CONG/DS/PL/DSCD-15-PL-6.PDF", "paginas": [17, 24], "referencias": ["https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion003/20230921/Votacion001/VOT_20230921120048.json"], "inicio": "dijeron «sí»", "fin": "escrutinio de los votos"}
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo entre el Partido Popular y Coalición Canaria",
+          "tipo": "investidura",
+          "fecha": "2023-08-22",
+          "partes": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc"}
+          ],
+          "fuentes": [
+            {"titulo": "Partido Popular: titulares de la firma del acuerdo PP-CC", "url": "https://www.pp.es/storage/2023/08/2023.08.22_titulares_gpp_-_cuca_gamarra_-_firma_acuerdo_pp-cc.pdf", "referencia": "nota de prensa del Grupo Popular, 22-8-2023"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generales-2023-sanchez",
+      "eleccion": "generales",
+      "fecha_eleccion": "2023-07-23",
+      "candidato": "Pedro Sánchez Pérez-Castejón",
+      "partido_candidato": {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+      "votaciones": [
+        {
+          "fecha": "2023-11-16",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar", "voto": "si"},
+            {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc", "voto": "si"},
+            {"nombre": "Junts per Catalunya", "siglas": "JUNTS", "partido_id": "junts", "voto": "si"},
+            {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu", "voto": "si"},
+            {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv", "voto": "si"},
+            {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos", "voto": "si"},
+            {"nombre": "Bloque Nacionalista Galego", "siglas": "BNG", "partido_id": "bng", "voto": "si"},
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc", "voto": "si"},
+            {"nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "partido_id": "upn", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Congreso de los Diputados, Pleno, núm. 8", "url": "https://www.congreso.es/public_oficiales/L15/CONG/DS/PL/DSCD-15-PL-8.PDF", "referencia": "16-11-2023, pp. 43-50 (votación por llamamiento)"}
+          ],
+          "llamamiento": {"pdf": "https://www.congreso.es/public_oficiales/L15/CONG/DS/PL/DSCD-15-PL-8.PDF", "paginas": [43, 50], "referencias": ["https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion009/20231128/Votacion001/VOT_20231128183358.json", "https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion003/20230921/Votacion001/VOT_20230921120048.json"], "inicio": "dijeron «sí»", "fin": "escrutinio de los votos"}
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo de gobierno entre el PSOE y Sumar",
+          "tipo": "gobierno",
+          "fecha": "2023-10-24",
+          "partes": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+            {"nombre": "Movimiento Sumar", "siglas": "SUMAR", "partido_id": "sumar"}
+          ],
+          "fuentes": [
+            {"titulo": "PSOE: «El PSOE y Sumar firmamos un acuerdo de gobierno…»", "url": "https://www.psoe.es/actualidad/noticias-actualidad/sanchez-el-psoe-y-sumar-firmamos-un-acuerdo-de-gobierno-con-la-voluntad-de-ofrecer-estabilidad-convivencia-y-progreso-a-espana-durante-los-proximos-cuatro-anos/", "referencia": "noticia de la web del PSOE, 24-10-2023"}
+          ]
+        },
+        {
+          "titulo": "Acord entre el Partido Socialista Obrero Español i Esquerra Republicana de Catalunya",
+          "tipo": "investidura",
+          "fecha": "2023-11-02",
+          "partes": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+            {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc"}
+          ],
+          "fuentes": [
+            {"titulo": "Esquerra Republicana: texto del acuerdo", "url": "https://static.esquerra.cat/uploads/20231102/231102-acord-CAT-(1).pdf", "referencia": "documento firmado, 2-11-2023"}
+          ]
+        },
+        {
+          "titulo": "Acordo de investidura entre o PSOE e o BNG",
+          "tipo": "investidura",
+          "fecha": "2023-11-06",
+          "partes": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+            {"nombre": "Bloque Nacionalista Galego", "siglas": "BNG", "partido_id": "bng"}
+          ],
+          "fuentes": [
+            {"titulo": "BNG: acordo asinado BNG-PSOE", "url": "https://www.bng.gal/media/bnggaliza/files/2023/11/06/ACORDO%20ASINADO%20BNG%20PSOE.pdf", "referencia": "documento firmado, 6-11-2023"}
+          ]
+        },
+        {
+          "titulo": "Acuerdo de legislatura entre Coalición Canaria y el PSOE",
+          "tipo": "investidura",
+          "fecha": "2023-11-10",
+          "partes": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc"}
+          ],
+          "fuentes": [
+            {"titulo": "Coalición Canaria: acuerdo de legislatura CC-PSOE", "url": "https://coalicioncanaria.org/wp-content/uploads/cc-pdf/documentos/Acuerdo%20de%20Legislatura%2010-11-23%20CC-PSOE%20Elecciones%20Generales%2023J.pdf", "referencia": "documento firmado, 10-11-2023"}
+          ]
+        },
+        {
+          "titulo": "Acuerdo de investidura EAJ-PNV / PSOE",
+          "tipo": "investidura",
+          "fecha": "2023-11-10",
+          "partes": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+            {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv"}
+          ],
+          "fuentes": [
+            {"titulo": "EAJ-PNV: acuerdo de investidura EAJ-PNV / PSOE", "url": "https://www.eaj-pnv.eus/es/documentos/21097/acuerdo-de-investidura-eaj-pnv-psoe", "referencia": "documento de la web del partido, 10-11-2023"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "andalucia-2026-moreno",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-05-17",
+      "comunidad": "ES-AN",
+      "candidato": "Juan Manuel Moreno Bonilla",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2026-06-30",
+          "mayoria": "absoluta",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Adelante Andalucía", "siglas": "AA", "voto": "no"},
+            {"nombre": "Por Andalucía", "siglas": "PorA", "coalicion_id": "andalucia-2026-por-andalucia", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Parlamento de Andalucía, Pleno, 30-6-2026", "url": "https://www.parlamentodeandalucia.es/webdinamica/portal-web-parlamento/pdf.do?tipodoc=diario&id=203634", "referencia": "p. 120 (resultado de la votación)"}
+          ]
+        },
+        {
+          "fecha": "2026-07-02",
+          "mayoria": "simple",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Adelante Andalucía", "siglas": "AA", "voto": "no"},
+            {"nombre": "Por Andalucía", "siglas": "PorA", "coalicion_id": "andalucia-2026-por-andalucia", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Junta de Andalucía: «Juanma Moreno, investido presidente de la Junta por tercera vez»", "url": "https://www.juntadeandalucia.es/presidencia/portavoz/gobiernoaldia/217247/JuanmaMoreno/Andalucia/presidente/JuntadeAndalucia/investidura/parlamento/votacion/legislatura", "referencia": "nota del Portavoz del Gobierno andaluz, 2-7-2026 (resultado)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "aragon-2026-azcon",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-02-08",
+      "comunidad": "ES-AR",
+      "candidato": "Jorge Azcón Navarro",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2026-04-29",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Chunta Aragonesista", "siglas": "CHA", "voto": "no"},
+            {"nombre": "Aragón-Teruel Existe", "siglas": "A-TE", "voto": "no"},
+            {"nombre": "Izquierda Unida-Movimiento Sumar", "siglas": "IU", "coalicion_id": "aragon-2026-iu-movimiento-sumar", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Cortes de Aragón: nota de prensa de la segunda jornada del Debate de Investidura", "url": "https://www.cortesaragon.es/Nota-de-prensa.2356.0.html?&no_cache=1&tx_t3comunicacion_pi1%5Buidnot%5D=19624", "referencia": "29-4-2026 (resultado y voto de cada grupo)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo de Gobierno entre el PP y Vox en Aragón",
+          "tipo": "gobierno",
+          "fecha": "2026-04-22",
+          "partes": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox"}
+          ],
+          "fuentes": [
+            {"titulo": "VOX: «VOX y PP cierran su Acuerdo de Gobierno en Aragón»", "url": "https://www.voxespana.es/aragon/vox-y-pp-cierran-su-acuerdo-de-gobierno-en-aragon-20260422", "referencia": "noticia de la web de VOX, 22-4-2026"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asturias-2023-barbon",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-AS",
+      "candidato": "Adrián Barbón Rodríguez",
+      "partido_candidato": {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+      "votaciones": [
+        {
+          "fecha": "2023-07-19",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Izquierda Unida-Más País-Izquierda Asturiana (Convocatoria por Asturias)", "siglas": "IU-MP-IAS", "voto": "si"},
+            {"nombre": "Podemos", "siglas": "PODEMOS", "partido_id": "podemos", "voto": "si"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "abstencion"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "abstencion"},
+            {"nombre": "Foro Asturias", "siglas": "FORO", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones de la Junta General del Principado de Asturias, Pleno, XII legislatura, núm. 3", "url": "https://agoranet.jgpa.es/documentos/Diarios/PDF/12J003.pdf", "referencia": "19-7-2023, p. 52 (resultado de la votación)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "illes-balears-2023-prohens",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-IB",
+      "candidato": "Margalida Prohens Rigo",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-07-04",
+          "mayoria": "absoluta",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Sa Unió de Formentera", "siglas": "SA UNIÓ", "coalicion_id": "illes-balears-2023-sa-unio-de-formentera", "voto": "si"},
+            {"nombre": "Partit Socialista de les Illes Balears", "siglas": "PSIB-PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Més per Mallorca", "siglas": "MÉS", "voto": "no"},
+            {"nombre": "Més per Menorca", "siglas": "MxMe", "voto": "no"},
+            {"nombre": "Unidas Podemos", "siglas": "EUIB-PODEMOS", "coalicion_id": "illes-balears-2023-unidas-podemos", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diari de Sessions del Ple del Parlament de les Illes Balears, núm. 2, fascicle 2", "url": "https://web.parlamentib.es/repositori/PUBLICACIONS/11/ple/PL-11-002-02.pdf", "referencia": "4-7-2023, p. 50 (resultado de la votación)"}
+          ]
+        },
+        {
+          "fecha": "2023-07-06",
+          "mayoria": "simple",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Sa Unió de Formentera", "siglas": "SA UNIÓ", "coalicion_id": "illes-balears-2023-sa-unio-de-formentera", "voto": "si"},
+            {"nombre": "Partit Socialista de les Illes Balears", "siglas": "PSIB-PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Més per Mallorca", "siglas": "MÉS", "voto": "no"},
+            {"nombre": "Més per Menorca", "siglas": "MxMe", "voto": "no"},
+            {"nombre": "Unidas Podemos", "siglas": "EUIB-PODEMOS", "coalicion_id": "illes-balears-2023-unidas-podemos", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diari de Sessions del Ple del Parlament de les Illes Balears, núm. 2, fascicle 3", "url": "https://web.parlamentib.es/repositori/PUBLICACIONS/11/ple/PL-11-002-03.pdf", "referencia": "6-7-2023, p. 11 (resultado de la votación)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo programático entre el PP y Vox en las Illes Balears",
+          "tipo": "investidura",
+          "fecha": "2023-06-28",
+          "partes": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox"}
+          ],
+          "fuentes": [
+            {"titulo": "VOX: «VOX y el PP llegan a un acuerdo para el gobierno de las Islas Baleares…»", "url": "https://www.voxespana.es/actualidad/vox-y-el-pp-llegan-a-un-acuerdo-para-el-gobierno-de-las-islas-baleares-con-la-garantia-de-la-libertad-linguistica-como-prioridad-20230628", "referencia": "noticia de la web de VOX, 28-6-2023"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canarias-2023-clavijo",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-CN",
+      "candidato": "Fernando Clavijo Batlle",
+      "partido_candidato": {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc"},
+      "votaciones": [
+        {
+          "fecha": "2023-07-12",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc", "voto": "si"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Agrupación Socialista Gomera", "siglas": "ASG", "voto": "si"},
+            {"nombre": "Agrupación Herreña Independiente", "siglas": "AHI", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Nueva Canarias-Bloque Canarista", "siglas": "NC-BC", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Parlamento de Canarias: «El Parlamento da su confianza a Fernando Clavijo…»", "url": "https://www.parcan.es/noticias/2895/", "referencia": "nota de prensa, 12-7-2023 (resultado y voto de cada grupo)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo de gobernabilidad CC-PP",
+          "tipo": "gobierno",
+          "fecha": "2023-06-06",
+          "partes": [
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"}
+          ],
+          "fuentes": [
+            {"titulo": "Coalición Canaria: acuerdo CC-PP", "url": "https://coalicioncanaria.org/wp-content/uploads/2023/06/DOCUMENTO-FINAL-060623-ACUERDO-CC-PP.pdf", "referencia": "documento firmado, 6-6-2023"}
+          ]
+        },
+        {
+          "titulo": "Acuerdo de gobernabilidad de Canarias AHI-CC",
+          "tipo": "investidura",
+          "fecha": "2023-06-07",
+          "partes": [
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc"},
+            {"nombre": "Agrupación Herreña Independiente", "siglas": "AHI"}
+          ],
+          "fuentes": [
+            {"titulo": "Coalición Canaria: acuerdo AHI-CC", "url": "https://coalicioncanaria.org/wp-content/uploads/2023/06/ACUERDO-gobernabilidad-Canarias-AHI-CC-07.06.2023.pdf", "referencia": "documento firmado, 7-6-2023"}
+          ]
+        },
+        {
+          "titulo": "Acuerdo para la gobernabilidad de Canarias ASG-CC-PP",
+          "tipo": "investidura",
+          "fecha": "2023-06-08",
+          "partes": [
+            {"nombre": "Coalición Canaria", "siglas": "CC", "partido_id": "cc"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "Agrupación Socialista Gomera", "siglas": "ASG"}
+          ],
+          "fuentes": [
+            {"titulo": "Coalición Canaria: acuerdo ASG-CC-PP", "url": "https://coalicioncanaria.org/wp-content/uploads/2023/06/ACUERDO-gobernabilidad-Canarias-ASG-CC-PP-08.06.2023.pdf", "referencia": "documento firmado, 8-6-2023"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cantabria-2023-saenz-de-buruaga",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-CB",
+      "candidato": "María José Sáenz de Buruaga Gómez",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-06-30",
+          "mayoria": "absoluta",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Partido Regionalista de Cantabria", "siglas": "PRC", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Parlamento de Cantabria, serie A, núm. 2, fascículo 2", "url": "https://parlamento-cantabria.es/sites/default/files/11L%20Punto%20%C3%BAnico%20Pleno%20(2-A%20fasc%C3%ADculo%202)_firmado.pdf", "referencia": "30-6-2023, p. 41 del PDF (resultado de la votación)"}
+          ]
+        },
+        {
+          "fecha": "2023-07-03",
+          "mayoria": "simple",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Partido Regionalista de Cantabria", "siglas": "PRC", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Real Decreto 568/2023, de 3 de julio, por el que se nombra Presidenta de la Comunidad Autónoma de Cantabria", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-15471", "referencia": "elección por el Parlamento de Cantabria (sin desglose de votos)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "castilla-la-mancha-2023-garcia-page",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-CM",
+      "candidato": "Emiliano García-Page Sánchez",
+      "partido_candidato": {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe"},
+      "votaciones": [
+        {
+          "fecha": "2023-07-06",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Cortes de Castilla-La Mancha: «Las Cortes regionales reeligen por mayoría absoluta a García-Page…»", "url": "https://www.cortesclm.es/index.php/8-noticias-general/1069-investidura-page", "referencia": "nota de prensa, 6-7-2023 (resultado y voto de cada grupo)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "castilla-y-leon-2026-fernandez-manueco",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2026-03-15",
+      "comunidad": "ES-CL",
+      "candidato": "Alfonso Fernández Mañueco",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2026-06-09",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Unión del Pueblo Leonés", "siglas": "UPL", "voto": "no"},
+            {"nombre": "Por Ávila", "siglas": "XAV", "voto": "no"},
+            {"nombre": "Soria ¡Ya!", "siglas": "SY", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Cortes de Castilla y León: «Investidura de Alfonso Fernández Mañueco…»", "url": "https://www.ccyl.es/NoticiasParlamentarias/Details/1703", "referencia": "nota de prensa, 9-6-2026 (resultado; nombra solo los grupos que votaron a favor)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "cataluna-2024-illa",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-05-12",
+      "comunidad": "ES-CT",
+      "candidato": "Salvador Illa Roca",
+      "partido_candidato": {"nombre": "Partit dels Socialistes de Catalunya", "siglas": "PSC", "partido_id": "psoe"},
+      "votaciones": [
+        {
+          "fecha": "2024-08-08",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partit dels Socialistes de Catalunya", "siglas": "PSC", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc", "voto": "si"},
+            {"nombre": "Comuns Sumar", "siglas": "COMUNS SUMAR", "coalicion_id": "cataluna-2024-comuns-sumar", "voto": "si"},
+            {"nombre": "Junts+", "siglas": "CAT-JUNTS+", "coalicion_id": "cataluna-2024-junts", "voto": "no"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Candidatura d'Unitat Popular-Defensem la Terra", "siglas": "CUP-DT", "voto": "no"},
+            {"nombre": "Aliança Catalana", "siglas": "AC", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Parlament de Catalunya: «El Parlament investeix Salvador Illa president de la Generalitat»", "url": "https://www.parlament.cat/web/actualitat/noticies/index.html?p_format=D&p_id=270623984", "referencia": "nota de prensa, 8-8-2024 (resultado y voto de cada grupo)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acord d'investidura entre el Partit dels Socialistes de Catalunya i Esquerra Republicana de Catalunya",
+          "tipo": "investidura",
+          "fecha": "2024-08-07",
+          "partes": [
+            {"nombre": "Partit dels Socialistes de Catalunya", "siglas": "PSC", "partido_id": "psoe"},
+            {"nombre": "Esquerra Republicana de Catalunya", "siglas": "ERC", "partido_id": "erc"}
+          ],
+          "fuentes": [
+            {"titulo": "PSC: acord d'investidura PSC-ERC", "url": "https://www.socialistes.cat/wp-content/uploads/2024/09/Acord-PSC-ERC.pdf", "referencia": "documento firmado, 7-8-2024"}
+          ]
+        },
+        {
+          "titulo": "Un acord per fer avançar el país: una Catalunya de progrés i sostenible",
+          "tipo": "investidura",
+          "fecha": "2024-08-03",
+          "partes": [
+            {"nombre": "Partit dels Socialistes de Catalunya", "siglas": "PSC", "partido_id": "psoe"},
+            {"nombre": "Comuns Sumar", "siglas": "COMUNS SUMAR", "coalicion_id": "cataluna-2024-comuns-sumar"}
+          ],
+          "fuentes": [
+            {"titulo": "PSC: acord PSC-Comuns per a la investidura", "url": "https://www.socialistes.cat/wp-content/uploads/2024/09/240803_Acord-PSC-COMUNS-per-Investidura.pdf", "referencia": "documento firmado, 3-8-2024"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comunitat-valenciana-2023-mazon",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-VC",
+      "candidato": "Carlos Mazón Guixot",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-07-13",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partit Socialista del País Valencià", "siglas": "PSPV-PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Compromís", "siglas": "COMPROMÍS", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diari de Sessions de les Corts Valencianes, núm. 2", "url": "https://www.cortsvalencianes.es/sites/default/files/publication/doc/DS-2.pdf", "referencia": "13-7-2023, p. 37 del PDF (resultado de la votación por llamamiento)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo conjunto de PP y VOX para el gobierno de la Comunitat Valenciana",
+          "tipo": "gobierno",
+          "fecha": "2023-06-15",
+          "partes": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox"}
+          ],
+          "fuentes": [
+            {"titulo": "VOX: «Acuerdo conjunto de PP y VOX para el gobierno de la Comunidad Valenciana»", "url": "https://www.voxespana.es/noticias/acuerdo-conjunto-de-pp-y-vox-para-el-gobierno-de-la-comunidad-valenciana-2-20230615", "referencia": "noticia de la web de VOX, 15-6-2023"},
+            {"titulo": "VOX: «VOX da por roto el acuerdo de gobierno y retira el apoyo parlamentario a los gobiernos del PP…»", "url": "https://www.voxespana.es/actualidad/vox-da-por-roto-el-acuerdo-de-gobierno-y-retira-el-apoyo-parlamentario-a-los-gobiernos-del-pp-tras-la-orden-de-feijoo-de-apoyar-el-reparto-de-menas-20240711", "referencia": "noticia de la web de VOX, 11-7-2024 (fin del acuerdo)"}
+          ],
+          "fin": "2024-07-11"
+        }
+      ]
+    },
+    {
+      "id": "comunitat-valenciana-2025-perez-llorca",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-VC",
+      "candidato": "Juan Francisco Pérez Llorca",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2025-11-27",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partit Socialista del País Valencià", "siglas": "PSPV-PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Compromís", "siglas": "COMPROMÍS", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Real Decreto 1080/2025, de 28 de noviembre, por el que se nombra President de la Generalitat Valenciana", "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-24162", "referencia": "elección por Les Corts el 27-11-2025 (sin desglose de votos)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "extremadura-2025-guardiola-marzo",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2025-12-21",
+      "comunidad": "ES-EX",
+      "candidato": "María Guardiola Martín",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2026-03-04",
+          "mayoria": "absoluta",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Unidas por Extremadura", "siglas": "UxE", "coalicion_id": "extremadura-2025-unidas-por-extremadura", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones de la Asamblea de Extremadura, Pleno, núm. 4", "url": "https://www.asambleaex.es/publicacionesxii/wp-content/uploads/2026/04/12DSAE4P.pdf", "referencia": "4-3-2026, p. 54 (resultado de la votación)"}
+          ]
+        },
+        {
+          "fecha": "2026-03-06",
+          "mayoria": "simple",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Unidas por Extremadura", "siglas": "UxE", "coalicion_id": "extremadura-2025-unidas-por-extremadura", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones de la Asamblea de Extremadura, Pleno, núm. 5", "url": "https://www.asambleaex.es/publicacionesxii/wp-content/uploads/2026/04/12DSAE5P.pdf", "referencia": "6-3-2026, p. 15 (resultado de la votación)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "extremadura-2025-guardiola-abril",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2025-12-21",
+      "comunidad": "ES-EX",
+      "candidato": "María Guardiola Martín",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2026-04-22",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Unidas por Extremadura", "siglas": "UxE", "coalicion_id": "extremadura-2025-unidas-por-extremadura", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones de la Asamblea de Extremadura, Pleno, núm. 8", "url": "https://www.asambleaex.es/publicacionesxii/wp-content/uploads/2026/04/12DSAE8P.pdf", "referencia": "22-4-2026, p. 48 (resultado de la votación)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo de gobierno entre el PP y Vox en Extremadura",
+          "tipo": "gobierno",
+          "fecha": "2026-04-16",
+          "partes": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox"}
+          ],
+          "fuentes": [
+            {"titulo": "VOX: «VOX y PP sellan un acuerdo de gobierno en Extremadura tras semanas de negociación»", "url": "https://www.voxespana.es/noticias/vox-y-pp-sellan-un-acuerdo-de-gobierno-en-extremadura-tras-semanas-de-negociacion-20260416", "referencia": "noticia de la web de VOX, 16-4-2026"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "galicia-2024-rueda",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-02-18",
+      "comunidad": "ES-GA",
+      "candidato": "Alfonso Rueda Valenzuela",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2024-04-11",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Bloque Nacionalista Galego", "siglas": "BNG", "partido_id": "bng", "voto": "no"},
+            {"nombre": "Partido dos Socialistas de Galicia", "siglas": "PSdeG-PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Democracia Ourensana", "siglas": "DO", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Xunta de Galicia: «El Parlamento de Galicia elige presidente de la Xunta a Alfonso Rueda»", "url": "https://www.xunta.gal/es/notas-de-prensa/-/nova/000861/parlamento-galicia-elige-presidente-xunta-alfonso-rueda", "referencia": "nota de prensa, 11-4-2024 (resultado)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "madrid-2023-diaz-ayuso",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-MD",
+      "candidato": "Isabel Díaz Ayuso",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-06-22",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Más Madrid", "siglas": "MM", "voto": "no"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones de la Asamblea de Madrid, XIII legislatura, núm. 2", "url": "https://www.asambleamadrid.es/static/doc/publicaciones/XIII-DS-2.pdf", "referencia": "22-6-2023, p. 103 del PDF (resultado de la votación por llamamiento)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "murcia-2023-lopez-miras",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-MC",
+      "candidato": "Fernando López Miras",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-09-07",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "Podemos-Izquierda Unida Verdes-Alianza Verde", "siglas": "PODEMOS-IU VERDES-AV", "coalicion_id": "murcia-2023-podemos-iu-verdes-alianza-verde", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Asamblea Regional de Murcia: «López Miras, reelegido presidente… por los votos del PP y de Vox»", "url": "https://www.asambleamurcia.es/noticias/20230907/395085", "referencia": "nota de prensa, 7-9-2023 (resultado)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo entre el PP y Vox en la Región de Murcia",
+          "tipo": "gobierno",
+          "fecha": "2023-09-01",
+          "partes": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox"}
+          ],
+          "fuentes": [
+            {"titulo": "VOX: «PP y Vox alcanzan un acuerdo para evitar la repetición electoral en la Región de Murcia»", "url": "https://www.voxespana.es/noticias/pp-y-vox-alcanzan-un-acuerdo-para-evitar-la-repeticion-electoral-en-la-region-de-murcia-20230901", "referencia": "noticia de la web de VOX, 1-9-2023"},
+            {"titulo": "VOX: «VOX da por roto el acuerdo de gobierno y retira el apoyo parlamentario a los gobiernos del PP…»", "url": "https://www.voxespana.es/actualidad/vox-da-por-roto-el-acuerdo-de-gobierno-y-retira-el-apoyo-parlamentario-a-los-gobiernos-del-pp-tras-la-orden-de-feijoo-de-apoyar-el-reparto-de-menas-20240711", "referencia": "noticia de la web de VOX, 11-7-2024 (fin del acuerdo)"}
+          ],
+          "fin": "2024-07-11"
+        }
+      ]
+    },
+    {
+      "id": "navarra-2023-chivite",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-NC",
+      "candidato": "María Chivite Navascués",
+      "partido_candidato": {"nombre": "Partido Socialista de Navarra", "siglas": "PSN-PSOE", "partido_id": "psoe"},
+      "votaciones": [
+        {
+          "fecha": "2023-08-14",
+          "mayoria": "absoluta",
+          "resultado": "denegada",
+          "votos": [
+            {"nombre": "Partido Socialista de Navarra", "siglas": "PSN-PSOE", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Geroa Bai", "siglas": "GBAI", "coalicion_id": "navarra-2023-geroa-bai", "voto": "si"},
+            {"nombre": "Contigo Navarra-Zurekin Nafarroa", "siglas": "CONTIGO ZUREKIN", "coalicion_id": "navarra-2023-contigo-zurekin", "voto": "si"},
+            {"nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "partido_id": "upn", "voto": "no"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Parlamento de Navarra, XI legislatura, Pleno núm. 2", "url": "https://www.parlamentodenavarra.es/sites/default/files/diarios-sesiones/Plen11002.pdf", "referencia": "14-8-2023, p. 57 (resultado de la votación por llamamiento)"}
+          ]
+        },
+        {
+          "fecha": "2023-08-15",
+          "mayoria": "simple",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Socialista de Navarra", "siglas": "PSN-PSOE", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Geroa Bai", "siglas": "GBAI", "coalicion_id": "navarra-2023-geroa-bai", "voto": "si"},
+            {"nombre": "Contigo Navarra-Zurekin Nafarroa", "siglas": "CONTIGO ZUREKIN", "coalicion_id": "navarra-2023-contigo-zurekin", "voto": "si"},
+            {"nombre": "Unión del Pueblo Navarro", "siglas": "UPN", "partido_id": "upn", "voto": "no"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Parlamento de Navarra, XI legislatura, Pleno núm. 3", "url": "https://www.parlamentodenavarra.es/sites/default/files/diarios-sesiones/Plen11003.pdf", "referencia": "15-8-2023, p. 3 (resultado de la votación por llamamiento)"},
+            {"titulo": "Parlamento de Navarra: «María Chivite, reelegida Presidenta del Gobierno de la Comunidad Foral de Navarra»", "url": "https://parlamentodenavarra.es/es/noticias/mar%C3%ADa-chivite-reelegida-presidenta-del-gobierno-de-la-comunidad-foral-de-navarra", "referencia": "nota de prensa, 15-8-2023 (voto de cada grupo)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    },
+    {
+      "id": "pais-vasco-2024-pradales",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2024-04-21",
+      "comunidad": "ES-PV",
+      "candidato": "Imanol Pradales Gil",
+      "partido_candidato": {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv"},
+      "votaciones": [
+        {
+          "fecha": "2024-06-20",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv", "voto": "si"},
+            {"nombre": "Partido Socialista de Euskadi-Euskadiko Ezkerra", "siglas": "PSE-EE (PSOE)", "partido_id": "psoe", "voto": "si"},
+            {"nombre": "Euskal Herria Bildu", "siglas": "EH BILDU", "partido_id": "bildu", "voto": "otro_candidato"},
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "abstencion"},
+            {"nombre": "Sumar", "siglas": "SUMAR", "coalicion_id": "pais-vasco-2024-sumar", "voto": "abstencion"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "abstencion"}
+          ],
+          "fuentes": [
+            {"titulo": "Gobierno Vasco: «Imanol Pradales, investido Lehendakari por el Parlamento Vasco»", "url": "https://www.euskadi.eus/gobierno-vasco/-/noticia/2024/imanol-pradales-investido-lehendakari-parlamento-vasco/", "referencia": "nota de prensa, 20-6-2024 (resultado; nombra los grupos que votaron a favor)"}
+          ]
+        }
+      ],
+      "acuerdos": [
+        {
+          "titulo": "Acuerdo entre EAJ-PNV y PSE-EE para avanzar en bienestar, progreso, autogobierno y la transformación de una Euskadi global",
+          "tipo": "gobierno",
+          "fecha": "2024-06-19",
+          "partes": [
+            {"nombre": "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco", "siglas": "EAJ-PNV", "partido_id": "pnv"},
+            {"nombre": "Partido Socialista de Euskadi-Euskadiko Ezkerra", "siglas": "PSE-EE (PSOE)", "partido_id": "psoe"}
+          ],
+          "fuentes": [
+            {"titulo": "EAJ-PNV: «El acuerdo firmado por EAJ-PNV y PSE-EE en Vitoria-Gasteiz…»", "url": "https://www.eaj-pnv.eus/noticias/acuerdo-firmado-por-eajpnv-pseee_55783.html", "referencia": "noticia de la web del partido, 19-6-2024"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "la-rioja-2023-capellan",
+      "eleccion": "autonomicas",
+      "fecha_eleccion": "2023-05-28",
+      "comunidad": "ES-RI",
+      "candidato": "Gonzalo Capellán de Miguel",
+      "partido_candidato": {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp"},
+      "votaciones": [
+        {
+          "fecha": "2023-06-28",
+          "mayoria": "absoluta",
+          "resultado": "otorgada",
+          "votos": [
+            {"nombre": "Partido Popular", "siglas": "PP", "partido_id": "pp", "voto": "si"},
+            {"nombre": "Partido Socialista Obrero Español", "siglas": "PSOE", "partido_id": "psoe", "voto": "no"},
+            {"nombre": "VOX", "siglas": "VOX", "partido_id": "vox", "voto": "no"},
+            {"nombre": "Podemos-Izquierda Unida", "siglas": "PODEMOS-I.U.", "coalicion_id": "la-rioja-2023-podemos-iu", "voto": "no"}
+          ],
+          "fuentes": [
+            {"titulo": "Diario de Sesiones del Parlamento de La Rioja, XI legislatura, sesión plenaria núm. 3", "url": "https://www.parlamento-larioja.org/recursos-de-informacion/publicaciones-oficiales/diarios-de-sesiones/dspr-11-3/at_download/file", "referencia": "28-6-2023, p. 39 del PDF (resultado de la votación)"}
+          ]
+        }
+      ],
+      "acuerdos": []
+    }
+  ],
   "comunidades": [
     { "codigo": "ES-AN", "nombre": "Andalucía" },
     { "codigo": "ES-AR", "nombre": "Aragón" },
