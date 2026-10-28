@@ -1,0 +1,266 @@
+{
+  "id": "gasto-pensiones-pobreza-mayores",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Gasto público en pensiones",
+    "unidad": "% del PIB",
+    "periodo": "2017-2023"
+  },
+  "eje_y": {
+    "titulo": "Personas de más de 65 años en pobreza relativa",
+    "unidad": "% de la población de más de 65 años",
+    "periodo": "2017-2023"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2020,
+      "x": 4.16,
+      "y": 22.6
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2021,
+      "x": 14.017,
+      "y": 11.1855275928974
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2021,
+      "x": 10.724,
+      "y": 9.81651097536087
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2022,
+      "x": 5.867,
+      "y": 11.6
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2021,
+      "x": 6.558,
+      "y": 19.8402887
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2022,
+      "x": 3.328,
+      "y": 16.1568447
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2022,
+      "x": 4.939,
+      "y": 25.7723299
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2021,
+      "x": 8.191,
+      "y": 8.54250341653824
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2021,
+      "x": 10.791,
+      "y": 12.6200005412102
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2021,
+      "x": 7.513,
+      "y": 5.11999987065792
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2021,
+      "x": 12.282,
+      "y": 13.2849544286728
+    },
+    {
+      "codigo": "EST",
+      "anio": 2021,
+      "x": 6.778,
+      "y": 41.3032948970795
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2021,
+      "x": 12.176,
+      "y": 6.31752
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2022,
+      "x": 13.396,
+      "y": 6.1
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2022,
+      "x": 7.072,
+      "y": 14.9223658
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2021,
+      "x": 16.183,
+      "y": 10.0828476250172
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2017,
+      "x": 8.431,
+      "y": 4.89014536142349
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2021,
+      "x": 2.933,
+      "y": 15.6950086355209
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2019,
+      "x": 2.876,
+      "y": 4.18094843626022
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2023,
+      "x": 4.464,
+      "y": 16.0038828849792
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2021,
+      "x": 16.089,
+      "y": 11.7159612476826
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2021,
+      "x": 9.379,
+      "y": 20.0
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2022,
+      "x": 3.81,
+      "y": 39.7000014781952
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2021,
+      "x": 6.498,
+      "y": 27.7842372655869
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2021,
+      "x": 8.611,
+      "y": 6.83191046118736
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2021,
+      "x": 7.519,
+      "y": 32.1633219718933
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2022,
+      "x": 4.943,
+      "y": 18.2929514
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2021,
+      "x": 6.444,
+      "y": 8.1
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2021,
+      "x": 6.463,
+      "y": 3.8
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2022,
+      "x": 5.121,
+      "y": 33.7
+    },
+    {
+      "codigo": "POL",
+      "anio": 2021,
+      "x": 11.187,
+      "y": 11.4896453917027
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2021,
+      "x": 12.919,
+      "y": 10.3454262018204
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2021,
+      "x": 7.43,
+      "y": 5.23030646145344
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2021,
+      "x": 10.621,
+      "y": 12.2409366071224
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2021,
+      "x": 7.993,
+      "y": 11.0837055
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2021,
+      "x": 6.082,
+      "y": 9.35
+    },
+    {
+      "codigo": "USA",
+      "anio": 2023,
+      "x": 7.314,
+      "y": 22.874
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_SOCX_AGG@DF_SOCX_AGG (SOCX, versión 1.0): TP01, ES10, C, PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-16"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_WISE_IDD@DF_IDD (IDD, versión 1.0): PR_INC_DISP, Y_GT65, METH2012, D_CUR, PL_50",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-16"
+    }
+  ],
+  "notas": [
+    "Gasto en pensiones: OCDE, base de gasto social (SOCX), gasto público en prestaciones en dinero de vejez y supervivencia (TP01, ES10, C), en % del PIB; incluye las pensiones de todas las administraciones públicas y no las de incapacidad.",
+    "Pobreza de las personas mayores: OCDE, base de distribución de la renta (IDD), porcentaje de las personas de más de 65 años en hogares con una renta disponible equivalente inferior al 50 % de la mediana nacional (definición de renta vigente desde 2012). La renta no incluye el valor de la vivienda en propiedad.",
+    "La IDD no publica la media de la OCDE: no hay punto de la media.",
+    "El gasto en % del PIB depende también de cuántas personas mayores hay en cada país, y la pobreza de los mayores, de otras rentas, como los planes de pensiones de empresa e individuales o el ahorro.",
+    "Sin dato en los dos ejes el mismo año (1 de los 38 países): Colombia.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/seguridad-social/notebooks/gasto-pensiones-pobreza-mayores.ipynb",
+  "generado_en": "2026-10-16T21:08:13Z",
+  "datos_actualizados_en": "2026-10-16"
+}

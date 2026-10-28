@@ -1,0 +1,266 @@
+{
+  "id": "gasto-pensiones-pobreza-infantil",
+  "tipo": "dispersion",
+  "universo": "ocde",
+  "eje_x": {
+    "titulo": "Gasto público en pensiones",
+    "unidad": "% del PIB",
+    "periodo": "2017-2023"
+  },
+  "eje_y": {
+    "titulo": "Menores de 18 años en pobreza relativa",
+    "unidad": "% de la población menor de 18 años",
+    "periodo": "2017-2023"
+  },
+  "puntos": [
+    {
+      "codigo": "AUS",
+      "anio": 2020,
+      "x": 4.16,
+      "y": 13.3
+    },
+    {
+      "codigo": "AUT",
+      "anio": 2021,
+      "x": 14.017,
+      "y": 11.8880296958405
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2021,
+      "x": 10.724,
+      "y": 7.87442599979143
+    },
+    {
+      "codigo": "CAN",
+      "anio": 2022,
+      "x": 5.867,
+      "y": 12.5
+    },
+    {
+      "codigo": "CHE",
+      "anio": 2021,
+      "x": 6.558,
+      "y": 9.8404592
+    },
+    {
+      "codigo": "CHL",
+      "anio": 2022,
+      "x": 3.328,
+      "y": 20.5269365
+    },
+    {
+      "codigo": "CRI",
+      "anio": 2022,
+      "x": 4.939,
+      "y": 28.5342836
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2021,
+      "x": 8.191,
+      "y": 8.39893870382841
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2021,
+      "x": 10.791,
+      "y": 11.1
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2021,
+      "x": 7.513,
+      "y": 4.0
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2021,
+      "x": 12.282,
+      "y": 20.4994994621904
+    },
+    {
+      "codigo": "EST",
+      "anio": 2021,
+      "x": 6.778,
+      "y": 8.00559604946604
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2021,
+      "x": 12.176,
+      "y": 2.9
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2022,
+      "x": 13.396,
+      "y": 11.2
+    },
+    {
+      "codigo": "GBR",
+      "anio": 2022,
+      "x": 7.072,
+      "y": 13.6443759
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2021,
+      "x": 16.183,
+      "y": 13.9029599356482
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2017,
+      "x": 8.431,
+      "y": 9.90351754976363
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2021,
+      "x": 2.933,
+      "y": 9.50310340170914
+    },
+    {
+      "codigo": "ISL",
+      "anio": 2019,
+      "x": 2.876,
+      "y": 6.53398639543438
+    },
+    {
+      "codigo": "ISR",
+      "anio": 2023,
+      "x": 4.464,
+      "y": 23.2418423092589
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2021,
+      "x": 16.089,
+      "y": 15.6785072426724
+    },
+    {
+      "codigo": "JPN",
+      "anio": 2021,
+      "x": 9.379,
+      "y": 11.5370734
+    },
+    {
+      "codigo": "KOR",
+      "anio": 2022,
+      "x": 3.81,
+      "y": 9.5
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2021,
+      "x": 6.498,
+      "y": 9.86802889230236
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2021,
+      "x": 8.611,
+      "y": 13.2216023067682
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2021,
+      "x": 7.519,
+      "y": 9.63477266558092
+    },
+    {
+      "codigo": "MEX",
+      "anio": 2022,
+      "x": 4.943,
+      "y": 19.1050866
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2021,
+      "x": 6.444,
+      "y": 12.0
+    },
+    {
+      "codigo": "NOR",
+      "anio": 2021,
+      "x": 6.463,
+      "y": 6.72
+    },
+    {
+      "codigo": "NZL",
+      "anio": 2022,
+      "x": 5.121,
+      "y": 13.9
+    },
+    {
+      "codigo": "POL",
+      "anio": 2021,
+      "x": 11.187,
+      "y": 8.28716808581117
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2021,
+      "x": 12.919,
+      "y": 11.9542678535359
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2021,
+      "x": 7.43,
+      "y": 14.4460524508951
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2021,
+      "x": 10.621,
+      "y": 5.08845485797085
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2021,
+      "x": 7.993,
+      "y": 8.769934
+    },
+    {
+      "codigo": "TUR",
+      "anio": 2021,
+      "x": 6.082,
+      "y": 22.61
+    },
+    {
+      "codigo": "USA",
+      "anio": 2023,
+      "x": 7.314,
+      "y": 21.0673
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_SOCX_AGG@DF_SOCX_AGG (SOCX, versión 1.0): TP01, ES10, C, PT_B1GQ",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-16"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "OECD",
+      "dataset_codigo": "DSD_WISE_IDD@DF_IDD (IDD, versión 1.0): PR_INC_DISP, Y_LT18, METH2012, D_CUR, PL_50",
+      "url": "https://data-explorer.oecd.org/",
+      "fecha_consulta": "2026-10-16"
+    }
+  ],
+  "notas": [
+    "Gasto en pensiones: OCDE, base de gasto social (SOCX), gasto público en prestaciones en dinero de vejez y supervivencia (TP01, ES10, C), en % del PIB; incluye las pensiones de todas las administraciones públicas y no las de incapacidad.",
+    "Pobreza infantil: OCDE, base de distribución de la renta (IDD), porcentaje de los menores de 18 años en hogares con una renta disponible equivalente inferior al 50 % de la mediana nacional (definición de renta vigente desde 2012); el mismo umbral que en la gráfica de la pobreza de las personas mayores.",
+    "La IDD no publica la media de la OCDE: no hay punto de la media.",
+    "El gasto en % del PIB depende también de cuántas personas mayores hay en cada país, y la pobreza infantil, sobre todo del empleo de los padres y de las prestaciones por hijo, no solo del gasto en pensiones.",
+    "Sin dato en los dos ejes el mismo año (1 de los 38 países): Colombia.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/seguridad-social/notebooks/gasto-pensiones-pobreza-infantil.ipynb",
+  "generado_en": "2026-10-16T21:08:50Z",
+  "datos_actualizados_en": "2026-10-16"
+}

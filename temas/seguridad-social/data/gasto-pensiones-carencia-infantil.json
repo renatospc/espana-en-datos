@@ -1,0 +1,211 @@
+{
+  "id": "gasto-pensiones-carencia-infantil",
+  "tipo": "dispersion",
+  "universo": "ue27",
+  "eje_x": {
+    "titulo": "Gasto en pensiones",
+    "unidad": "% del PIB",
+    "periodo": "2024"
+  },
+  "eje_y": {
+    "titulo": "Menores de 18 años en carencia material y social severa",
+    "unidad": "% de la población menor de 18 años",
+    "periodo": "2024"
+  },
+  "puntos": [
+    {
+      "codigo": "AUT",
+      "anio": 2024,
+      "x": 14.82,
+      "y": 4.8
+    },
+    {
+      "codigo": "BEL",
+      "anio": 2024,
+      "x": 11.21,
+      "y": 7.9
+    },
+    {
+      "codigo": "BGR",
+      "anio": 2024,
+      "x": 8.69,
+      "y": 18.2
+    },
+    {
+      "codigo": "CYP",
+      "anio": 2024,
+      "x": 7.35,
+      "y": 4.1
+    },
+    {
+      "codigo": "CZE",
+      "anio": 2024,
+      "x": 8.21,
+      "y": 4.2
+    },
+    {
+      "codigo": "DEU",
+      "anio": 2024,
+      "x": 10.940000000000001,
+      "y": 7.4
+    },
+    {
+      "codigo": "DNK",
+      "anio": 2024,
+      "x": 9.02,
+      "y": 4.7
+    },
+    {
+      "codigo": "ESP",
+      "anio": 2024,
+      "x": 12.100000000000001,
+      "y": 11.2
+    },
+    {
+      "codigo": "EST",
+      "anio": 2024,
+      "x": 7.47,
+      "y": 3.6
+    },
+    {
+      "codigo": "FIN",
+      "anio": 2024,
+      "x": 13.31,
+      "y": 3.5
+    },
+    {
+      "codigo": "FRA",
+      "anio": 2024,
+      "x": 13.91,
+      "y": 9.0
+    },
+    {
+      "codigo": "GRC",
+      "anio": 2024,
+      "x": 13.690000000000001,
+      "y": 13.9
+    },
+    {
+      "codigo": "HRV",
+      "anio": 2024,
+      "x": 8.39,
+      "y": 1.2
+    },
+    {
+      "codigo": "HUN",
+      "anio": 2024,
+      "x": 7.04,
+      "y": 12.9
+    },
+    {
+      "codigo": "IRL",
+      "anio": 2024,
+      "x": 3.45,
+      "y": 7.5
+    },
+    {
+      "codigo": "ITA",
+      "anio": 2024,
+      "x": 15.2,
+      "y": 5.7
+    },
+    {
+      "codigo": "LTU",
+      "anio": 2024,
+      "x": 6.5200000000000005,
+      "y": 5.3
+    },
+    {
+      "codigo": "LUX",
+      "anio": 2024,
+      "x": 9.42,
+      "y": 3.4
+    },
+    {
+      "codigo": "LVA",
+      "anio": 2024,
+      "x": 8.040000000000001,
+      "y": 3.7
+    },
+    {
+      "codigo": "MLT",
+      "anio": 2024,
+      "x": 4.83,
+      "y": 6.7
+    },
+    {
+      "codigo": "NLD",
+      "anio": 2024,
+      "x": 9.46,
+      "y": 4.2
+    },
+    {
+      "codigo": "POL",
+      "anio": 2024,
+      "x": 10.99,
+      "y": 2.1
+    },
+    {
+      "codigo": "PRT",
+      "anio": 2024,
+      "x": 11.870000000000001,
+      "y": 4.8
+    },
+    {
+      "codigo": "ROU",
+      "anio": 2024,
+      "x": 8.729999999999999,
+      "y": 21.2
+    },
+    {
+      "codigo": "SVK",
+      "anio": 2024,
+      "x": 8.139999999999999,
+      "y": 10.7
+    },
+    {
+      "codigo": "SVN",
+      "anio": 2024,
+      "x": 9.82,
+      "y": 1.9
+    },
+    {
+      "codigo": "SWE",
+      "anio": 2024,
+      "x": 10.08,
+      "y": 3.6
+    },
+    {
+      "codigo": "EU27_2020",
+      "anio": 2024,
+      "x": 11.61,
+      "y": 7.9
+    }
+  ],
+  "fuentes": [
+    {
+      "serie": "eje_x",
+      "organismo": "Eurostat",
+      "dataset_codigo": "spr_exp_pens (spdepb=OLD+AOLD+PART+SRV, spdepm=TOTAL, unit=PC_GDP)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/spr_exp_pens/default/table?lang=en",
+      "fecha_consulta": "2026-10-18"
+    },
+    {
+      "serie": "eje_y",
+      "organismo": "Eurostat",
+      "dataset_codigo": "ilc_mdsd11 (age=Y_LT18, sex=T, unit=PC)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_mdsd11/default/table?lang=en",
+      "fecha_consulta": "2026-10-18"
+    }
+  ],
+  "notas": [
+    "Gasto en pensiones: Eurostat, gasto en pensiones de la protección social (spr_exp_pens, ESSPROS), suma de las pensiones de jubilación, jubilación anticipada, jubilación parcial y supervivencia, en % del PIB; no incluye las de incapacidad ni las prejubilaciones. Además del gasto público, ESSPROS cuenta los regímenes privados que considera protección social (como algunos planes de empresa obligatorios), por lo que puede diferir del gasto público de la OCDE de la gráfica «Gasto público en pensiones».",
+    "Carencia material y social severa: Eurostat, EU-SILC (ilc_mdsd11), porcentaje de los menores de 18 años que no pueden permitirse al menos 7 de 13 gastos básicos del hogar o personales. No depende de la renta mediana del país, a diferencia de la tasa de riesgo de pobreza; Eurostat lo publica desde 2015.",
+    "Universo UE-27: el indicador de carencia material solo existe para los países de la encuesta europea EU-SILC.",
+    "El gasto en % del PIB depende también de cuántas personas mayores hay en cada país. La carencia infantil depende sobre todo del empleo de los padres y de las prestaciones por hijo, no solo del gasto en pensiones.",
+    "La relación entre dos indicadores no muestra que uno cause el otro."
+  ],
+  "generado_por": "temas/seguridad-social/notebooks/gasto-pensiones-carencia-infantil.ipynb",
+  "generado_en": "2026-10-18T14:10:28Z",
+  "datos_actualizados_en": "2026-10-18"
+}
