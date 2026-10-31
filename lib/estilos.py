@@ -35,9 +35,15 @@ MODOS = ("claro", "oscuro")
 # Debe coincidir con el enum `vista` de src/lib/schema.ts (lo comprueba tests/test_estilos.py): cada vista
 # de la web tiene su dibujo aquí, para que el notebook muestre la misma gráfica que la web.
 VISTAS = ("lineas", "ultimo_anio", "proyeccion", "categorias", "composicion")
-# Colores de las partes en la vista `composicion` (solo notebook): los de las series de la paleta
-# (docs/paleta_colores_elecciones_espana.md), primero enteros y después más claros.
-COLORES_PARTES = ["#2C8585", "#5B7CFA", "#9585E8", "#C58A2B", "#527093"]
+# Colores de las partes en la vista `composicion`, por modo: los tokens `TOKENS_PARTES` de src/lib/estilos-series.ts
+# en src/app/globals.css (lo comprueba tests/test_estilos.py), primero enteros y después con OPACIDAD_PARTES.
+COLORES_PARTES = {
+    "claro": ["#216B70", "#5B7CFA", "#9585E8", "#C58A2B", "#527093"],
+    "oscuro": ["#7FD0CA", "#8AA2FF", "#B3A7F2", "#E0AA52", "#A3B7CB"],
+}
+OPACIDAD_PARTES = 0.5
+# Se rotula con su valor la parte que ocupa al menos esta fracción del eje, como ROTULO_PARTES de la web.
+ROTULO_PARTES = 0.06
 
 # Superficie, texto principal y secundario, y rejilla por modo (la rejilla, un paso por encima de la superficie).
 PALETA = {
@@ -494,9 +500,41 @@ def ultimo_indice_completo(datos: dict, benchmark: str) -> int | None:
     return None
 
 
+def estilo_parte(n: int, modo: str = "claro") -> tuple[str, float]:
+    """Color y opacidad de la parte `n` de `composicion`: los colores de COLORES_PARTES y, cuando se acaban,
+    los mismos con OPACIDAD_PARTES (como `estiloParte` de la web)."""
+    colores = COLORES_PARTES[modo]
+    return colores[n % len(colores)], 1.0 if n < len(colores) else OPACIDAD_PARTES
+
+
+def _luminancia(color: str) -> float:
+    canales = [int(color.lstrip("#")[i : i + 2], 16) / 255 for i in (0, 2, 4)]
+    r, g, b = (c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in canales)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def contraste(a: str, b: str) -> float:
+    """Contraste WCAG entre dos colores hexadecimales (de 1 a 21)."""
+    la, lb = sorted((_luminancia(a), _luminancia(b)), reverse=True)
+    return (la + 0.05) / (lb + 0.05)
+
+
+def color_rotulo(color: str, alfa: float, modo: str = "claro") -> str:
+    """Color del valor rotulado dentro de una parte: el fondo claro o el oscuro, el que más contraste con la parte
+    (mezclada con el fondo según su opacidad), como el `rotulo` de `estiloParte` en la web."""
+    fondo = _paleta(modo)["fondo"].lstrip("#")
+    c = color.lstrip("#")
+    mezcla = "#" + "".join(
+        f"{round(int(c[i:i + 2], 16) * alfa + int(fondo[i:i + 2], 16) * (1 - alfa)):02X}" for i in (0, 2, 4)
+    )
+    return max((PALETA["claro"]["fondo"], PALETA["oscuro"]["fondo"]), key=lambda t: contraste(t, mezcla))
+
+
 def dibujar_composicion(ax, datos: dict, modo: str = "claro") -> None:
-    """Vista `composicion` (solo notebook): una barra horizontal apilada por benchmark con sus partes de
-    `composicion`, en su último año con dato de todas (que va junto al nombre), en el orden de la cesta."""
+    """Vista `composicion`: una barra horizontal apilada por benchmark con sus partes de `composicion`, en su
+    último año con dato de todas (que va junto al nombre), en el orden de la cesta. Cada parte lleva su valor si
+    ocupa al menos ROTULO_PARTES del eje, en el color que más contraste con ella; un filo del color del fondo
+    separa las partes."""
     p = _paleta(modo)
     if not datos.get("composicion"):
         raise ValueError("la vista de composición necesita `composicion` en los datos")
@@ -508,17 +546,17 @@ def dibujar_composicion(ax, datos: dict, modo: str = "claro") -> None:
             filas.append((b["id"], b["nombre"], datos["labels"][i], [datos["series"][f"{b['id']}__{k}"][i] for k in partes]))
     if not filas:
         raise ValueError("ningún benchmark tiene dato de todas las partes")
+    ticks = escala([0, max(sum(v) for *_r, v in filas)])
     y = list(range(len(filas)))[::-1]  # la primera de la cesta, arriba
     for yy, (_, _, _, valores) in zip(y, filas):
         izquierda = 0.0
         for n, v in enumerate(valores):
-            color = COLORES_PARTES[n % len(COLORES_PARTES)]
-            alfa = 1.0 if n < len(COLORES_PARTES) else 0.5
-            ax.barh(yy, v, left=izquierda, height=0.6, color=color, alpha=alfa, zorder=3,
-                    label=datos["composicion"][partes[n]] if yy == y[0] else None)
-            if v >= 6:
+            color, alfa = estilo_parte(n, modo)
+            ax.barh(yy, v, left=izquierda, height=0.6, color=color, alpha=alfa, edgecolor=p["fondo"], linewidth=0.8,
+                    zorder=3, label=datos["composicion"][partes[n]] if yy == y[0] else None)
+            if v >= ROTULO_PARTES * ticks[-1]:
                 ax.annotate(formato_es(v, 0), xy=(izquierda + v / 2, yy), ha="center", va="center", fontsize=8,
-                            color="#FFFFFF" if alfa == 1.0 else p["texto"], zorder=4)
+                            color=color_rotulo(color, alfa, modo), zorder=4)
             izquierda += v
     ax.set_yticks(y, [f"{nombre} ({anio})" for _, nombre, anio, _ in filas])
     for etiqueta, (clave, *_rest) in zip(ax.get_yticklabels(), filas):
@@ -526,8 +564,7 @@ def dibujar_composicion(ax, datos: dict, modo: str = "claro") -> None:
             etiqueta.set_color(estilo_benchmark("espana", modo)["color"])
             etiqueta.set_fontweight("bold")
     ax.set_ylim(-0.6, len(filas) - 0.4)
-    total = max(sum(v) for *_r, v in filas)
-    _eje_barras(ax, escala([0, total]), p)
+    _eje_barras(ax, ticks, p)
 
 
 # ---------- Dispersión (METODOLOGIA §2.6), con las reglas de src/lib/dispersion.ts ----------
@@ -632,8 +669,9 @@ def figura(
     """La gráfica tal como la dibuja la web, según la `vista` y el `eje_max` de la gráfica en config.json.
 
     `lineas` y `proyeccion` son la evolución (con los años proyectados en trazo de puntos si los datos traen
-    `proyeccion`); `ultimo_anio` y `categorias`, barras del último año. Las dispersiones (con `puntos`)
-    tienen su propio dibujo. Devuelve la figura para pasarla a `mostrar`.
+    `proyeccion`); `ultimo_anio` y `categorias`, barras del último año, y `composicion`, una barra apilada por
+    serie de la cesta. Las dispersiones (con `puntos`) tienen su propio dibujo. Devuelve la figura para pasarla
+    a `mostrar`.
     """
     if vista not in VISTAS:
         raise ValueError(f"vista desconocida: {vista!r}; válidas: {', '.join(VISTAS)}")
