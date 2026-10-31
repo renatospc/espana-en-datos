@@ -381,6 +381,7 @@ def write_grafica_data(
 # ---------- Dispersión (METODOLOGIA §2.6) ----------
 
 NOTA_CAUSALIDAD = "La relación entre dos indicadores no muestra que uno cause el otro."
+ANTIGUEDAD_MAXIMA = 15  # años entre el último dato de un país y el más reciente de la gráfica (METODOLOGIA §2.6)
 EJES = ("eje_x", "eje_y")
 
 
@@ -422,7 +423,8 @@ def construir_dispersion_data(
     (ISO 3166-1 alfa-3 de `paises`) o de agregado (`codigo_iso` de un benchmark, p. ej. OECD) y
     periodos anuales. Cada punto usa el último año en que el país tiene dato en los dos ejes, el
     mismo para `x` e `y` (METODOLOGIA §2.6); `anios` = (desde, hasta) limita los años candidatos
-    si el notebook fija una ventana. `eje_x` y `eje_y` son `{"titulo": ..., "unidad": ...}`: el
+    si el notebook fija una ventana. Un país cuyo último año queda más de `ANTIGUEDAD_MAXIMA` años por
+    detrás del más reciente de la gráfica no entra y se lista en las notas. `eje_x` y `eje_y` son `{"titulo": ..., "unidad": ...}`: el
     `periodo` de cada eje se calcula con los años de los puntos. `fuentes` lleva `serie` = "eje_x"
     o "eje_y" (al menos una por eje). Las notas añaden los países del universo sin dato en los dos
     ejes y la advertencia de que la relación no muestra causa.
@@ -447,6 +449,10 @@ def construir_dispersion_data(
             puntos.append(
                 {"codigo": codigo, "anio": int(a), "x": float(vx[(codigo, a)]), "y": float(vy[(codigo, a)])}
             )
+    # Los países cuyo último año queda demasiado lejos del más reciente salen de la gráfica (§2.6, punto 2)
+    limite = max((p["anio"] for p in puntos), default=0) - ANTIGUEDAD_MAXIMA
+    antiguos = {p["codigo"]: p["anio"] for p in puntos if p["anio"] < limite}
+    puntos = [p for p in puntos if p["codigo"] not in antiguos]
     con_punto = {p["codigo"] for p in puntos}
     if "ESP" not in con_punto:
         raise ValueError("España (ESP) no tiene dato en los dos ejes el mismo año")
@@ -460,12 +466,17 @@ def construir_dispersion_data(
         raise ValueError(f"falta la fuente de {', '.join(sin_fuente)}")
 
     años_puntos = [p["anio"] for p in puntos]
-    sin_dato = [nombre_punto(c) for c in del_universo if c not in con_punto]
+    sin_dato = [nombre_punto(c) for c in del_universo if c not in con_punto | set(antiguos)]
     notas_auto = []
     if sin_dato:
         notas_auto.append(
             f"Sin dato en los dos ejes el mismo año ({len(sin_dato)} de los {len(del_universo)} países): "
             f"{_unir(sorted(sin_dato))}."
+        )
+    if antiguos:
+        notas_auto.append(
+            f"Fuera de la gráfica por tener su último dato más de {ANTIGUEDAD_MAXIMA} años antes que el más reciente: "
+            f"{_unir(sorted(f'{nombre_punto(c)} ({a})' for c, a in antiguos.items()))}."
         )
     notas_auto.append(NOTA_CAUSALIDAD)
 
